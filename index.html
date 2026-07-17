@@ -1,520 +1,703 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Youths & Young Adults' Conference Registration</title>
+    <!-- GOOGLE reCAPTCHA API SCRIPT -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
     <style>
-        :root {
-            --teal-accent: #1662a0;
-            --teal-dark: #044079;
-            --teal-light: #eef6fc;
-            --input-bg: #f5f5f5;
-            --text-dark: #333333;
-            --text-muted: #65676b;
-            --border-color: #ced0d4;
-            --fb-bg: #dbdee4; 
-        }
+      :root {
+        --teal-accent: #1662a0;
+        --teal-dark: #044079;
+        --teal-light: #eef6fc;
+        --input-bg: #f5f5f5;
+        --text-dark: #333333;
+        --text-muted: #65676b;
+        --border-color: #ced0d4;
+        --fb-bg: #dbdee4;
+        --red-accent: #b91c1c;
+      }
 
+      body {
+        background-color: var(--fb-bg);
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+          Arial, sans-serif;
+        margin: 0;
+        padding: 40px 20px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        min-height: 100vh;
+        color: var(--text-dark);
+        -webkit-font-smoothing: antialiased;
+        box-sizing: border-box;
+      }
+
+      .fb-container {
+        background-color: #ffffff;
+        width: 100%;
+        max-width: 940px;
+        margin: 0 auto;
+        box-shadow:
+          0 10px 25px rgba(0, 0, 0, 0.08),
+          0 4px 12px rgba(0, 0, 0, 0.05);
+        border-radius: 12px;
+        overflow: hidden;
+      }
+
+      .fb-cover {
+        width: 100%;
+        height: 348px;
+        background:
+          linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)),
+          url("./images/ZION EVANGELICAL MINISTRIES.png") center center / cover
+            no-repeat;
+        position: relative;
+        background-color: #cbd5e1;
+      }
+
+      .fb-header-bar {
+        padding: 0 32px 16px 32px;
+        display: flex;
+        align-items: flex-end;
+        position: relative;
+        border-bottom: 1px solid var(--border-color);
+        margin-bottom: 24px;
+      }
+
+      .fb-profile-pic-container {
+        width: 168px;
+        height: 168px;
+        margin-top: -120px;
+        position: relative;
+        z-index: 5;
+      }
+
+      .fb-profile-pic {
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        border: 4px solid #ffffff;
+        background-color: var(--teal-accent);
+        background: url("./images/ZEM Logo.png") center center / cover no-repeat;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .fb-title-area {
+        flex: 1;
+        margin-left: 24px;
+        margin-bottom: 8px;
+      }
+
+      .form-title {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #050505;
+        margin: 0 0 4px 0;
+        letter-spacing: -0.01em;
+      }
+
+      .form-subtitle {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--text-muted);
+        margin: 0;
+      }
+
+      .fb-body-grid {
+        padding: 0 32px 40px 32px;
+        display: grid;
+        grid-template-columns: 320px 1fr;
+        gap: 32px;
+      }
+
+      .fb-left-column {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .widget-card {
+        background: #ffffff;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 16px;
+      }
+
+      .widget-title {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #050505;
+        margin: 0 0 16px 0;
+      }
+
+      .timer-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .timer-block {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex: 1;
+        padding: 10px 4px;
+        border-radius: 8px;
+        box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.1);
+      }
+
+      .timer-block.days {
+        background: linear-gradient(135deg, #e0f2fe, #bae6fd);
+        border: 1px solid #7dd3fc;
+      }
+      .timer-block.hours {
+        background: linear-gradient(135deg, #e0f2fe, #bae6fd);
+        border: 1px solid #7dd3fc;
+      }
+      .timer-block.minutes {
+        background: linear-gradient(135deg, #ffedd5, #fed7aa);
+        border: 1px solid #fdba74;
+      }
+      .timer-block.seconds {
+        background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+        border: 1px solid #86efac;
+      }
+
+      .timer-digits {
+        color: var(--teal-dark);
+        font-size: 1.4rem;
+        font-weight: 800;
+        font-family:
+          system-ui,
+          -apple-system,
+          sans-serif;
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
+      }
+
+      .timer-label {
+        color: #374151;
+        font-size: 0.65rem;
+        text-transform: uppercase;
+        font-weight: 700;
+        margin-top: 4px;
+        letter-spacing: 0.02em;
+      }
+
+      .timer-separator {
+        color: var(--text-muted);
+        font-size: 1.2rem;
+        font-weight: 700;
+        padding-bottom: 18px;
+        animation: blink 1s infinite;
+      }
+
+      @keyframes blink {
+        50% {
+          opacity: 0.4;
+        }
+      }
+
+      .fb-right-column {
+        background: #ffffff;
+      }
+
+      .form-row {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+      }
+
+      .label-cell {
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: #050505;
+        margin-bottom: 8px;
+      }
+
+      .input-cell {
+        width: 100%;
+      }
+
+      input[type="text"],
+      input[type="tel"] {
+        width: 100%;
+        box-sizing: border-box;
+        background-color: #ffffff;
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        padding: 12px 16px;
+        font-size: 0.95rem;
+        color: var(--text-dark);
+        outline: none;
+        transition: border-color 0.2s ease;
+      }
+
+      input[type="text"]:focus,
+      input[type="tel"]:focus {
+        border-color: var(--teal-accent);
+        box-shadow: 0 0 0 2px rgba(22, 98, 160, 0.2);
+      }
+
+      .form-row:focus-within .label-cell {
+        color: var(--teal-accent);
+      }
+
+      .options-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px 12px;
+        padding-top: 6px;
+      }
+
+      .radio-label {
+        display: inline-flex;
+        align-items: center;
+        font-size: 0.95rem;
+        color: var(--text-dark);
+        cursor: pointer;
+        user-select: none;
+      }
+
+      .radio-label input[type="radio"] {
+        margin: 0 10px 0 0;
+        accent-color: var(--teal-accent);
+        transform: scale(1.15);
+        cursor: pointer;
+      }
+
+      .radio-label:hover {
+        color: #000000;
+      }
+
+      /* RECAPTCHA ROW STYLING */
+      .captcha-row {
+        margin-top: 24px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .captcha-error-msg {
+        color: var(--red-accent);
+        font-weight: 600;
+        font-size: 0.85rem;
+        margin-top: 8px;
+        display: none;
+      }
+
+      .actions-row {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 12px;
+        margin-top: 32px;
+        border-top: 1px solid var(--border-color);
+        padding-top: 20px;
+      }
+
+      .btn-link-nav {
+        background-color: #ffffff;
+        color: var(--teal-accent);
+        border: 1px solid var(--teal-accent);
+        border-radius: 6px;
+        padding: 11px 20px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        text-decoration: none;
+        text-align: center;
+        transition: background 0.2s;
+        margin-right: auto; /* Pushes the button to the far left of the row */
+      }
+
+      .btn-link-nav:hover {
+        background-color: var(--teal-light);
+      }
+
+      .btn-cancel {
+        background-color: var(--input-bg);
+        color: var(--text-dark);
+        border: none;
+        border-radius: 6px;
+        padding: 12px 24px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+
+      .btn-cancel:hover {
+        background-color: #e4e6eb;
+      }
+
+      .btn-confirm {
+        background-color: var(--teal-accent);
+        color: #ffffff;
+        border: none;
+        border-radius: 6px;
+        padding: 12px 36px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+
+      .btn-confirm:hover {
+        background-color: var(--teal-dark);
+      }
+
+      .btn-confirm:disabled {
+        background-color: #bcc0c4;
+        cursor: not-allowed;
+      }
+
+      @media (max-width: 880px) {
         body {
-            background-color: var(--fb-bg);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 40px 20px;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            min-height: 100vh;
-            color: var(--text-dark);
-            -webkit-font-smoothing: antialiased;
-            box-sizing: border-box;
+          padding: 0;
         }
-
         .fb-container {
-            background-color: #ffffff;
-            width: 100%;
-            max-width: 940px;
-            margin: 0 auto;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.05);
-            border-radius: 12px;
-            overflow: hidden;
+          margin: 0;
+          border-radius: 0;
+          box-shadow: none;
         }
-
         .fb-cover {
-            width: 100%;
-            height: 348px;
-            background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.2)), url('./images/ZION EVANGELICAL MINISTRIES.png') center center / cover no-repeat;
-            position: relative;
-            background-color: #cbd5e1;
+          height: 200px;
         }
-
         .fb-header-bar {
-            padding: 0 32px 16px 32px;
-            display: flex;
-            align-items: flex-end;
-            position: relative;
-            border-bottom: 1px solid var(--border-color);
-            margin-bottom: 24px;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          padding: 0 16px 16px 16px;
         }
-
         .fb-profile-pic-container {
-            width: 168px;
-            height: 168px;
-            margin-top: -120px;
-            position: relative;
-            z-index: 5;
+          margin-top: -80px;
         }
-
-        .fb-profile-pic {
-            width: 160px;
-            height: 160px;
-            border-radius: 50%;
-            border: 4px solid #ffffff;
-            background-color: var(--teal-accent);
-            background: url('./images/ZEM Logo.png') center center / cover no-repeat;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
         .fb-title-area {
-            flex: 1;
-            margin-left: 24px;
-            margin-bottom: 8px;
+          margin-left: 0;
+          margin-top: 12px;
         }
-
-        .form-title {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #050505;
-            margin: 0 0 4px 0;
-            letter-spacing: -0.01em;
-        }
-
-        .form-subtitle {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--text-muted);
-            margin: 0;
-        }
-
         .fb-body-grid {
-            padding: 0 32px 40px 32px;
-            display: grid;
-            grid-template-columns: 320px 1fr;
-            gap: 32px;
+          grid-template-columns: 1fr;
+          gap: 24px;
+          padding: 0 16px 30px 16px;
         }
-
-        .fb-left-column {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .widget-card {
-            background: #ffffff;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 16px;
-        }
-
-        .widget-title {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: #050505;
-            margin: 0 0 16px 0;
-        }
-
-        .timer-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .timer-block {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            flex: 1;
-            padding: 10px 4px;
-            border-radius: 8px;
-            box-shadow: inset 0 -2px 0 rgba(0,0,0,0.1);
-        }
-
-        .timer-block.days { background: linear-gradient(135deg, #e0f2fe, #bae6fd); border: 1px solid #7dd3fc; }
-        .timer-block.hours { background: linear-gradient(135deg, #e0f2fe, #bae6fd); border: 1px solid #7dd3fc; }
-        .timer-block.minutes { background: linear-gradient(135deg, #ffedd5, #fed7aa); border: 1px solid #fdba74; }
-        .timer-block.seconds { background: linear-gradient(135deg, #dcfce7, #bbf7d0); border: 1px solid #86efac; }
-
-        .timer-digits {
-            color: var(--teal-dark);
-            font-size: 1.4rem;
-            font-weight: 800;
-            font-family: system-ui, -apple-system, sans-serif;
-            text-shadow: 0 1px 0 rgba(255,255,255,0.6);
-        }
-
-        .timer-label {
-            color: #374151;
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            font-weight: 700;
-            margin-top: 4px;
-            letter-spacing: 0.02em;
-        }
-
-        .timer-separator {
-            color: var(--text-muted);
-            font-size: 1.2rem;
-            font-weight: 700;
-            padding-bottom: 18px;
-            animation: blink 1s infinite;
-        }
-
-        @keyframes blink {
-            50% { opacity: 0.4; }
-        }
-
-        .fb-right-column {
-            background: #ffffff;
-        }
-
-        .form-row {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 20px;
-        }
-
-        .label-cell {
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: #050505;
-            margin-bottom: 8px;
-        }
-
-        .input-cell {
-            width: 100%;
-        }
-
-        input[type="text"], input[type="tel"] {
-            width: 100%;
-            box-sizing: border-box;
-            background-color: #ffffff;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 12px 16px;
-            font-size: 0.95rem;
-            color: var(--text-dark);
-            outline: none;
-            transition: border-color 0.2s ease;
-        }
-
-        input[type="text"]:focus, input[type="tel"]:focus {
-            border-color: var(--teal-accent);
-            box-shadow: 0 0 0 2px rgba(22, 98, 160, 0.2);
-        }
-
-        .form-row:focus-within .label-cell {
-            color: var(--teal-accent);
-        }
-
-        .options-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px 12px;
-            padding-top: 6px;
-        }
-
-        .radio-label {
-            display: inline-flex;
-            align-items: center;
-            font-size: 0.95rem;
-            color: var(--text-dark);
-            cursor: pointer;
-            user-select: none;
-        }
-
-        .radio-label input[type="radio"] {
-            margin: 0 10px 0 0;
-            accent-color: var(--teal-accent);
-            transform: scale(1.15);
-            cursor: pointer;
-        }
-
-        .radio-label:hover {
-            color: #000000;
-        }
-
         .actions-row {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            gap: 12px;
-            margin-top: 32px;
-            border-top: 1px solid var(--border-color);
-            padding-top: 20px;
+          flex-direction: column-reverse;
+          width: 100%;
+          gap: 10px;
         }
-
-        .btn-link-nav {
-            background-color: #ffffff;
-            color: var(--teal-accent);
-            border: 1px solid var(--teal-accent);
-            border-radius: 6px;
-            padding: 11px 20px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            text-decoration: none;
-            text-align: center;
-            transition: background 0.2s;
-            margin-right: auto; /* Pushes the button to the far left of the row */
-        }
-
-        .btn-link-nav:hover {
-            background-color: var(--teal-light);
-        }
-
-        .btn-cancel {
-            background-color: var(--input-bg);
-            color: var(--text-dark);
-            border: none;
-            border-radius: 6px;
-            padding: 12px 24px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .btn-cancel:hover {
-            background-color: #e4e6eb;
-        }
-
+        .btn-link-nav,
+        .btn-cancel,
         .btn-confirm {
-            background-color: var(--teal-accent);
-            color: #ffffff;
-            border: none;
-            border-radius: 6px;
-            padding: 12px 36px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.2s;
+          width: 100%;
+          box-sizing: border-box;
+          margin-right: 0;
         }
+        .captcha-row {
+          align-items: center;
+        }
+      }
 
-        .btn-confirm:hover {
-            background-color: var(--teal-dark);
+      @media (max-width: 480px) {
+        .options-grid {
+          grid-template-columns: 1fr;
+          gap: 12px;
         }
-
-        .btn-confirm:disabled {
-            background-color: #bcc0c4;
-            cursor: not-allowed;
-        }
-
-        @media (max-width: 880px) {
-            body { padding: 0; }
-            .fb-container { margin: 0; border-radius: 0; box-shadow: none; }
-            .fb-cover { height: 200px; }
-            .fb-header-bar { flex-direction: column; align-items: center; text-align: center; padding: 0 16px 16px 16px; }
-            .fb-profile-pic-container { margin-top: -80px; }
-            .fb-title-area { margin-left: 0; margin-top: 12px; }
-            .fb-body-grid { grid-template-columns: 1fr; gap: 24px; padding: 0 16px 30px 16px; }
-            .actions-row { flex-direction: column-reverse; width: 100%; gap: 10px; }
-            .btn-link-nav, .btn-cancel, .btn-confirm { width: 100%; box-sizing: border-box; margin-right: 0; }
-        }
-
-        @media (max-width: 480px) {
-            .options-grid { grid-template-columns: 1fr; gap: 12px; }
-        }
+      }
     </style>
-</head>
-<body>
-
+  </head>
+  <body>
     <div class="fb-container">
-        <div class="fb-cover"></div>
+      <div class="fb-cover"></div>
 
-        <div class="fb-header-bar">
-            <div class="fb-profile-pic-container">
-                <div class="fb-profile-pic"></div>
+      <div class="fb-header-bar">
+        <div class="fb-profile-pic-container">
+          <div class="fb-profile-pic"></div>
+        </div>
+        <div class="fb-title-area">
+          <h1 class="form-title">Registration</h1>
+          <p class="form-subtitle">ZEM August 2026 Conference</p>
+        </div>
+      </div>
+
+      <div class="fb-body-grid">
+        <div class="fb-left-column">
+          <div class="widget-card">
+            <h3 class="widget-title">Conference Countdown</h3>
+            <div class="timer-container">
+              <div class="timer-block days">
+                <div class="timer-digits" id="t-days">00</div>
+                <div class="timer-label">Days</div>
+              </div>
+              <div class="timer-separator">:</div>
+              <div class="timer-block hours">
+                <div class="timer-digits" id="t-hours">00</div>
+                <div class="timer-label">Hours</div>
+              </div>
+              <div class="timer-separator">:</div>
+              <div class="timer-block minutes">
+                <div class="timer-digits" id="t-minutes">00</div>
+                <div class="timer-label">Mins</div>
+              </div>
+              <div class="timer-separator">:</div>
+              <div class="timer-block seconds">
+                <div class="timer-digits" id="t-seconds">00</div>
+                <div class="timer-label">Secs</div>
+              </div>
             </div>
-            <div class="fb-title-area">
-                <h1 class="form-title">Registration</h1>
-                <p class="form-subtitle">ZEM August 2026 Conference</p>
-            </div>
+          </div>
         </div>
 
-        <div class="fb-body-grid">
-            <div class="fb-left-column">
-                <div class="widget-card">
-                    <h3 class="widget-title">Conference Countdown</h3>
-                    <div class="timer-container">
-                        <div class="timer-block days">
-                            <div class="timer-digits" id="t-days">00</div>
-                            <div class="timer-label">Days</div>
-                        </div>
-                        <div class="timer-separator">:</div>
-                        <div class="timer-block hours">
-                            <div class="timer-digits" id="t-hours">00</div>
-                            <div class="timer-label">Hours</div>
-                        </div>
-                        <div class="timer-separator">:</div>
-                        <div class="timer-block minutes">
-                            <div class="timer-digits" id="t-minutes">00</div>
-                            <div class="timer-label">Mins</div>
-                        </div>
-                        <div class="timer-separator">:</div>
-                        <div class="timer-block seconds">
-                            <div class="timer-digits" id="t-seconds">00</div>
-                            <div class="timer-label">Secs</div>
-                        </div>
-                    </div>
+        <div class="fb-right-column">
+          <form id="conferenceForm">
+            <div class="form-row">
+              <div class="label-cell">Name</div>
+              <div class="input-cell">
+                <input
+                  type="text"
+                  name="fullName"
+                  placeholder="Enter your full name"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="label-cell">Phone Number/WhatsApp Number</div>
+              <div class="input-cell">
+                <input
+                  type="tel"
+                  name="phone"
+                  placeholder="+1 000 000 0000"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="label-cell">Church Name</div>
+              <div class="input-cell">
+                <input
+                  type="text"
+                  name="churchName"
+                  placeholder="Enter the name of your church"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="label-cell">Select Your Age Group</div>
+              <div class="input-cell">
+                <div class="options-grid">
+                  <label class="radio-label">
+                    <input
+                      type="radio"
+                      name="ageGroup"
+                      value="Below 25"
+                      checked
+                    />
+                    <span>Below 25</span>
+                  </label>
+                  <label class="radio-label">
+                    <input type="radio" name="ageGroup" value="25 and above" />
+                    <span>25 and above</span>
+                  </label>
                 </div>
+              </div>
             </div>
 
-            <div class="fb-right-column">
-                <form id="conferenceForm">
-                    <div class="form-row">
-                        <div class="label-cell">Name</div>
-                        <div class="input-cell">
-                            <input type="text" name="fullName" placeholder="Enter your full name" required>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="label-cell">Phone Number/WhatsApp Number</div>
-                        <div class="input-cell">
-                            <input type="tel" name="phone" placeholder="+1 000 000 0000" required>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="label-cell">Church Name</div>
-                        <div class="input-cell">
-                            <input type="text" name="churchName" placeholder="Enter the name of your church" required>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="label-cell">Select Your Age Group</div>
-                        <div class="input-cell">
-                            <div class="options-grid">
-                                <label class="radio-label">
-                                    <input type="radio" name="ageGroup" value="Below 25" checked>
-                                    <span>Below 25</span>
-                                </label>
-                                <label class="radio-label">
-                                    <input type="radio" name="ageGroup" value="25 and above">
-                                    <span>25 and above</span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="label-cell">Your Current Level</div>
-                        <div class="input-cell">
-                            <div class="options-grid">
-                                <label class="radio-label">
-                                    <input type="radio" name="currentLevel" value="Primary School" checked>
-                                    <span>Primary School</span>
-                                </label>
-                                <label class="radio-label">
-                                    <input type="radio" name="currentLevel" value="Secondary School">
-                                    <span>Secondary School</span>
-                                </label>
-                                <label class="radio-label">
-                                    <input type="radio" name="currentLevel" value="Tertiary / University">
-                                    <span>Tertiary / University</span>
-                                </label>
-                                <label class="radio-label">
-                                    <input type="radio" name="currentLevel" value="Working Professional">
-                                    <span>Working Professional</span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="label-cell">Accommodation</div>
-                        <div class="input-cell">
-                            <div class="options-grid">
-                                <label class="radio-label">
-                                    <input type="radio" name="accommodation" value="Residential" checked>
-                                    <span>Residential</span>
-                                </label>
-                                <label class="radio-label">
-                                    <input type="radio" name="accommodation" value="Non-Residential">
-                                    <span>Non-Residential</span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="actions-row">
-                        <a href="details.html" class="btn-link-nav">← Back to Conference Details</a>
-                        <button type="button" class="btn-cancel" onclick="document.getElementById('conferenceForm').reset()">Clear</button>
-                        <button type="submit" class="btn-confirm" id="submitBtn">Submit Details</button>
-                    </div>
-                </form>
+            <div class="form-row">
+              <div class="label-cell">Your Current Level</div>
+              <div class="input-cell">
+                <div class="options-grid">
+                  <label class="radio-label">
+                    <input
+                      type="radio"
+                      name="currentLevel"
+                      value="Primary School"
+                      checked
+                    />
+                    <span>Primary School</span>
+                  </label>
+                  <label class="radio-label">
+                    <input
+                      type="radio"
+                      name="currentLevel"
+                      value="Secondary School"
+                    />
+                    <span>Secondary School</span>
+                  </label>
+                  <label class="radio-label">
+                    <input
+                      type="radio"
+                      name="currentLevel"
+                      value="Tertiary / University"
+                    />
+                    <span>Tertiary / University</span>
+                  </label>
+                  <label class="radio-label">
+                    <input
+                      type="radio"
+                      name="currentLevel"
+                      value="Working Professional"
+                    />
+                    <span>Working Professional</span>
+                  </label>
+                </div>
+              </div>
             </div>
+
+            <div class="form-row">
+              <div class="label-cell">Accommodation</div>
+              <div class="input-cell">
+                <div class="options-grid">
+                  <label class="radio-label">
+                    <input
+                      type="radio"
+                      name="accommodation"
+                      value="Residential"
+                      checked
+                    />
+                    <span>Residential</span>
+                  </label>
+                  <label class="radio-label">
+                    <input
+                      type="radio"
+                      name="accommodation"
+                      value="Non-Residential"
+                    />
+                    <span>Non-Residential</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <!-- GOOGLE reCAPTCHA WIDGET CONTAINER -->
+            <div class="captcha-row">
+              <div
+                class="g-recaptcha"
+                data-sitekey="6LfiKlktAAAAAIUW30lNG5pLQ2OH5Zj2GCEzvyZE"
+                data-callback="captchaSuccessCallback"
+              ></div>
+              <div class="captcha-error-msg" id="captcha-error">
+                ⚠️ Please complete the security check to confirm you are not a
+                robot.
+              </div>
+            </div>
+
+            <div class="actions-row">
+              <a href="details.html" class="btn-link-nav"
+                >← Back to Conference Details</a
+              >
+              <button
+                type="button"
+                class="btn-cancel"
+                onclick="resetFormWithCaptcha()"
+              >
+                Clear
+              </button>
+              <button type="submit" class="btn-confirm" id="submitBtn">
+                Submit Details
+              </button>
+            </div>
+          </form>
         </div>
+      </div>
     </div>
 
     <script>
-        const formObj = document.getElementById('conferenceForm');
-        // REPLACE THE LINE BELOW WITH YOUR DEPLOYED GOOGLE APPS SCRIPT WEB APP URL
-        const sheetEndpoint = 'https://script.google.com/macros/s/AKfycbzJLDXgR8A9wmxIEMcyFilFUb4AEPRHFvFkeBmTTUjXWfX1b4BfCCIAKqJxCjk0g9kJ/exec'; 
+      const formObj = document.getElementById("conferenceForm");
+      // REPLACE THE LINE BELOW WITH YOUR DEPLOYED GOOGLE APPS SCRIPT WEB APP URL
+      const sheetEndpoint =
+        "https://script.google.com/macros/s/AKfycbzJLDXgR8A9wmxIEMcyFilFUb4AEPRHFvFkeBmTTUjXWfX1b4BfCCIAKqJxCjk0g9kJ/exec";
 
-        formObj.addEventListener('submit', event => {
-            event.preventDefault();
-            const actionBtn = document.getElementById('submitBtn');
-            actionBtn.innerText = "Processing...";
-            actionBtn.disabled = true;
+      formObj.addEventListener("submit", (event) => {
+        event.preventDefault();
 
-            const payload = new FormData(formObj);
-            const urlEncoded = new URLSearchParams(payload).toString();
+        // Verify reCAPTCHA token status before parsing form submission payload
+        const captchaResponse = grecaptcha.getResponse();
+        const errorElement = document.getElementById("captcha-error");
 
-            fetch(`${sheetEndpoint}?${urlEncoded}`, { method: 'POST' })
-                .then(res => {
-                    alert('Congratulations! You have registered successfully!');
-                    formObj.reset();
-                    actionBtn.innerText = "Confirm";
-                    actionBtn.disabled = false;
-                })
-                .catch(err => {
-                    console.error('Stack log context:', err);
-                    alert('Registration has been successfully logged.');
-                    formObj.reset();
-                    actionBtn.innerText = "Confirm";
-                    actionBtn.disabled = false;
-                });
-        });
-
-        const timestampTarget = new Date("August 3, 2026 08:00:00").getTime();
-
-        function runTimerCalculations() {
-            const systemTimeNow = new Date().getTime();
-            const timeDelta = timestampTarget - systemTimeNow;
-
-            if (timeDelta <= 0) {
-                clearInterval(clockLoop);
-                document.querySelector(".timer-container").innerHTML = "<div style='color:var(--teal-accent); font-weight:700; font-size:0.9rem; width:100%; text-align:center;'>EVENT STARTED</div>";
-                return;
-            }
-
-            const days = Math.floor(timeDelta / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((timeDelta % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((timeDelta % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeDelta % (1000 * 60)) / 1000);
-
-            const appendZeroes = (digit) => String(digit).padStart(2, '0');
-
-            document.getElementById("t-days").innerText = appendZeroes(days);
-            document.getElementById("t-hours").innerText = appendZeroes(hours);
-            document.getElementById("t-minutes").innerText = appendZeroes(minutes);
-            document.getElementById("t-seconds").innerText = appendZeroes(seconds);
+        if (captchaResponse.length === 0) {
+          errorElement.style.display = "block";
+          return; // Stop form submission entirely
         }
 
-        runTimerCalculations();
-        const clockLoop = setInterval(runTimerCalculations, 1000);
+        errorElement.style.display = "none";
+        const actionBtn = document.getElementById("submitBtn");
+        actionBtn.innerText = "Processing...";
+        actionBtn.disabled = true;
+
+        const payload = new FormData(formObj);
+        // Append the recaptcha response token into your sheet parameters if needed
+        payload.append("g-recaptcha-response", captchaResponse);
+
+        const urlEncoded = new URLSearchParams(payload).toString();
+
+        fetch(`${sheetEndpoint}?${urlEncoded}`, { method: "POST" })
+          .then((res) => {
+            alert("Congratulations! You have registered successfully!");
+            resetFormWithCaptcha();
+            actionBtn.innerText = "Submit Details";
+            actionBtn.disabled = false;
+          })
+          .catch((err) => {
+            console.error("Stack log context:", err);
+            alert("Registration has been successfully logged.");
+            resetFormWithCaptcha();
+            actionBtn.innerText = "Submit Details";
+            actionBtn.disabled = false;
+          });
+      });
+
+      // Hide warning messaging as soon as the user selects the checkbox
+      function captchaSuccessCallback() {
+        document.getElementById("captcha-error").style.display = "none";
+      }
+
+      // Custom clean routine ensures that visual checked state cleans up on 'Clear'
+      function resetFormWithCaptcha() {
+        formObj.reset();
+        grecaptcha.reset();
+        document.getElementById("captcha-error").style.display = "none";
+      }
+
+      const timestampTarget = new Date("August 3, 2026 08:00:00").getTime();
+
+      function runTimerCalculations() {
+        const systemTimeNow = new Date().getTime();
+        const timeDelta = timestampTarget - systemTimeNow;
+
+        if (timeDelta <= 0) {
+          clearInterval(clockLoop);
+          document.querySelector(".timer-container").innerHTML =
+            "<div style='color:var(--teal-accent); font-weight:700; font-size:0.9rem; width:100%; text-align:center;'>EVENT STARTED</div>";
+          return;
+        }
+
+        const days = Math.floor(timeDelta / (1000 * 60 * 60 * 24));
+        const hours = Math.floor(
+          (timeDelta % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+        );
+        const minutes = Math.floor(
+          (timeDelta % (1000 * 60 * 60)) / (1000 * 60),
+        );
+        const seconds = Math.floor((timeDelta % (1000 * 60)) / 1000);
+
+        const appendZeroes = (digit) => String(digit).padStart(2, "0");
+
+        document.getElementById("t-days").innerText = appendZeroes(days);
+        document.getElementById("t-hours").innerText = appendZeroes(hours);
+        document.getElementById("t-minutes").innerText = appendZeroes(minutes);
+        document.getElementById("t-seconds").innerText = appendZeroes(seconds);
+      }
+
+      runTimerCalculations();
+      const clockLoop = setInterval(runTimerCalculations, 1000);
     </script>
-</body>
+  </body>
 </html>
