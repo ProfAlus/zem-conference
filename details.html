@@ -27,7 +27,6 @@
             overflow-x: hidden;
         }
 
-        /* NEW: Confetti Canvas */
         #confetti-canvas {
             position: fixed;
             top: 0;
@@ -172,7 +171,6 @@
             text-align: center;
         }
 
-        /* NEW: Live Status Text Layout */
         .live-banner {
             display: none;
             background: linear-gradient(135deg, #10b981 0%, #059669 100%);
@@ -273,7 +271,7 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 28px;
-            margin-bottom: 60px;
+            margin-bottom: 40px;
         }
 
         .data-card {
@@ -319,6 +317,73 @@
         .data-value { font-size: 1.25rem; font-weight: 800; color: var(--text-dark); margin: 0; line-height: 1.4; }
         .data-sub { font-size: 0.95rem; color: var(--text-muted); margin-top: 6px; }
 
+        /* NEW: Map / Location Section Styling */
+        .map-section {
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            padding: 24px;
+            margin-bottom: 60px;
+            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.02);
+        }
+
+        .map-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .map-info-title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin: 0;
+        }
+
+        .map-info-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin: 4px 0 0 0;
+        }
+
+        .map-btn {
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            color: var(--text-dark);
+            font-weight: 700;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .map-btn:hover {
+            background: var(--blue-light);
+            border-color: var(--blue-accent);
+            color: var(--blue-accent);
+        }
+
+        .map-frame-container {
+            width: 100%;
+            height: 350px;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid #f1f5f9;
+        }
+
+        .map-frame-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
         .highlights-box {
             background-color: #fafafa;
             border: 1px solid #f1f5f9;
@@ -356,6 +421,8 @@
             .main-content { padding: 40px 20px; }
             .main-headline { font-size: 2.4rem; }
             .details-grid { grid-template-columns: 1fr; gap: 20px; }
+            .map-header { flex-direction: column; align-items: flex-start; }
+            .map-btn { width: 100%; justify-content: center; }
             .highlights-list { grid-template-columns: 1fr; }
             .contact-box { flex-direction: column; text-align: center; }
             .rsvp-list { justify-content: center; }
@@ -365,7 +432,6 @@
 </head>
 <body>
 
-    <!-- HTML Canvas for Confetti -->
     <canvas id="confetti-canvas"></canvas>
 
     <div class="wrapper">
@@ -391,7 +457,6 @@
             </div>
 
             <div class="countdown-wrapper-centered">
-                <!-- Standard Live Countdown Widget -->
                 <div class="countdown-widget" id="main-timer-widget">
                     <h3 class="widget-title">Event Starts In</h3>
                     <div class="timer-container">
@@ -417,7 +482,6 @@
                     </div>
                 </div>
 
-                <!-- NEW: Active Status Writing banner -->
                 <div class="live-banner" id="live-status-banner">
                     <h2><i class="fa-solid fa-circle-dot" style="font-size:1.1rem; vertical-align:middle; margin-right:8px; animation: blink 1s infinite;"></i> The Conference is Now On!</h2>
                     <p>Join us live from Aug. 3rd – Aug. 7th</p>
@@ -465,6 +529,23 @@
                 </div>
             </div>
 
+            <!-- NEW: Interactive Map & Live Navigation Feature -->
+            <div class="map-section">
+                <div class="map-header">
+                    <div>
+                        <h4 class="map-info-title"><i class="fa-solid fa-map-location-dot" style="color:var(--blue-accent); margin-right:6px;"></i> Interactive Venue Map</h4>
+                        <p class="map-info-subtitle">Methodist Girls' High School, Congo Cross, Freetown</p>
+                    </div>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Methodist+Girls+High+School+Congo+Cross+Freetown" target="_blank" class="map-btn">
+                        <i class="fa-solid fa-location-arrow"></i> Open in Google Maps
+                    </a>
+                </div>
+                <div class="map-frame-container">
+                    <!-- Clean, interactive map embed focused on Congo Cross, Freetown -->
+                    <iframe src="https://maps.google.com/maps?q=Congo%20Cross,%20Freetown,%20Sierra%20Leone&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+
             <div class="highlights-box">
                 <h4 class="box-title">Event Highlights</h4>
                 <ul class="highlights-list">
@@ -500,12 +581,10 @@
         </main>
     </div>
 
-    <!-- SCRIPT LOGIC FOR BANNER AND LIGHTWEIGHT CONFETTI -->
     <script>
         const timestampTargetStart = new Date("August 3, 2026 08:00:00").getTime();
         const timestampTargetEnd = new Date("August 7, 2026 23:59:59").getTime();
 
-        // Lightweight custom vanilla canvas confetti system
         const canvas = document.getElementById("confetti-canvas");
         const ctx = canvas.getContext("2d");
         let confettiArray = [];
@@ -570,7 +649,6 @@
             const timeDeltaStart = timestampTargetStart - systemTimeNow;
             const timeDeltaEnd = timestampTargetEnd - systemTimeNow;
 
-            // Trigger confetti if event starts in less than 7 days, or if it's actively running
             if (timeDeltaStart < (7 * 24 * 60 * 60 * 1000) && timeDeltaEnd > 0) {
                 if (!runningConfetti) {
                     runningConfetti = true;
@@ -582,14 +660,12 @@
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
             }
 
-            // If we are within Aug 3rd and Aug 7th
             if (timeDeltaStart <= 0 && timeDeltaEnd >= 0) {
                 document.getElementById("main-timer-widget").style.display = "none";
                 document.getElementById("live-status-banner").style.display = "block";
                 return;
             } 
             
-            // If the whole event has finished completely
             if (timeDeltaEnd < 0) {
                 clearInterval(clockLoop);
                 runningConfetti = false;
@@ -600,7 +676,6 @@
                 return;
             }
 
-            // Normal countdown behavior
             const days = Math.floor(timeDeltaStart / (1000 * 60 * 60 * 24));
             const hours = Math.floor((timeDeltaStart % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((timeDeltaStart % (1000 * 60 * 60)) / (1000 * 60));
