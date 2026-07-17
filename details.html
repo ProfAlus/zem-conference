@@ -66,6 +66,7 @@
             color: var(--text-dark);
             font-size: 1.4rem;
             letter-spacing: -0.01em;
+            text-transform: uppercase;
             margin: 0;
         }
 
@@ -92,7 +93,7 @@
             border-bottom: 1px solid #e2e8f0;
             margin-bottom: 40px;
             padding-bottom: 30px;
-            text-align: center; /* Centered main headings to balance the new design */
+            text-align: center;
         }
 
         .main-headline {
@@ -113,7 +114,6 @@
             letter-spacing: 0.12em;
         }
 
-        /* NEW: Centered & Enlarged Countdown Widget Layout */
         .countdown-wrapper-centered {
             display: flex;
             justify-content: center;
@@ -123,7 +123,7 @@
 
         .countdown-widget {
             width: 100%;
-            max-width: 550px; /* Expanded max width for a grander presentation */
+            max-width: 550px;
             border: 1px solid #ced0d4;
             border-radius: 12px;
             padding: 24px;
@@ -153,12 +153,11 @@
             flex-direction: column;
             align-items: center;
             flex: 1;
-            padding: 16px 8px; /* Roomier blocks */
+            padding: 16px 8px;
             border-radius: 10px;
             box-shadow: inset 0 -3px 0 rgba(0,0,0,0.1);
         }
 
-        /* Color Styling Matched Verbatim to Home Page */
         .timer-block.days { background: linear-gradient(135deg, #e0f2fe, #bae6fd); border: 1px solid #7dd3fc; }
         .timer-block.hours { background: linear-gradient(135deg, #e0f2fe, #bae6fd); border: 1px solid #7dd3fc; }
         .timer-block.minutes { background: linear-gradient(135deg, #ffedd5, #fed7aa); border: 1px solid #fdba74; }
@@ -166,7 +165,7 @@
 
         .timer-digits {
             color: var(--blue-dark);
-            font-size: 2.2rem; /* Significantly bigger text size */
+            font-size: 2.2rem;
             font-weight: 800;
             font-family: system-ui, -apple-system, sans-serif;
             text-shadow: 0 1px 0 rgba(255,255,255,0.6);
@@ -175,7 +174,7 @@
 
         .timer-label {
             color: #374151;
-            font-size: 0.75rem; /* Enhanced readability scale */
+            font-size: 0.75rem;
             text-transform: uppercase;
             font-weight: 700;
             margin-top: 8px;
@@ -184,7 +183,7 @@
 
         .timer-separator {
             color: var(--text-muted);
-            font-size: 1.8rem; /* Scaled up to match digital metrics */
+            font-size: 1.8rem;
             font-weight: 700;
             padding-bottom: 24px;
             animation: blink 1s infinite;
@@ -312,7 +311,8 @@
             margin-bottom: 60px;
         }
 
-        .F {
+        /* FIXED: Renamed selector to cleanly align horizontal numbers */
+        .rsvp-list {
             list-style: none;
             padding: 0;
             margin: 0;
@@ -321,10 +321,15 @@
             gap: 10px 24px;
         }
 
-        .rsvp-item a{
+        .rsvp-item a {
             font-weight: 700;
             font-size: 1.1rem;
             color: var(--red-accent);
+            text-decoration: none;
+        }
+        
+        .rsvp-item a:hover {
+            text-decoration: underline;
         }
 
         .bottom-actions {
@@ -368,7 +373,6 @@
                 <h1 class="main-headline">5 Days Youths & Young Adults' Conference</h1>
             </div>
 
-            <!-- ENLARGED & PERFECTLY CENTERED COUNTDOWN HUB -->
             <div class="countdown-wrapper-centered">
                 <div class="countdown-widget">
                     <h3 class="widget-title">Event Starts In</h3>
