@@ -1,1010 +1,1576 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About The Conference | ZEM Youths & Young Adults' Conference 2026</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      About The Conference | ZEM Youths & Young Adults' Conference 2026
+    </title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
     <style>
-        :root {
-            --blue-accent: #1e60a0; 
-            --blue-dark: #044079;
-            --blue-light: #eef6fc;
-            --orange-accent: #ff6b35; 
-            --red-accent: #b91c1c;  
-            --text-dark: #0f172a;
-            --text-muted: #64748b;
-            --bg-light: #f8fafc;
-        }
+      :root {
+        --blue-accent: #1e60a0;
+        --blue-dark: #044079;
+        --blue-light: #eef6fc;
+        --orange-accent: #ff6b35;
+        --red-accent: #b91c1c;
+        --text-dark: #0f172a;
+        --text-muted: #64748b;
+        --bg-light: #f8fafc;
+      }
 
-        body {
-            background-color: var(--bg-light);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            color: var(--text-dark);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+      body {
+        background-color: var(--bg-light);
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+          Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        color: var(--text-dark);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
 
-        #confetti-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            pointer-events: none;
-            z-index: 999;
-        }
+      #confetti-canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        pointer-events: none;
+        z-index: 999;
+      }
 
+      .wrapper {
+        width: 100%;
+        max-width: 1100px;
+        margin: 40px auto 80px auto;
+        background: #ffffff;
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 20px 50px rgba(15, 23, 42, 0.04);
+        position: relative;
+        z-index: 10;
+      }
+
+      .zem-nav {
+        background-color: #ffffff;
+        border-bottom: 1px solid #f1f5f9;
+        padding: 24px 48px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .zem-logo-lockup {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .nav-logo {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background-color: var(--blue-accent);
+        object-fit: cover;
+      }
+
+      .nav-org-name {
+        font-weight: 800;
+        color: var(--text-dark);
+        font-size: 1.25rem;
+        letter-spacing: -0.01em;
+        text-transform: uppercase;
+        margin: 0;
+      }
+
+      .reg-link {
+        background: var(--orange-accent);
+        color: #ffffff;
+        font-weight: 700;
+        text-decoration: none;
+        padding: 12px 28px;
+        border-radius: 50px;
+        font-size: 0.9rem;
+        transition: all 0.2s ease;
+        box-shadow: 0 4px 14px rgba(255, 107, 53, 0.25);
+      }
+
+      .reg-link:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(255, 107, 53, 0.35);
+      }
+
+      /* ================= HERO SECTION STYLING (WITH DARK IMAGE BACKGROUND) ================= */
+      .hero-section {
+        background:
+          linear-gradient(
+            135deg,
+            rgba(15, 23, 42, 0.55) 0%,
+            rgba(15, 23, 42, 0.25) 100%
+          ),
+          url("images/Bible-studies.jpeg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        padding: 70px 48px 130px 48px; /* Increased bottom padding to accommodate the overlay container */
+        border-bottom: 1px solid #1e293b;
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 40px;
+        align-items: center;
+        position: relative;
+      }
+
+      .hero-left {
+        text-align: left;
+      }
+
+      .hero-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(8px);
+        padding: 6px 16px;
+        border-radius: 30px;
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: #ffffff;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 16px;
+      }
+
+      .main-headline {
+        color: #ffffff;
+        font-size: 3rem;
+        font-weight: 900;
+        margin: 0 0 20px 0;
+        letter-spacing: -0.03em;
+        line-height: 1.15;
+        text-shadow: 0 2px 10px rgba(15, 23, 42, 0.3);
+      }
+
+      .main-headline span {
+        color: #38bdf8;
+      }
+
+      .hero-desc {
+        font-size: 1.15rem;
+        color: #f1f5f9;
+        margin: 0 0 30px 0;
+        max-width: 580px;
+        font-weight: 500;
+        text-shadow: 0 1px 5px rgba(15, 23, 42, 0.4);
+      }
+
+      .hero-btn-group {
+        display: flex;
+        gap: 16px;
+        align-items: center;
+      }
+
+      .hero-btn-primary {
+        background: var(--blue-accent);
+        color: #ffffff;
+        font-weight: 700;
+        text-decoration: none;
+        padding: 14px 32px;
+        border-radius: 50px;
+        font-size: 0.95rem;
+        transition: all 0.2s ease;
+        box-shadow: 0 4px 14px rgba(30, 96, 160, 0.4);
+      }
+
+      .hero-btn-primary:hover {
+        background: var(--blue-dark);
+        transform: translateY(-2px);
+      }
+
+      .hero-btn-secondary {
+        border: 2px solid #ffffff;
+        background: rgba(255, 255, 255, 0.1);
+        color: #ffffff;
+        font-weight: 700;
+        text-decoration: none;
+        padding: 12px 28px;
+        border-radius: 50px;
+        font-size: 0.95rem;
+        transition: all 0.2s ease;
+        backdrop-filter: blur(4px);
+      }
+
+      .hero-btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
+
+      .hero-right {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .hero-badge-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 20px;
+        padding: 24px;
+        box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
+        text-align: center;
+        width: 100%;
+        max-width: 320px;
+        position: relative;
+      }
+
+      .hero-badge-card h4 {
+        margin: 0 0 8px 0;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        color: var(--orange-accent);
+        letter-spacing: 0.1em;
+        font-weight: 800;
+      }
+
+      .hero-badge-card p {
+        margin: 0;
+        font-size: 1.25rem;
+        font-weight: 800;
+        color: var(--text-dark);
+        line-height: 1.3;
+      }
+
+      .avatar-stack {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+        padding-left: 12px;
+      }
+
+      .avatar-stack .avatar-placeholder {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border: 3px solid #ffffff;
+        margin-left: -12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.75rem;
+        font-weight: 700;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      }
+
+      .main-content {
+        padding: 40px 48px 60px 48px;
+      }
+
+      /* ================= OVERLAY COUNTDOWN CONTAINER STYLING ================= */
+      .countdown-wrapper-centered {
+        display: flex;
+        justify-content: center;
+        margin: -110px auto 60px auto; /* Negative margin pulls the timer container seamlessly into the Hero block */
+        position: relative;
+        z-index: 30; /* Elevated layout layer to stack cleanly above background images */
+        width: 100%;
+      }
+
+      .countdown-widget {
+        width: 100%;
+        max-width: 550px;
+        border: 1px solid #e2e8f0;
+        border-radius: 20px;
+        padding: 30px;
+        background: #ffffff;
+        box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08); /* Boosted drop shadow to maximize the floating look */
+        text-align: center;
+        box-sizing: border-box;
+      }
+
+      .live-banner {
+        display: none;
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        color: white;
+        border-radius: 16px;
+        padding: 24px;
+        text-align: center;
+        box-shadow: 0 14px 35px rgba(16, 185, 129, 0.25);
+        animation: pulseBanner 2s infinite ease-in-out;
+        width: 100%;
+        max-width: 550px;
+        box-sizing: border-box;
+      }
+
+      @keyframes pulseBanner {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.015);
+          box-shadow: 0 14px 30px rgba(16, 185, 129, 0.3);
+        }
+      }
+
+      .widget-title {
+        font-size: 0.95rem;
+        font-weight: 800;
+        color: var(--text-muted);
+        margin: 0 0 24px 0;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+
+      .timer-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .timer-block {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex: 1;
+        padding: 16px 8px;
+        border-radius: 14px;
+      }
+
+      .timer-block.days {
+        background: #f0f7ff;
+      }
+      .timer-block.hours {
+        background: #f0f7ff;
+      }
+      .timer-block.minutes {
+        background: #fff7ed;
+      }
+      .timer-block.seconds {
+        background: #f0fdf4;
+      }
+
+      .timer-digits {
+        color: var(--text-dark);
+        font-size: 2.5rem;
+        font-weight: 800;
+        font-family:
+          system-ui,
+          -apple-system,
+          sans-serif;
+        line-height: 1;
+      }
+
+      .timer-label {
+        color: var(--text-muted);
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        font-weight: 700;
+        margin-top: 8px;
+        letter-spacing: 0.05em;
+      }
+
+      .timer-separator {
+        color: var(--text-muted);
+        font-size: 2rem;
+        font-weight: 700;
+        padding-bottom: 24px;
+        animation: blink 1s infinite;
+        opacity: 0.6;
+      }
+
+      @keyframes blink {
+        50% {
+          opacity: 0.2;
+        }
+      }
+
+      .section-separator-title {
+        font-size: 1.5rem;
+        font-weight: 900;
+        color: var(--text-dark);
+        margin: 40px 0 20px 0;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #f1f5f9;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .details-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 28px;
+        margin-bottom: 40px;
+      }
+
+      .data-card {
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+        padding: 30px;
+        border-radius: 18px;
+        transition: transform 0.2s ease;
+      }
+
+      .data-card:hover {
+        transform: translateY(-2px);
+      }
+
+      .data-card.theme-card {
+        background-color: #f0fdf4;
+      }
+      .data-card.theme-card .data-icon {
+        color: #16a34a;
+        background: #dcfce7;
+      }
+      .data-card.theme-card .data-title {
+        color: #16a34a;
+      }
+
+      .data-card.date-card {
+        background-color: #fff7ed;
+      }
+      .data-card.date-card .data-icon {
+        color: #ea580c;
+        background: #ffedd5;
+      }
+      .data-card.date-card .data-title {
+        color: #ea580c;
+      }
+
+      .data-card.venue-card {
+        background-color: #f5f3ff;
+      }
+      .data-card.venue-card .data-icon {
+        color: #7c3aed;
+        background: #ede9fe;
+      }
+      .data-card.venue-card .data-title {
+        color: #7c3aed;
+      }
+
+      .data-card.provisions-card {
+        background-color: #f0f9ff;
+      }
+      .data-card.provisions-card .data-icon {
+        color: #0284c7;
+        background: #e0f2fe;
+      }
+      .data-card.provisions-card .data-title {
+        color: #0284c7;
+      }
+
+      .data-icon {
+        font-size: 1.5rem;
+        width: 54px;
+        height: 54px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+        flex-shrink: 0;
+      }
+
+      .data-content {
+        flex: 1;
+      }
+      .data-title {
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        margin: 0 0 8px 0;
+      }
+      .data-value {
+        font-size: 1.25rem;
+        font-weight: 800;
+        color: var(--text-dark);
+        margin: 0;
+        line-height: 1.4;
+      }
+      .data-sub {
+        font-size: 0.95rem;
+        color: var(--text-muted);
+        margin-top: 6px;
+      }
+
+      .map-section {
+        background-color: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 20px;
+        padding: 24px;
+        margin-bottom: 60px;
+        box-shadow: 0 10px 25px rgba(15, 23, 42, 0.02);
+      }
+
+      .map-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      .map-info-title {
+        font-size: 1.1rem;
+        font-weight: 800;
+        color: var(--text-dark);
+        margin: 0;
+      }
+
+      .map-info-subtitle {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        margin: 4px 0 0 0;
+      }
+
+      .map-btn {
+        background: #ffffff;
+        border: 1px solid #cbd5e1;
+        color: var(--text-dark);
+        font-weight: 700;
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 50px;
+        font-size: 0.85rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.2s ease;
+      }
+
+      .map-btn:hover {
+        background: var(--blue-light);
+        border-color: var(--blue-accent);
+        color: var(--blue-accent);
+      }
+
+      .map-frame-container {
+        width: 100%;
+        height: 350px;
+        border-radius: 14px;
+        overflow: hidden;
+        border: 1px solid #f1f5f9;
+      }
+
+      .map-frame-container iframe {
+        width: 100%;
+        height: 100%;
+        border: 0;
+      }
+
+      .flyers-section {
+        background-color: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 20px;
+        padding: 32px;
+        margin-bottom: 60px;
+        box-shadow: 0 10px 25px rgba(15, 23, 42, 0.02);
+      }
+
+      .flyers-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+        margin-top: 20px;
+      }
+
+      .flyer-card {
+        background: var(--bg-light);
+        border-radius: 14px;
+        padding: 16px;
+        border: 1px solid #e2e8f0;
+        text-align: center;
+      }
+
+      .flyer-card h5 {
+        margin: 0 0 12px 0;
+        font-size: 1.1rem;
+        font-weight: 800;
+        color: var(--text-dark);
+      }
+
+      .flyer-img-container {
+        width: 100%;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        background-color: #e2e8f0;
+        aspect-ratio: 4/5;
+        cursor: pointer;
+        position: relative;
+      }
+
+      .flyer-img-container::after {
+        content: "\f00e";
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(4, 64, 121, 0.6);
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        opacity: 0;
+        transition: opacity 0.25s ease;
+      }
+
+      .flyer-img-container:hover::after {
+        opacity: 1;
+      }
+
+      .flyer-img-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.3s ease;
+      }
+
+      .zem-lightbox {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(15, 23, 42, 0.95);
+        z-index: 10000;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+
+      .lightbox-content {
+        position: relative;
+        max-width: 90%;
+        max-height: 90vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .lightbox-content img {
+        max-width: 100%;
+        max-height: 85vh;
+        border-radius: 8px;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      }
+
+      .lightbox-close {
+        position: absolute;
+        top: -45px;
+        right: 0;
+        color: #ffffff;
+        font-size: 2rem;
+        cursor: pointer;
+        background: none;
+        border: none;
+        transition: color 0.2s ease;
+      }
+
+      .lightbox-close:hover {
+        color: var(--orange-accent);
+      }
+
+      .highlights-box {
+        background-color: #fafafa;
+        border: 1px solid #f1f5f9;
+        border-radius: 20px;
+        padding: 40px;
+        margin-bottom: 60px;
+      }
+
+      .box-title {
+        color: var(--text-dark);
+        font-size: 1.4rem;
+        font-weight: 900;
+        margin-top: 0;
+        margin-bottom: 30px;
+        text-align: center;
+      }
+      .highlights-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px 32px;
+      }
+      .highlight-item {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        font-size: 1rem;
+        font-weight: 600;
+        color: #334155;
+      }
+      .highlight-item i {
+        color: var(--blue-accent);
+        background: #ffffff;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        font-size: 0.85rem;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
+      }
+
+      .contact-box {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 20px;
+        padding: 32px;
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        margin-bottom: 60px;
+      }
+
+      .contact-box .data-icon {
+        color: var(--blue-accent);
+        background: var(--blue-light);
+        width: 54px;
+        height: 54px;
+      }
+      .rsvp-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px 28px;
+      }
+      .rsvp-item a {
+        font-weight: 700;
+        font-size: 1.15rem;
+        color: var(--blue-accent);
+        text-decoration: none;
+      }
+      .rsvp-item a:hover {
+        text-decoration: underline;
+      }
+
+      .bottom-actions {
+        display: flex;
+        margin-top: 50px;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 1px solid #f1f5f9;
+        padding-top: 30px;
+      }
+
+      @media (max-width: 900px) {
         .wrapper {
-            width: 100%;
-            max-width: 1100px;
-            margin: 40px auto 80px auto;
-            background: #ffffff;
-            border-radius: 24px; 
-            overflow: hidden;
-            box-shadow: 0 20px 50px rgba(15, 23, 42, 0.04);
-            position: relative;
-            z-index: 10;
+          margin-top: 0;
+          border-radius: 0;
         }
-
         .zem-nav {
-            background-color: #ffffff;
-            border-bottom: 1px solid #f1f5f9;
-            padding: 24px 48px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+          padding: 24px 20px;
+          flex-direction: column;
+          gap: 20px;
+          text-align: center;
         }
-
         .zem-logo-lockup {
-            display: flex;
-            align-items: center;
-            gap: 14px;
+          flex-direction: column;
+          gap: 8px;
         }
-
-        .nav-logo {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background-color: var(--blue-accent);
-            object-fit: cover;
+        .hero-section {
+          grid-template-columns: 1fr;
+          padding: 50px 24px 100px 24px; /* Reduced padding on tablet screens */
+          text-align: center;
+          background:
+            linear-gradient(
+              135deg,
+              rgba(15, 23, 42, 0.65) 0%,
+              rgba(15, 23, 42, 0.35) 100%
+            ),
+            url("images/Bible-studies.jpeg");
+          background-size: cover;
+          background-position: center;
         }
-
-        .nav-org-name {
-            font-weight: 800;
-            color: var(--text-dark);
-            font-size: 1.25rem;
-            letter-spacing: -0.01em;
-            text-transform: uppercase;
-            margin: 0;
+        .hero-left {
+          text-align: center;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
         }
-
-        .reg-link {
-            background: var(--orange-accent); 
-            color: #ffffff;
-            font-weight: 700;
-            text-decoration: none;
-            padding: 12px 28px;
-            border-radius: 50px; 
-            font-size: 0.9rem;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 14px rgba(255, 107, 53, 0.25);
+        .hero-btn-group {
+          flex-direction: column;
+          width: 100%;
+          gap: 12px;
         }
-
-        .reg-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.35);
+        .hero-btn-primary,
+        .hero-btn-secondary {
+          width: 100%;
+          text-align: center;
+          box-sizing: border-box;
         }
-
         .main-content {
-            padding: 60px 80px;
+          padding: 24px;
         }
-
-        .avatar-stack {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 16px;
-            padding-left: 12px;
-        }
-
-        .avatar-stack .avatar-placeholder {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border: 3px solid #ffffff;
-            margin-left: -12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.75rem;
-            font-weight: 700;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        }
-
-        .headline-group {
-            margin-bottom: 50px;
-            text-align: center;
-        }
-
-        .main-sub {
-            color: var(--text-dark);
-            font-size: 0.9rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            margin: 0 0 12px 0;
-            letter-spacing: 0.15em;
-            opacity: 0.8;
-        }
-
-        .main-headline {
-            color: var(--text-dark);
-            font-size: 3.5rem;
-            font-weight: 900;
-            margin: 0 auto;
-            letter-spacing: -0.03em;
-            line-height: 1.1;
-            max-width: 800px;
-        }
-
-        .main-headline span {
-            color: var(--blue-accent);
-        }
-
+        /* Adjusted the spacing for the overlay countdown layout on smaller mobile spaces */
         .countdown-wrapper-centered {
-            display: flex;
-            justify-content: center;
-            margin: 0 auto 60px auto;
-            width: 100%;
+          margin: -70px auto 40px auto;
         }
-
-        .countdown-widget {
-            width: 100%;
-            max-width: 550px;
-            border: 1px solid #e2e8f0;
-            border-radius: 20px;
-            padding: 30px;
-            background: #ffffff;
-            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.03);
-            text-align: center;
-            box-sizing: border-box;
+        .main-headline {
+          font-size: 2.4rem;
         }
-
-        .live-banner {
-            display: none;
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            color: white;
-            border-radius: 16px;
-            padding: 24px;
-            text-align: center;
-            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.2);
-            animation: pulseBanner 2s infinite ease-in-out;
-        }
-
-        .live-banner h2 {
-            margin: 0 0 6px 0;
-            font-size: 1.6rem;
-            font-weight: 800;
-            letter-spacing: -0.02em;
-        }
-
-        .live-banner p {
-            margin: 0;
-            font-size: 1.1rem;
-            font-weight: 600;
-            opacity: 0.95;
-        }
-
-        @keyframes pulseBanner {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.015); box-shadow: 0 14px 30px rgba(16, 185, 129, 0.3); }
-        }
-
-        .widget-title {
-            font-size: 0.95rem;
-            font-weight: 800;
-            color: var(--text-muted);
-            margin: 0 0 24px 0;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        .timer-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .timer-block {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            flex: 1;
-            padding: 16px 8px;
-            border-radius: 14px;
-        }
-
-        .timer-block.days { background: #f0f7ff; }
-        .timer-block.hours { background: #f0f7ff; }
-        .timer-block.minutes { background: #fff7ed; }
-        .timer-block.seconds { background: #f0fdf4; }
-
-        .timer-digits {
-            color: var(--text-dark);
-            font-size: 2.5rem;
-            font-weight: 800;
-            font-family: system-ui, -apple-system, sans-serif;
-            line-height: 1;
-        }
-
-        .timer-label {
-            color: var(--text-muted);
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            font-weight: 700;
-            margin-top: 8px;
-            letter-spacing: 0.05em;
-        }
-
-        .timer-separator {
-            color: var(--text-muted);
-            font-size: 2rem;
-            font-weight: 700;
-            padding-bottom: 24px;
-            animation: blink 1s infinite;
-            opacity: 0.6;
-        }
-
-        @keyframes blink { 50% { opacity: 0.2; } }
-
-        .page-intro {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            max-width: 750px;
-            margin: 0 auto 60px auto;
-            text-align: center;
-        }
-
-        .section-separator-title {
-            font-size: 1.5rem;
-            font-weight: 900;
-            color: var(--text-dark);
-            margin: 40px 0 20px 0;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #f1f5f9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
         .details-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 28px;
-            margin-bottom: 40px;
+          grid-template-columns: 1fr;
+          gap: 20px;
         }
-
-        .data-card {
-            display: flex;
-            align-items: flex-start;
-            gap: 20px;
-            padding: 30px;
-            border-radius: 18px;
-            transition: transform 0.2s ease;
-        }
-        
-        .data-card:hover { transform: translateY(-2px); }
-
-        .data-card.theme-card { background-color: #f0fdf4; }
-        .data-card.theme-card .data-icon { color: #16a34a; background: #dcfce7; }
-        .data-card.theme-card .data-title { color: #16a34a; }
-
-        .data-card.date-card { background-color: #fff7ed; }
-        .data-card.date-card .data-icon { color: #ea580c; background: #ffedd5; }
-        .data-card.date-card .data-title { color: #ea580c; }
-
-        .data-card.venue-card { background-color: #f5f3ff; }
-        .data-card.venue-card .data-icon { color: #7c3aed; background: #ede9fe; }
-        .data-card.venue-card .data-title { color: #7c3aed; }
-
-        .data-card.provisions-card { background-color: #f0f9ff; }
-        .data-card.provisions-card .data-icon { color: #0284c7; background: #e0f2fe; }
-        .data-card.provisions-card .data-title { color: #0284c7; }
-
-        .data-icon {
-            font-size: 1.5rem;
-            width: 54px;
-            height: 54px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 12px;
-            flex-shrink: 0;
-        }
-
-        .data-content { flex: 1; }
-        .data-title { font-size: 0.8rem; text-transform: uppercase; font-weight: 800; letter-spacing: 0.1em; margin: 0 0 8px 0; }
-        .data-value { font-size: 1.25rem; font-weight: 800; color: var(--text-dark); margin: 0; line-height: 1.4; }
-        .data-sub { font-size: 0.95rem; color: var(--text-muted); margin-top: 6px; }
-
-        .map-section {
-            background-color: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 20px;
-            padding: 24px;
-            margin-bottom: 60px;
-            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.02);
-        }
-
         .map-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-            gap: 16px;
+          flex-direction: column;
+          align-items: flex-start;
         }
-
-        .map-info-title {
-            font-size: 1.1rem;
-            font-weight: 800;
-            color: var(--text-dark);
-            margin: 0;
-        }
-
-        .map-info-subtitle {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin: 4px 0 0 0;
-        }
-
         .map-btn {
-            background: #ffffff;
-            border: 1px solid #cbd5e1;
-            color: var(--text-dark);
-            font-weight: 700;
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.2s ease;
+          width: 100%;
+          justify-content: center;
         }
-
-        .map-btn:hover {
-            background: var(--blue-light);
-            border-color: var(--blue-accent);
-            color: var(--blue-accent);
-        }
-
-        .map-frame-container {
-            width: 100%;
-            height: 350px;
-            border-radius: 14px;
-            overflow: hidden;
-            border: 1px solid #f1f5f9;
-        }
-
-        .map-frame-container iframe {
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
-
-        .flyers-section {
-            background-color: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 20px;
-            padding: 32px;
-            margin-bottom: 60px;
-            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.02);
-        }
-
         .flyers-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-            margin-top: 20px;
+          grid-template-columns: 1fr;
         }
-
-        .flyer-card {
-            background: var(--bg-light);
-            border-radius: 14px;
-            padding: 16px;
-            border: 1px solid #e2e8f0;
-            text-align: center;
+        .highlights-list {
+          grid-template-columns: 1fr;
         }
-
-        .flyer-card h5 {
-            margin: 0 0 12px 0;
-            font-size: 1.1rem;
-            font-weight: 800;
-            color: var(--text-dark);
-        }
-
-        .flyer-img-container {
-            width: 100%;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            background-color: #e2e8f0;
-            aspect-ratio: 4/5; 
-            cursor: pointer;
-            position: relative;
-        }
-
-        .flyer-img-container::after {
-            content: '\f00e';
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(4, 64, 121, 0.6);
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            opacity: 0;
-            transition: opacity 0.25s ease;
-        }
-
-        .flyer-img-container:hover::after {
-            opacity: 1;
-        }
-
-        .flyer-img-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.3s ease;
-        }
-
-        .zem-lightbox {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100vw; height: 100vh;
-            background: rgba(15, 23, 42, 0.95);
-            z-index: 10000;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-
-        .lightbox-content {
-            position: relative;
-            max-width: 90%;
-            max-height: 90vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .lightbox-content img {
-            max-width: 100%;
-            max-height: 85vh;
-            border-radius: 8px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: -45px; right: 0;
-            color: #ffffff;
-            font-size: 2rem;
-            cursor: pointer;
-            background: none;
-            border: none;
-            transition: color 0.2s ease;
-        }
-
-        .lightbox-close:hover {
-            color: var(--orange-accent);
-        }
-
-        .highlights-box {
-            background-color: #fafafa;
-            border: 1px solid #f1f5f9;
-            border-radius: 20px;
-            padding: 40px;
-            margin-bottom: 60px;
-        }
-
-        .box-title { color: var(--text-dark); font-size: 1.4rem; font-weight: 900; margin-top: 0; margin-bottom: 30px; text-align: center; }
-        .highlights-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px 32px; }
-        .highlight-item { display: flex; align-items: center; gap: 14px; font-size: 1rem; font-weight: 600; color: #334155; }
-        .highlight-item i { color: var(--blue-accent); background: #ffffff; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 0.85rem; box-shadow: 0 2px 5px rgba(0,0,0,0.04); }
-
         .contact-box {
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 20px;
-            padding: 32px;
-            display: flex;
-            align-items: center;
-            gap: 24px;
-            margin-bottom: 60px;
+          flex-direction: column;
+          text-align: center;
         }
-
-        .contact-box .data-icon { color: var(--blue-accent); background: var(--blue-light); width: 54px; height: 54px; }
-        .rsvp-list { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 12px 28px; }
-        .rsvp-item a { font-weight: 700; font-size: 1.15rem; color: var(--blue-accent); text-decoration: none; }
-        .rsvp-item a:hover { text-decoration: underline; }
-
-        .bottom-actions { display: flex; margin-top: 50px; justify-content: space-between; align-items: center; border-top: 1px solid #f1f5f9; padding-top: 30px; }
-
-        @media (max-width: 900px) {
-            .wrapper { margin-top: 0; border-radius: 0; }
-            .zem-nav { padding: 24px 20px; flex-direction: column; gap: 20px; text-align: center; }
-            .zem-logo-lockup { flex-direction: column; gap: 8px; }
-            .main-content { padding: 40px 20px; }
-            .main-headline { font-size: 2.4rem; }
-            .details-grid { grid-template-columns: 1fr; gap: 20px; }
-            .map-header { flex-direction: column; align-items: flex-start; }
-            .map-btn { width: 100%; justify-content: center; }
-            .flyers-grid { grid-template-columns: 1fr; }
-            .highlights-list { grid-template-columns: 1fr; }
-            .contact-box { flex-direction: column; text-align: center; }
-            .rsvp-list { justify-content: center; }
-            .bottom-actions { flex-direction: column; gap: 24px; }
+        .rsvp-list {
+          justify-content: center;
         }
-
-        @media (max-width: 500px) {
-            .countdown-widget { padding: 20px 12px; }
-            .widget-title { margin-bottom: 16px; font-size: 0.85rem; }
-            .timer-container { gap: 4px; }
-            .timer-block { padding: 10px 2px; border-radius: 10px; }
-            .timer-digits { font-size: 1.65rem; }
-            .timer-label { font-size: 0.65rem; margin-top: 4px; }
-            .timer-separator { font-size: 1.3rem; padding-bottom: 16px; }
+        .bottom-actions {
+          flex-direction: column;
+          gap: 24px;
         }
+      }
+
+      @media (max-width: 500px) {
+        .countdown-wrapper-centered {
+          margin: -60px auto 30px auto;
+        }
+        .countdown-widget {
+          padding: 20px 12px;
+        }
+        .widget-title {
+          margin-bottom: 16px;
+          font-size: 0.85rem;
+        }
+        .timer-container {
+          gap: 4px;
+        }
+        .timer-block {
+          padding: 10px 2px;
+          border-radius: 10px;
+        }
+        .timer-digits {
+          font-size: 1.65rem;
+        }
+        .timer-label {
+          font-size: 0.65rem;
+          margin-top: 4px;
+        }
+        .timer-separator {
+          font-size: 1.3rem;
+          padding-bottom: 16px;
+        }
+      }
     </style>
-</head>
-<body>
-
+  </head>
+  <body>
     <canvas id="confetti-canvas"></canvas>
 
-    <div class="zem-lightbox" id="global-lightbox" onclick="closeLightbox(event)">
-        <div class="lightbox-content">
-            <button class="lightbox-close" onclick="closeLightbox(event)"><i class="fa-solid fa-xmark"></i></button>
-            <img id="lightbox-img" src="" alt="Expanded View">
-        </div>
+    <div
+      class="zem-lightbox"
+      id="global-lightbox"
+      onclick="closeLightbox(event)"
+    >
+      <div class="lightbox-content">
+        <button class="lightbox-close" onclick="closeLightbox(event)">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <img id="lightbox-img" src="" alt="Expanded View" />
+      </div>
     </div>
 
     <div class="wrapper">
-        <nav class="zem-nav">
-            <div class="zem-logo-lockup">
-                <img src="./images/ZEM Logo.png" alt="ZEM Logo" class="nav-logo">
-                <h2 class="nav-org-name">Zion Evangelical Ministries (ZEM)</h2>
+      <nav class="zem-nav">
+        <div class="zem-logo-lockup">
+          <img src="./images/ZEM Logo.png" alt="ZEM Logo" class="nav-logo" />
+          <h2 class="nav-org-name">Zion Evangelical Ministries (ZEM)</h2>
+        </div>
+        <a href="index.html" class="reg-link">Register Now →</a>
+      </nav>
+
+      <!-- ================= HERO SECTION WITH DARK IMAGE BACKGROUND ================= -->
+      <section class="hero-section">
+        <div class="hero-left">
+          <div class="hero-tag">
+            <i class="fa-solid fa-sparkles"></i> ZEM Presents 2026
+          </div>
+          <h1 class="main-headline">
+            Youths &<br /><span>Young Adults'</span> Conference
+          </h1>
+          <p class="hero-desc">
+            An annual life-altering gathering curated specifically to empower,
+            build concrete character, and map out strategic career landmarks for
+            today's generation.
+          </p>
+          <div class="hero-btn-group">
+            <a href="index.html" class="hero-btn-primary"
+              >Secure Your Seat Now</a
+            >
+            <a href="#freetown-details" class="hero-btn-secondary"
+              >Explore Schedule</a
+            >
+          </div>
+        </div>
+        <div class="hero-right">
+          <div class="hero-badge-card">
+            <h4>Conference Theme</h4>
+            <p>Becoming A Channel Of Indescribable POWER</p>
+            <div class="avatar-stack">
+              <div
+                class="avatar-placeholder"
+                style="background: #ea580c; color: white"
+              >
+                🔥
+              </div>
+              <div
+                class="avatar-placeholder"
+                style="background: #7c3aed; color: white"
+              >
+                🙌
+              </div>
+              <div
+                class="avatar-placeholder"
+                style="background: #16a34a; color: white"
+              >
+                ⚡
+              </div>
+              <div
+                class="avatar-placeholder"
+                style="background: var(--blue-accent); color: white"
+              >
+                ⏰
+              </div>
             </div>
-            <a href="index.html" class="reg-link">Register Now →</a>
-        </nav>
+          </div>
+        </div>
+      </section>
 
-        <main class="main-content">
-            
-            <div class="headline-group">
-                <div class="avatar-stack">
-                    <div class="avatar-placeholder" style="background:#ea580c; color: white;">🔥</div>
-                    <div class="avatar-placeholder" style="background:#7c3aed; color: white;">🙌</div>
-                    <div class="avatar-placeholder" style="background:#16a34a; color: white;">⚡</div>
-                    <div class="avatar-placeholder" style="background:var(--blue-accent); color: white;">⏰</div>
-                </div>
-                <p class="main-sub">ZEM Presents</p>
-                <h1 class="main-headline">Youths &<br><span>Young Adults'</span> Conference</h1>
+      <main class="main-content">
+        <!-- ================= FREETOWN COUNTDOWN TIMER (OVERLAYS HERO SECTION) ================= -->
+        <div class="countdown-wrapper-centered">
+          <div class="countdown-widget" id="freetown-timer-widget">
+            <h3 class="widget-title">Event Starts In</h3>
+            <div class="timer-container">
+              <div class="timer-block days">
+                <div class="timer-digits" id="ft-days">00</div>
+                <div class="timer-label">Days</div>
+              </div>
+              <div class="timer-separator">:</div>
+              <div class="timer-block hours">
+                <div class="timer-digits" id="ft-hours">00</div>
+                <div class="timer-label">Hours</div>
+              </div>
+              <div class="timer-separator">:</div>
+              <div class="timer-block minutes">
+                <div class="timer-digits" id="ft-minutes">00</div>
+                <div class="timer-label">Mins</div>
+              </div>
+              <div class="timer-separator">:</div>
+              <div class="timer-block seconds">
+                <div class="timer-digits" id="ft-seconds">00</div>
+                <div class="timer-label">Secs</div>
+              </div>
             </div>
+          </div>
 
-            <!-- ================= FREETOWN COUNTDOWN TIMER ================= -->
-            <div class="countdown-wrapper-centered">
-                <div class="countdown-widget" id="freetown-timer-widget">
-                    <h3 class="widget-title">Event Starts In</h3>
-                    <div class="timer-container">
-                        <div class="timer-block days">
-                            <div class="timer-digits" id="ft-days">00</div>
-                            <div class="timer-label">Days</div>
-                        </div>
-                        <div class="timer-separator">:</div>
-                        <div class="timer-block hours">
-                            <div class="timer-digits" id="ft-hours">00</div>
-                            <div class="timer-label">Hours</div>
-                        </div>
-                        <div class="timer-separator">:</div>
-                        <div class="timer-block minutes">
-                            <div class="timer-digits" id="ft-minutes">00</div>
-                            <div class="timer-label">Mins</div>
-                        </div>
-                        <div class="timer-separator">:</div>
-                        <div class="timer-block seconds">
-                            <div class="timer-digits" id="ft-seconds">00</div>
-                            <div class="timer-label">Secs</div>
-                        </div>
-                    </div>
-                </div>
+          <div class="live-banner" id="freetown-live-banner">
+            <h2>
+              <i
+                class="fa-solid fa-circle-dot"
+                style="
+                  font-size: 1.1rem;
+                  vertical-align: middle;
+                  margin-right: 8px;
+                  animation: blink 1s infinite;
+                "
+              ></i>
+              The Freetown Conference is Live!
+            </h2>
+            <p>Join us live from Aug. 3rd – Aug. 7th</p>
+          </div>
+        </div>
 
-                <div class="live-banner" id="freetown-live-banner">
-                    <h2><i class="fa-solid fa-circle-dot" style="font-size:1.1rem; vertical-align:middle; margin-right:8px; animation: blink 1s infinite;"></i> The Freetown Conference is Live!</h2>
-                    <p>Join us live from Aug. 3rd – Aug. 7th</p>
-                </div>
+        <!-- ================= FREETOWN DETAILS ================= -->
+        <h3 class="section-separator-title" id="freetown-details">
+          <i
+            class="fa-solid fa-location-crosshairs"
+            style="color: var(--blue-accent)"
+          ></i>
+          Freetown Youths Conference (5 Days)
+        </h3>
+        <div class="details-grid">
+          <div class="data-card theme-card">
+            <div class="data-icon"><i class="fa-solid fa-fire"></i></div>
+            <div class="data-content">
+              <p class="data-title">Theme</p>
+              <p class="data-value">
+                Becoming A Channel Of Indescribable POWER
+              </p>
             </div>
+          </div>
 
-            <p class="page-intro">
-                Welcome to the official information hub for this year's Youths and Young Adults' Conference. These conferences are curated to empower, build character, and map out career landmarks for youths and young adults.
+          <div class="data-card date-card">
+            <div class="data-icon">
+              <i class="fa-solid fa-calendar-days"></i>
+            </div>
+            <div class="data-content">
+              <p class="data-title">Date & Time</p>
+              <p class="data-value">3rd - 7th August, 2026</p>
+              <p class="data-sub">Time: 8:00 AM Prompt Everyday</p>
+            </div>
+          </div>
+
+          <div class="data-card venue-card">
+            <div class="data-icon">
+              <i class="fa-solid fa-location-dot"></i>
+            </div>
+            <div class="data-content">
+              <p class="data-title">Venue</p>
+              <p class="data-value">Methodist Girls' High School Compound</p>
+              <p class="data-sub">Congo Cross, Freetown.</p>
+            </div>
+          </div>
+
+          <div class="data-card provisions-card">
+            <div class="data-icon"><i class="fa-solid fa-gift"></i></div>
+            <div class="data-content">
+              <p class="data-title">Feeding</p>
+              <p class="data-value">FREE Registration & Entry</p>
+              <p class="data-sub">
+                There IS full provision for Residential stays. Includes FREE
+                Accommodation, Feeding & Learning Materials.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="map-section">
+          <div class="map-header">
+            <div>
+              <h4 class="map-info-title">
+                <i
+                  class="fa-solid fa-map-location-dot"
+                  style="color: var(--blue-accent); margin-right: 6px"
+                ></i>
+                Interactive Venue Map (Freetown)
+              </h4>
+              <p class="map-info-subtitle">
+                Methodist Girls' High School, Congo Cross, Freetown
+              </p>
+            </div>
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=Methodist+Girls+High+School+Congo+Cross+Freetown"
+              target="_blank"
+              class="map-btn"
+            >
+              <i class="fa-solid fa-location-arrow"></i> Open in Google Maps
+            </a>
+          </div>
+          <div class="map-frame-container">
+            <iframe
+              src="https://maps.google.com/maps?q=Congo%20Cross,%20Freetown,%20Sierra%20Leone&t=&z=15&ie=UTF8&iwloc=&output=embed"
+              allowfullscreen=""
+              loading="lazy"
+              title="Freetown Map Location"
+            ></iframe>
+          </div>
+        </div>
+
+        <!-- ================= KENEMA DETAILS ================= -->
+        <h3 class="section-separator-title">
+          <i
+            class="fa-solid fa-location-crosshairs"
+            style="color: var(--orange-accent)"
+          ></i>
+          Kenema Youths Conference (3 Days)
+        </h3>
+
+        <!-- ================= KENEMA COUNTDOWN TIMER ================= -->
+        <div
+          class="countdown-wrapper-centered"
+          style="margin-bottom: 40px; margin-top: 0"
+        >
+          <div
+            class="countdown-widget"
+            id="kenema-timer-widget"
+            style="border-color: #ffd8c7"
+          >
+            <h3 class="widget-title" style="color: #ea580c">Event Starts In</h3>
+            <div class="timer-container">
+              <div class="timer-block days" style="background: #fff4f0">
+                <div class="timer-digits" id="kn-days">00</div>
+                <div class="timer-label">Days</div>
+              </div>
+              <div class="timer-separator">:</div>
+              <div class="timer-block hours" style="background: #fff4f0">
+                <div class="timer-digits" id="kn-hours">00</div>
+                <div class="timer-label">Hours</div>
+              </div>
+              <div class="timer-separator">:</div>
+              <div class="timer-block minutes" style="background: #fff7ed">
+                <div class="timer-digits" id="kn-minutes">00</div>
+                <div class="timer-label">Mins</div>
+              </div>
+              <div class="timer-separator">:</div>
+              <div class="timer-block seconds" style="background: #f0fdf4">
+                <div class="timer-digits" id="kn-seconds">00</div>
+                <div class="timer-label">Secs</div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="live-banner"
+            id="kenema-live-banner"
+            style="
+              background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+              box-shadow: 0 10px 25px rgba(234, 88, 12, 0.2);
+            "
+          >
+            <h2>
+              <i
+                class="fa-solid fa-circle-dot"
+                style="
+                  font-size: 1.1rem;
+                  vertical-align: middle;
+                  margin-right: 8px;
+                  animation: blink 1s infinite;
+                "
+              ></i>
+              The Kenema Conference is Live!
+            </h2>
+            <p>Join us live from July 27th – July 29th</p>
+          </div>
+        </div>
+
+        <div class="details-grid">
+          <div class="data-card theme-card" style="background-color: #fdf2f8">
+            <div class="data-icon" style="color: #db2777; background: #fce7f3">
+              <i class="fa-solid fa-fire"></i>
+            </div>
+            <div class="data-content">
+              <p class="data-title" style="color: #db2777">Theme</p>
+              <p class="data-value">
+                Becoming A Channel Of Indescribable POWER
+              </p>
+            </div>
+          </div>
+
+          <div class="data-card date-card">
+            <div class="data-icon">
+              <i class="fa-solid fa-calendar-days"></i>
+            </div>
+            <div class="data-content">
+              <p class="data-title">Date & Time</p>
+              <p class="data-value">27th - 29th July, 2026</p>
+              <p class="data-sub">Time: 8:00 AM Prompt Everyday</p>
+            </div>
+          </div>
+
+          <div class="data-card venue-card" style="background-color: #f0fdfa">
+            <div class="data-icon" style="color: #0d9488; background: #ccfbf1">
+              <i class="fa-solid fa-location-dot"></i>
+            </div>
+            <div class="data-content">
+              <p class="data-title" style="color: #0d9488">Venue</p>
+              <p class="data-value">Saint James Anglican Church</p>
+              <p class="data-sub">1 Mission Road, Kenema.</p>
+            </div>
+          </div>
+
+          <div
+            class="data-card provisions-card"
+            style="background-color: #fff1f2"
+          >
+            <div class="data-icon" style="color: #e11d48; background: #ffe4e6">
+              <i class="fa-solid fa-ban"></i>
+            </div>
+            <div class="data-content">
+              <p class="data-title" style="color: #e11d48">Feeding</p>
+              <p class="data-value">FREE Feeding & Resource Packs</p>
+              <p class="data-sub" style="font-weight: 700; color: #be123c">
+                Note: There is NO provision for Residential options at this
+                Venue
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="map-section">
+          <div class="map-header">
+            <div>
+              <h4 class="map-info-title">
+                <i
+                  class="fa-solid fa-map-location-dot"
+                  style="color: var(--orange-accent); margin-right: 6px"
+                ></i>
+                Interactive Venue Map (Kenema)
+              </h4>
+              <p class="map-info-subtitle">
+                Saint James Anglican Church, 1 Mission Road, Kenema
+              </p>
+            </div>
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=Saint+James+Anglican+Church+1+Mission+Road+Kenema"
+              target="_blank"
+              class="map-btn"
+            >
+              <i class="fa-solid fa-location-arrow"></i> Open in Google Maps
+            </a>
+          </div>
+          <div class="map-frame-container">
+            <iframe
+              src="https://maps.google.com/maps?q=1%20Mission%20Road,%20Kenema,%20Sierra%20Leone&t=&z=15&ie=UTF8&iwloc=&output=embed"
+              allowfullscreen=""
+              loading="lazy"
+              title="Kenema Map Location"
+            ></iframe>
+          </div>
+        </div>
+
+        <!-- ================= CONFERENCE FLYERS GALLERY WITH LIGHTBOX ================= -->
+        <div class="flyers-section">
+          <h4 class="box-title" style="margin-bottom: 10px">
+            <i
+              class="fa-solid fa-images"
+              style="color: var(--blue-accent); margin-right: 8px"
+            ></i>
+            Official Conference Flyers
+          </h4>
+          <p
+            style="
+              text-align: center;
+              color: var(--text-muted);
+              margin: 0 0 24px 0;
+              font-size: 0.95rem;
+            "
+          >
+            Click any flyer to view it in full screen
+          </p>
+
+          <div class="flyers-grid">
+            <div class="flyer-card">
+              <h5>Freetown Conference Flyer</h5>
+              <div
+                class="flyer-img-container"
+                onclick="
+                  openLightbox('./images/August Youths Conference - 2026.png')
+                "
+              >
+                <img
+                  src="./images/August Youths Conference - 2026.png"
+                  alt="ZEM Conference 2026 Flyer Freetown Zone"
+                />
+              </div>
+            </div>
+            <div class="flyer-card">
+              <h5>Kenema Conference Flyer</h5>
+              <div
+                class="flyer-img-container"
+                onclick="openLightbox('./images/Kenema.png')"
+              >
+                <img
+                  src="./images/Kenema.png"
+                  alt="ZEM Conference 2026 Flyer Kenema Zone"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="highlights-box">
+          <h4 class="box-title">Event Highlights</h4>
+          <ul class="highlights-list">
+            <li class="highlight-item">
+              <i class="fa-solid fa-briefcase"></i> 4 Hours for Career Talk
+            </li>
+            <li class="highlight-item">
+              <i class="fa-solid fa-lightbulb"></i> 4 Hours of Entrepreneurship
+            </li>
+            <li class="highlight-item">
+              <i class="fa-solid fa-heart-pulse"></i> Health Talk, Debate &
+              Discussions
+            </li>
+            <li class="highlight-item">
+              <i class="fa-solid fa-id-card-clip"></i> Character Building Focus
+            </li>
+            <li class="highlight-item">
+              <i class="fa-solid fa-money-bill-trend-up"></i> Financial literacy
+            </li>
+            <li class="highlight-item">
+              <i class="fa-solid fa-book-open-reader"></i> Life Application
+              Series
+            </li>
+            <li class="highlight-item">
+              <i class="fa-solid fa-bible"></i> Discovery Bible Studies
+            </li>
+            <li class="highlight-item">
+              <i class="fa-solid fa-star"></i> Excelling in Studies & Career
+            </li>
+            <li class="highlight-item">
+              <i class="fa-solid fa-masks-theater"></i> Drama, Poem, Song &
+              Prayer
+            </li>
+          </ul>
+        </div>
+
+        <div class="contact-box">
+          <div class="data-icon"><i class="fa-solid fa-phone-flip"></i></div>
+          <div style="flex: 1">
+            <p class="data-title" style="color: var(--text-muted)">
+              RSVP / Inquiries
             </p>
+            <ul class="rsvp-list">
+              <li class="rsvp-item"><a href="tel:076577057">076577057</a></li>
+              <li class="rsvp-item"><a href="tel:031033770">031033770</a></li>
+              <li class="rsvp-item"><a href="tel:080392938">080392938</a></li>
+              <li class="rsvp-item"><a href="tel:076547992">076547992</a></li>
+              <li class="rsvp-item">
+                <a href="tel:034228736" style="color: var(--orange-accent)"
+                  >034228736 (Kenema)</a
+                >
+              </li>
+              <li class="rsvp-item">
+                <a href="tel:079451833" style="color: var(--orange-accent)"
+                  >079451833 (Kenema)</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
 
-            <!-- ================= FREETOWN DETAILS ================= -->
-            <h3 class="section-separator-title"><i class="fa-solid fa-location-crosshairs" style="color:var(--blue-accent)"></i> Freetown Youths Conference (5 Days)</h3>
-            <div class="details-grid">
-                <div class="data-card theme-card">
-                    <div class="data-icon"><i class="fa-solid fa-fire"></i></div>
-                    <div class="data-content">
-                        <p class="data-title">Theme</p>
-                        <p class="data-value">Becoming A Channel Of Indescribable POWER</p>
-                    </div>
-                </div>
-
-                <div class="data-card date-card">
-                    <div class="data-icon"><i class="fa-solid fa-calendar-days"></i></div>
-                    <div class="data-content">
-                        <p class="data-title">Date & Time</p>
-                        <p class="data-value">3rd - 7th August, 2026</p>
-                        <p class="data-sub">Time: 8:00 AM Prompt Everyday</p>
-                    </div>
-                </div>
-
-                <div class="data-card venue-card">
-                    <div class="data-icon"><i class="fa-solid fa-location-dot"></i></div>
-                    <div class="data-content">
-                        <p class="data-title">Venue</p>
-                        <p class="data-value">Methodist Girls' High School Compound</p>
-                        <p class="data-sub">Congo Cross, Freetown.</p>
-                    </div>
-                </div>
-
-                <div class="data-card provisions-card">
-                    <div class="data-icon"><i class="fa-solid fa-gift"></i></div>
-                    <div class="data-content">
-                        <p class="data-title">Feeding</p>
-                        <p class="data-value">FREE Registration & Entry</p>
-                        <p class="data-sub">There IS full provision for Residential stays. Includes FREE Accommodation, Feeding & Learning Materials.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="map-section">
-                <div class="map-header">
-                    <div>
-                        <h4 class="map-info-title"><i class="fa-solid fa-map-location-dot" style="color:var(--blue-accent); margin-right:6px;"></i> Interactive Venue Map (Freetown)</h4>
-                        <p class="map-info-subtitle">Methodist Girls' High School, Congo Cross, Freetown</p>
-                    </div>
-                    <a href="https://www.google.com/maps/search/?api=1&query=Methodist+Girls+High+School+Congo+Cross+Freetown" target="_blank" class="map-btn">
-                        <i class="fa-solid fa-location-arrow"></i> Open in Google Maps
-                    </a>
-                </div>
-                <div class="map-frame-container">
-                    <iframe src="https://maps.google.com/maps?q=Congo%20Cross,%20Freetown,%20Sierra%20Leone&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy"></iframe>
-                </div>
-            </div>
-
-
-            <!-- ================= KENEMA DETAILS ================= -->
-            <h3 class="section-separator-title"><i class="fa-solid fa-location-crosshairs" style="color:var(--orange-accent)"></i> Kenema Youths Conference (3 Days)</h3>
-            
-            <!-- ================= KENEMA COUNTDOWN TIMER ================= -->
-            <div class="countdown-wrapper-centered" style="margin-bottom: 40px;">
-                <div class="countdown-widget" id="kenema-timer-widget" style="border-color: #ffd8c7;">
-                    <h3 class="widget-title" style="color: #ea580c;">Event Starts In</h3>
-                    <div class="timer-container">
-                        <div class="timer-block days" style="background: #fff4f0;">
-                            <div class="timer-digits" id="kn-days">00</div>
-                            <div class="timer-label">Days</div>
-                        </div>
-                        <div class="timer-separator">:</div>
-                        <div class="timer-block hours" style="background: #fff4f0;">
-                            <div class="timer-digits" id="kn-hours">00</div>
-                            <div class="timer-label">Hours</div>
-                        </div>
-                        <div class="timer-separator">:</div>
-                        <div class="timer-block minutes" style="background: #fff7ed;">
-                            <div class="timer-digits" id="kn-minutes">00</div>
-                            <div class="timer-label">Mins</div>
-                        </div>
-                        <div class="timer-separator">:</div>
-                        <div class="timer-block seconds" style="background: #f0fdf4;">
-                            <div class="timer-digits" id="kn-seconds">00</div>
-                            <div class="timer-label">Secs</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="live-banner" id="kenema-live-banner" style="background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%); box-shadow: 0 10px 25px rgba(234, 88, 12, 0.2);">
-                    <h2><i class="fa-solid fa-circle-dot" style="font-size:1.1rem; vertical-align:middle; margin-right:8px; animation: blink 1s infinite;"></i> The Kenema Conference is Live!</h2>
-                    <p>Join us live from July 27th – July 29th</p>
-                </div>
-            </div>
-
-            <div class="details-grid">
-                <div class="data-card theme-card" style="background-color: #fdf2f8;">
-                    <div class="data-icon" style="color: #db2777; background: #fce7f3;"><i class="fa-solid fa-fire"></i></div>
-                    <div class="data-content">
-                        <p class="data-title" style="color: #db2777;">Theme</p>
-                        <p class="data-value">Becoming A Channel Of Indescribable POWER</p>
-                    </div>
-                </div>
-
-                <div class="data-card date-card">
-                    <div class="data-icon"><i class="fa-solid fa-calendar-days"></i></div>
-                    <div class="data-content">
-                        <p class="data-title">Date & Time</p>
-                        <p class="data-value">27th - 29th July, 2026</p>
-                        <p class="data-sub">Time: 8:00 AM Prompt Everyday</p>
-                    </div>
-                </div>
-
-                <div class="data-card venue-card" style="background-color: #f0fdfa;">
-                    <div class="data-icon" style="color: #0d9488; background: #ccfbf1;"><i class="fa-solid fa-location-dot"></i></div>
-                    <div class="data-content">
-                        <p class="data-title" style="color: #0d9488;">Venue</p>
-                        <p class="data-value">Saint James Anglican Church</p>
-                        <p class="data-sub">1 Mission Road, Kenema.</p>
-                    </div>
-                </div>
-
-                <div class="data-card provisions-card" style="background-color: #fff1f2;">
-                    <div class="data-icon" style="color: #e11d48; background: #ffe4e6;"><i class="fa-solid fa-ban"></i></div>
-                    <div class="data-content">
-                        <p class="data-title" style="color: #e11d48;">Feeding</p>
-                        <p class="data-value">FREE Feeding & Resource Packs</p>
-                        <p class="data-sub" style="font-weight:700; color:#be123c;">Note: There is NO provision for Residential options at this Venue</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="map-section">
-                <div class="map-header">
-                    <div>
-                        <h4 class="map-info-title"><i class="fa-solid fa-map-location-dot" style="color:var(--orange-accent); margin-right:6px;"></i> Interactive Venue Map (Kenema)</h4>
-                        <p class="map-info-subtitle">Saint James Anglican Church, 1 Mission Road, Kenema</p>
-                    </div>
-                    <a href="https://www.google.com/maps/search/?api=1&query=Saint+James+Anglican+Church+1+Mission+Road+Kenema" target="_blank" class="map-btn">
-                        <i class="fa-solid fa-location-arrow"></i> Open in Google Maps
-                    </a>
-                </div>
-                <div class="map-frame-container">
-                    <iframe src="https://maps.google.com/maps?q=1%20Mission%20Road,%20Kenema,%20Sierra%20Leone&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy"></iframe>
-                </div>
-            </div>
-
-
-            <!-- ================= CONFERENCE FLYERS GALLERY WITH LIGHTBOX ================= -->
-            <div class="flyers-section">
-                <h4 class="box-title" style="margin-bottom:10px;"><i class="fa-solid fa-images" style="color: var(--blue-accent); margin-right: 8px;"></i> Official Conference Flyers</h4>
-                <p style="text-align:center; color: var(--text-muted); margin: 0 0 24px 0; font-size:0.95rem;">Click any flyer to view it in full screen</p>
-                
-                <div class="flyers-grid">
-                    <div class="flyer-card">
-                        <h5>Freetown Conference Flyer</h5>
-                        <div class="flyer-img-container" onclick="openLightbox('./images/August Youths Conference - 2026.png')">
-                            <img src="./images/August Youths Conference - 2026.png" alt="ZEM Conference 2026 Flyer Freetown Zone">
-                        </div>
-                    </div>
-                    <div class="flyer-card">
-                        <h5>Kenema Conference Flyer</h5>
-                        <div class="flyer-img-container" onclick="openLightbox('./images/Kenema.png')">
-                            <img src="./images/Kenema.png" alt="ZEM Conference 2026 Flyer Kenema Zone">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="highlights-box">
-                <h4 class="box-title">Event Highlights</h4>
-                <ul class="highlights-list">
-                    <li class="highlight-item"><i class="fa-solid fa-briefcase"></i> 4 Hours for Career Talk</li>
-                    <li class="highlight-item"><i class="fa-solid fa-lightbulb"></i> 4 Hours of Entrepreneurship</li>
-                    <li class="highlight-item"><i class="fa-solid fa-heart-pulse"></i> Health Talk, Debate & Discussions</li>
-                    <li class="highlight-item"><i class="fa-solid fa-id-card-clip"></i> Character Building Focus</li>
-                    <li class="highlight-item"><i class="fa-solid fa-money-bill-trend-up"></i> Financial literacy</li>
-                    <li class="highlight-item"><i class="fa-solid fa-book-open-reader"></i> Life Application Series</li>
-                    <li class="highlight-item"><i class="fa-solid fa-bible"></i> Discovery Bible Studies</li>
-                    <li class="highlight-item"><i class="fa-solid fa-star"></i> Excelling in Studies & Career</li>
-                    <li class="highlight-item"><i class="fa-solid fa-masks-theater"></i> Drama, Poem, Song & Prayer</li>
-                </ul>
-            </div>
-
-            <div class="contact-box">
-                <div class="data-icon"><i class="fa-solid fa-phone-flip"></i></div>
-                <div style="flex:1">
-                    <p class="data-title" style="color:var(--text-muted)">RSVP / Inquiries</p>
-                    <ul class="rsvp-list">
-                        <li class="rsvp-item"><a href="tel:076577057">076577057</a></li>
-                        <li class="rsvp-item"><a href="tel:031033770">031033770</a></li>
-                        <li class="rsvp-item"><a href="tel:080392938">080392938</a></li>
-                        <li class="rsvp-item"><a href="tel:076547992">076547992</a></li>
-                        <li class="rsvp-item"><a href="tel:034228736" style="color:var(--orange-accent)">034228736 (Kenema)</a></li>
-                        <li class="rsvp-item"><a href="tel:079451833" style="color:var(--orange-accent)">079451833 (Kenema)</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="bottom-actions">
-                <div style="font-weight: 700; color: var(--text-dark); font-size: 1rem;">Facilitated By: Sola Jegede & Team</div>
-                <a href="index.html" class="reg-link">Proceed to Registration Form →</a>
-            </div>
-        </main>
+        <div class="bottom-actions">
+          <div
+            style="font-weight: 700; color: var(--text-dark); font-size: 1rem"
+          >
+            Facilitated By: Sola Jegede & Team
+          </div>
+          <a href="index.html" class="reg-link"
+            >Proceed to Registration Form →</a
+          >
+        </div>
+      </main>
     </div>
 
     <script>
-        // Lightbox Functions
-        function openLightbox(imageSrc) {
-            const lightbox = document.getElementById('global-lightbox');
-            const lightboxImg = document.getElementById('lightbox-img');
-            lightboxImg.src = imageSrc;
-            lightbox.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
+      // Lightbox Functions
+      function openLightbox(imageSrc) {
+        const lightbox = document.getElementById("global-lightbox");
+        const lightboxImg = document.getElementById("lightbox-img");
+        lightboxImg.src = imageSrc;
+        lightbox.style.display = "flex";
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeLightbox(event) {
+        if (
+          event.target.id === "global-lightbox" ||
+          event.target.closest(".lightbox-close") ||
+          event.target.classList.contains("fa-xmark")
+        ) {
+          const lightbox = document.getElementById("global-lightbox");
+          lightbox.style.display = "none";
+          document.body.style.overflow = "auto";
+        }
+      }
+
+      // --- Confetti Generation Engine ---
+      const canvas = document.getElementById("confetti-canvas");
+      const ctx = canvas.getContext("2d");
+      let confettiArray = [];
+      let runningConfetti = false;
+
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      window.addEventListener("resize", resizeCanvas);
+      resizeCanvas();
+
+      class ConfettiParticle {
+        constructor() {
+          this.x = Math.random() * canvas.width;
+          this.y = Math.random() * -canvas.height;
+          this.size = Math.random() * 6 + 6;
+          this.speedX = Math.random() * 2 - 1;
+          this.speedY = Math.random() * 2 + 2;
+          this.colors = [
+            "#ff6b35",
+            "#1e60a0",
+            "#7c3aed",
+            "#16a34a",
+            "#ea580c",
+            "#facc15",
+          ];
+          this.color =
+            this.colors[Math.floor(Math.random() * this.colors.length)];
+          this.rotation = Math.random() * 360;
+          this.rotationSpeed = Math.random() * 4 - 2;
+        }
+        update() {
+          this.y += this.speedY;
+          this.x += this.speedX;
+          this.rotation += this.rotationSpeed;
+          if (this.y > canvas.height) {
+            this.y = -20;
+            this.x = Math.random() * canvas.width;
+          }
+        }
+        draw() {
+          ctx.save();
+          ctx.translate(this.x, this.y);
+          ctx.rotate((this.rotation * Math.PI) / 180);
+          ctx.fillStyle = this.color;
+          ctx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size);
+          ctx.restore();
+        }
+      }
+
+      function initConfetti() {
+        if (confettiArray.length === 0) {
+          for (let i = 0; i < 100; i++) {
+            confettiArray.push(new ConfettiParticle());
+          }
+        }
+      }
+
+      function animateConfetti() {
+        if (!runningConfetti) return;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        confettiArray.forEach((p) => {
+          p.update();
+          p.draw();
+        });
+        requestAnimationFrame(animateConfetti);
+      }
+
+      // --- Countdown Setup ---
+      const targetFreetownStart = new Date("August 3, 2026 08:00:00").getTime();
+      const targetFreetownEnd = new Date("August 7, 2026 23:59:59").getTime();
+
+      const targetKenemaStart = new Date("July 27, 2026 08:00:00").getTime();
+      const targetKenemaEnd = new Date("July 29, 2026 23:59:59").getTime();
+
+      function updateAllClocks() {
+        const systemTimeNow = new Date().getTime();
+        const appendZeroes = (digit) => String(digit).padStart(2, "0");
+
+        let shouldConfettiBeActive = false;
+
+        // 1. Process Freetown Calculations
+        const ftDeltaStart = targetFreetownStart - systemTimeNow;
+        const ftDeltaEnd = targetFreetownEnd - systemTimeNow;
+
+        if (ftDeltaStart < 7 * 24 * 60 * 60 * 1000 && ftDeltaEnd > 0) {
+          shouldConfettiBeActive = true;
         }
 
-        function closeLightbox(event) {
-            if (event.target.id === 'global-lightbox' || event.target.closest('.lightbox-close') || event.target.classList.contains('fa-xmark')) {
-                const lightbox = document.getElementById('global-lightbox');
-                lightbox.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
+        if (ftDeltaStart <= 0 && ftDeltaEnd >= 0) {
+          document.getElementById("freetown-timer-widget").style.display =
+            "none";
+          document.getElementById("freetown-live-banner").style.display =
+            "block";
+        } else if (ftDeltaEnd < 0) {
+          document.getElementById("freetown-timer-widget").style.display =
+            "block";
+          document.getElementById("freetown-live-banner").style.display =
+            "none";
+          document.getElementById("freetown-timer-widget").innerHTML =
+            "<div style='color:var(--text-muted); font-weight:800; font-size:1.2rem; padding: 10px 0;'>FREETOWN CONFERENCE HAS CONCLUDED</div>";
+        } else {
+          const d = Math.floor(ftDeltaStart / (1000 * 60 * 60 * 24));
+          const h = Math.floor(
+            (ftDeltaStart % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+          );
+          const m = Math.floor((ftDeltaStart % (1000 * 60 * 60)) / (1000 * 60));
+          const s = Math.floor((ftDeltaStart % (1000 * 60)) / 1000);
+
+          document.getElementById("ft-days").innerText = appendZeroes(d);
+          document.getElementById("ft-hours").innerText = appendZeroes(h);
+          document.getElementById("ft-minutes").innerText = appendZeroes(m);
+          document.getElementById("ft-seconds").innerText = appendZeroes(s);
         }
 
-        // --- Confetti Generation Engine ---
-        const canvas = document.getElementById("confetti-canvas");
-        const ctx = canvas.getContext("2d");
-        let confettiArray = [];
-        let runningConfetti = false;
+        // 2. Process Kenema Calculations
+        const knDeltaStart = targetKenemaStart - systemTimeNow;
+        const knDeltaEnd = targetKenemaEnd - systemTimeNow;
 
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-
-        class ConfettiParticle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * -canvas.height;
-                this.size = Math.random() * 6 + 6;
-                this.speedX = Math.random() * 2 - 1;
-                this.speedY = Math.random() * 2 + 2;
-                this.colors = ['#ff6b35', '#1e60a0', '#7c3aed', '#16a34a', '#ea580c', '#facc15'];
-                this.color = this.colors[Math.floor(Math.random() * this.colors.length)];
-                this.rotation = Math.random() * 360;
-                this.rotationSpeed = Math.random() * 4 - 2;
-            }
-            update() {
-                this.y += this.speedY;
-                this.x += this.speedX;
-                this.rotation += this.rotationSpeed;
-                if (this.y > canvas.height) {
-                    this.y = -20;
-                    this.x = Math.random() * canvas.width;
-                }
-            }
-            draw() {
-                ctx.save();
-                ctx.translate(this.x, this.y);
-                ctx.rotate((this.rotation * Math.PI) / 180);
-                ctx.fillStyle = this.color;
-                ctx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size);
-                ctx.restore();
-            }
+        if (knDeltaStart < 7 * 24 * 60 * 60 * 1000 && knDeltaEnd > 0) {
+          shouldConfettiBeActive = true;
         }
 
-        function initConfetti() {
-            if (confettiArray.length === 0) {
-                for (let i = 0; i < 100; i++) {
-                    confettiArray.push(new ConfettiParticle());
-                }
-            }
+        if (knDeltaStart <= 0 && knDeltaEnd >= 0) {
+          document.getElementById("kenema-timer-widget").style.display = "none";
+          document.getElementById("kenema-live-banner").style.display = "block";
+        } else if (knDeltaEnd < 0) {
+          document.getElementById("kenema-timer-widget").style.display =
+            "block";
+          document.getElementById("kenema-live-banner").style.display = "none";
+          document.getElementById("kenema-timer-widget").innerHTML =
+            "<div style='color:#ea580c; font-weight:800; font-size:1.2rem; padding: 10px 0;'>KENEMA CONFERENCE HAS CONCLUDED</div>";
+        } else {
+          const d = Math.floor(knDeltaStart / (1000 * 60 * 60 * 24));
+          const h = Math.floor(
+            (knDeltaStart % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+          );
+          const m = Math.floor((knDeltaStart % (1000 * 60 * 60)) / (1000 * 60));
+          const s = Math.floor((knDeltaStart % (1000 * 60)) / 1000);
+
+          document.getElementById("kn-days").innerText = appendZeroes(d);
+          document.getElementById("kn-hours").innerText = appendZeroes(h);
+          document.getElementById("kn-minutes").innerText = appendZeroes(m);
+          document.getElementById("kn-seconds").innerText = appendZeroes(s);
         }
 
-        function animateConfetti() {
-            if (!runningConfetti) return;
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            confettiArray.forEach(p => {
-                p.update();
-                p.draw();
-            });
-            requestAnimationFrame(animateConfetti);
+        // 3. Coordinate global confetti activation states
+        if (shouldConfettiBeActive) {
+          if (!runningConfetti) {
+            runningConfetti = true;
+            initConfetti();
+            animateConfetti();
+          }
+        } else {
+          runningConfetti = false;
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
         }
+      }
 
-        // --- Countdown Setup ---
-        // Target Configurations
-        const targetFreetownStart = new Date("August 3, 2026 08:00:00").getTime();
-        const targetFreetownEnd = new Date("August 7, 2026 23:59:59").getTime();
-
-        const targetKenemaStart = new Date("July 27, 2026 08:00:00").getTime();
-        const targetKenemaEnd = new Date("July 29, 2026 23:59:59").getTime();
-
-        function updateAllClocks() {
-            const systemTimeNow = new Date().getTime();
-            const appendZeroes = (digit) => String(digit).padStart(2, '0');
-            
-            let shouldConfettiBeActive = false;
-
-            // 1. Process Freetown Calculations
-            const ftDeltaStart = targetFreetownStart - systemTimeNow;
-            const ftDeltaEnd = targetFreetownEnd - systemTimeNow;
-
-            if (ftDeltaStart < (7 * 24 * 60 * 60 * 1000) && ftDeltaEnd > 0) {
-                shouldConfettiBeActive = true;
-            }
-
-            if (ftDeltaStart <= 0 && ftDeltaEnd >= 0) {
-                document.getElementById("freetown-timer-widget").style.display = "none";
-                document.getElementById("freetown-live-banner").style.display = "block";
-            } else if (ftDeltaEnd < 0) {
-                document.getElementById("freetown-timer-widget").style.display = "block";
-                document.getElementById("freetown-live-banner").style.display = "none";
-                document.getElementById("freetown-timer-widget").innerHTML = "<div style='color:var(--text-muted); font-weight:800; font-size:1.2rem; padding: 10px 0;'>FREETOWN CONFERENCE HAS CONCLUDED</div>";
-            } else {
-                const d = Math.floor(ftDeltaStart / (1000 * 60 * 60 * 24));
-                const h = Math.floor((ftDeltaStart % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const m = Math.floor((ftDeltaStart % (1000 * 60 * 60)) / (1000 * 60));
-                const s = Math.floor((ftDeltaStart % (1000 * 60)) / 1000);
-
-                document.getElementById("ft-days").innerText = appendZeroes(d);
-                document.getElementById("ft-hours").innerText = appendZeroes(h);
-                document.getElementById("ft-minutes").innerText = appendZeroes(m);
-                document.getElementById("ft-seconds").innerText = appendZeroes(s);
-            }
-
-            // 2. Process Kenema Calculations
-            const knDeltaStart = targetKenemaStart - systemTimeNow;
-            const knDeltaEnd = targetKenemaEnd - systemTimeNow;
-
-            if (knDeltaStart < (7 * 24 * 60 * 60 * 1000) && knDeltaEnd > 0) {
-                shouldConfettiBeActive = true;
-            }
-
-            if (knDeltaStart <= 0 && knDeltaEnd >= 0) {
-                document.getElementById("kenema-timer-widget").style.display = "none";
-                document.getElementById("kenema-live-banner").style.display = "block";
-            } else if (knDeltaEnd < 0) {
-                document.getElementById("kenema-timer-widget").style.display = "block";
-                document.getElementById("kenema-live-banner").style.display = "none";
-                document.getElementById("kenema-timer-widget").innerHTML = "<div style='color:#ea580c; font-weight:800; font-size:1.2rem; padding: 10px 0;'>KENEMA CONFERENCE HAS CONCLUDED</div>";
-            } else {
-                const d = Math.floor(knDeltaStart / (1000 * 60 * 60 * 24));
-                const h = Math.floor((knDeltaStart % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const m = Math.floor((knDeltaStart % (1000 * 60 * 60)) / (1000 * 60));
-                const s = Math.floor((knDeltaStart % (1000 * 60)) / 1000);
-
-                document.getElementById("kn-days").innerText = appendZeroes(d);
-                document.getElementById("kn-hours").innerText = appendZeroes(h);
-                document.getElementById("kn-minutes").innerText = appendZeroes(m);
-                document.getElementById("kn-seconds").innerText = appendZeroes(s);
-            }
-
-            // 3. Coordinate global confetti activation states
-            if (shouldConfettiBeActive) {
-                if (!runningConfetti) {
-                    runningConfetti = true;
-                    initConfetti();
-                    animateConfetti();
-                }
-            } else {
-                runningConfetti = false;
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-            }
-        }
-
-        updateAllClocks();
-        setInterval(updateAllClocks, 1000);
+      updateAllClocks();
+      setInterval(updateAllClocks, 1000);
     </script>
-</body>
+  </body>
 </html>
