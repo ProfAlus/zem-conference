@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About The Conference | ZEM Youths & Young Adults' Conference 2026</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --blue-accent: #1e60a0; 
+            --blue-dark: #044079;
+            --blue-light: #eef6fc;
+            --red-accent: #b91c1c;  
+            --yellow-accent: #d97706; 
+            --text-dark: #0f172a;
+            --text-muted: #64748b;
+            --bg-light: #f1f5f9;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .wrapper {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            margin-top: 40px;
+            margin-bottom: 80px;
+        }
+
+        .zem-nav {
+            background-color: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 16px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .zem-logo-lockup {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--blue-accent);
+            object-fit: cover;
+        }
+
+        .nav-org-name {
+            font-weight: 800;
+            color: var(--text-dark);
+            font-size: 1.1rem;
+            letter-spacing: -0.01em;
+            margin: 0;
+        }
+
+        .reg-link {
+            background: var(--blue-accent);
+            color: #ffffff;
+            font-weight: 600;
+            text-decoration: none;
+            padding: 10px 24px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+        }
+
+        .reg-link:hover {
+            background-color: #164e85;
+        }
+
+        .main-content {
+            padding: 48px;
+        }
+
+        .headline-group {
+            border-bottom: 1px solid #e2e8f0;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            text-align: center; /* Centered main headings to balance the new design */
+        }
+
+        .main-headline {
+            color: var(--text-dark);
+            font-size: 3rem;
+            font-weight: 900;
+            margin: 0 0 10px 0;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+        }
+
+        .main-sub {
+            color: var(--red-accent);
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin: 0;
+            letter-spacing: 0.12em;
+        }
+
+        /* NEW: Centered & Enlarged Countdown Widget Layout */
+        .countdown-wrapper-centered {
+            display: flex;
+            justify-content: center;
+            margin: 0 auto 50px auto;
+            width: 100%;
+        }
+
+        .countdown-widget {
+            width: 100%;
+            max-width: 550px; /* Expanded max width for a grander presentation */
+            border: 1px solid #ced0d4;
+            border-radius: 12px;
+            padding: 24px;
+            background: #ffffff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            text-align: center;
+        }
+
+        .widget-title {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #050505;
+            margin: 0 0 20px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .timer-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .timer-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            padding: 16px 8px; /* Roomier blocks */
+            border-radius: 10px;
+            box-shadow: inset 0 -3px 0 rgba(0,0,0,0.1);
+        }
+
+        /* Color Styling Matched Verbatim to Home Page */
+        .timer-block.days { background: linear-gradient(135deg, #e0f2fe, #bae6fd); border: 1px solid #7dd3fc; }
+        .timer-block.hours { background: linear-gradient(135deg, #e0f2fe, #bae6fd); border: 1px solid #7dd3fc; }
+        .timer-block.minutes { background: linear-gradient(135deg, #ffedd5, #fed7aa); border: 1px solid #fdba74; }
+        .timer-block.seconds { background: linear-gradient(135deg, #dcfce7, #bbf7d0); border: 1px solid #86efac; }
+
+        .timer-digits {
+            color: var(--blue-dark);
+            font-size: 2.2rem; /* Significantly bigger text size */
+            font-weight: 800;
+            font-family: system-ui, -apple-system, sans-serif;
+            text-shadow: 0 1px 0 rgba(255,255,255,0.6);
+            line-height: 1;
+        }
+
+        .timer-label {
+            color: #374151;
+            font-size: 0.75rem; /* Enhanced readability scale */
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-top: 8px;
+            letter-spacing: 0.04em;
+        }
+
+        .timer-separator {
+            color: var(--text-muted);
+            font-size: 1.8rem; /* Scaled up to match digital metrics */
+            font-weight: 700;
+            padding-bottom: 24px;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0.4; }
+        }
+
+        .page-intro {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 0 auto 50px auto;
+            text-align: center;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .data-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .data-icon {
+            font-size: 1.8rem;
+            color: var(--blue-accent);
+            background: rgba(30, 96, 160, 0.1);
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .data-content {
+            flex: 1;
+        }
+
+        .data-title {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            color: var(--red-accent);
+            margin: 0 0 8px 0;
+        }
+
+        .data-value {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin: 0;
+            letter-spacing: -0.01em;
+        }
+
+        .data-sub {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-top: 5px;
+        }
+
+        .highlights-box {
+            background-color: var(--bg-light);
+            border-radius: 8px;
+            padding: 32px;
+            margin-bottom: 60px;
+        }
+
+        .box-title {
+            color: #000000;
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-top: 0;
+            margin-bottom: 24px;
+        }
+
+        .highlights-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px 24px;
+        }
+
+        .highlight-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .highlight-item i {
+            color: var(--blue-accent);
+            background: #ffffff;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 0.75rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .contact-box {
+            background: rgba(185, 28, 28, 0.05);
+            border: 1px solid rgba(185, 28, 28, 0.1);
+            border-radius: 8px;
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 60px;
+        }
+
+        .rsvp-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 24px;
+        }
+
+        .rsvp-item {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--red-accent);
+        }
+
+        .bottom-actions {
+            display: flex;
+            gap: 16px;
+            margin-top: 40px;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 24px;
+        }
+
+        @media (max-width: 900px) {
+            .wrapper { margin-top: 0; border-radius: 0; }
+            .main-content { padding: 32px 20px; }
+            .main-headline { font-size: 2.2rem; }
+            .timer-digits { font-size: 1.7rem; }
+            .timer-separator { font-size: 1.3rem; padding-bottom: 16px; }
+            .details-grid { grid-template-columns: 1fr; gap: 30px; }
+            .highlights-list { grid-template-columns: 1fr; }
+            .contact-box { flex-direction: column; text-align: center; }
+            .rsvp-list { justify-content: center; }
+            .bottom-actions { flex-direction: column; text-align: center; gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <nav class="zem-nav">
+            <div class="zem-logo-lockup">
+                <img src="./images/August Youths Conference - 2026.png" alt="ZEM Logo" class="nav-logo">
+                <h2 class="nav-org-name">Zion Evangelical Ministries (ZEM)</h2>
+            </div>
+            <a href="index.html" class="reg-link">Register Online →</a>
+        </nav>
+
+        <main class="main-content">
+            <div class="headline-group">
+                <p class="main-sub">Presents</p>
+                <h1 class="main-headline">5 Days Youths & Young Adults' Conference</h1>
+            </div>
+
+            <!-- ENLARGED & PERFECTLY CENTERED COUNTDOWN HUB -->
+            <div class="countdown-wrapper-centered">
+                <div class="countdown-widget">
+                    <h3 class="widget-title">Event Starts In</h3>
+                    <div class="timer-container">
+                        <div class="timer-block days">
+                            <div class="timer-digits" id="t-days">00</div>
+                            <div class="timer-label">Days</div>
+                        </div>
+                        <div class="timer-separator">:</div>
+                        <div class="timer-block hours">
+                            <div class="timer-digits" id="t-hours">00</div>
+                            <div class="timer-label">Hours</div>
+                        </div>
+                        <div class="timer-separator">:</div>
+                        <div class="timer-block minutes">
+                            <div class="timer-digits" id="t-minutes">00</div>
+                            <div class="timer-label">Mins</div>
+                        </div>
+                        <div class="timer-separator">:</div>
+                        <div class="timer-block seconds">
+                            <div class="timer-digits" id="t-seconds">00</div>
+                            <div class="timer-label">Secs</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p class="page-intro">
+                Welcome to the official event information hub. This conference is curated to empower, build character, and map out career landmarks for modern young adults. Review the core breakdown below.
+            </p>
+
+            <div class="details-grid">
+                <div class="data-card">
+                    <div class="data-icon"><i class="fa-solid fa-fire"></i></div>
+                    <div class="data-content">
+                        <p class="data-title">Theme</p>
+                        <p class="data-value">Becoming A Channel Of Indescribable POWER</p>
+                    </div>
+                </div>
+
+                <div class="data-card">
+                    <div class="data-icon"><i class="fa-solid fa-calendar-days"></i></div>
+                    <div class="data-content">
+                        <p class="data-title">Date & Time</p>
+                        <p class="data-value">3rd - 7th August, 2026</p>
+                        <p class="data-sub">Time: 8:00 AM Prompt Everyday</p>
+                    </div>
+                </div>
+
+                <div class="data-card">
+                    <div class="data-icon"><i class="fa-solid fa-location-dot"></i></div>
+                    <div class="data-content">
+                        <p class="data-title">Venue</p>
+                        <p class="data-value">Methodist Girls' High School Compound</p>
+                        <p class="data-sub">Congo Cross, Freetown.</p>
+                    </div>
+                </div>
+
+                <div class="data-card">
+                    <div class="data-icon"><i class="fa-solid fa-gift"></i></div>
+                    <div class="data-content">
+                        <p class="data-title">Provisions</p>
+                        <p class="data-value">FREE Registration & Entry</p>
+                        <p class="data-sub">There is full provision for Residential stays. Includes FREE Accommodation, Feeding & Learning Materials.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlights-box">
+                <h4 class="box-title">Event Highlights</h4>
+                <ul class="highlights-list">
+                    <li class="highlight-item"><i class="fa-solid fa-briefcase"></i> 4 Hours for Career Talk</li>
+                    <li class="highlight-item"><i class="fa-solid fa-lightbulb"></i> 4 Hours of Entrepreneurship</li>
+                    <li class="highlight-item"><i class="fa-solid fa-heart-pulse"></i> Health Talk, Debate & Discussions</li>
+                    <li class="highlight-item"><i class="fa-solid fa-id-card-clip"></i> 5 days for Character Building</li>
+                    <li class="highlight-item"><i class="fa-solid fa-money-bill-trend-up"></i> Financial literacy</li>
+                    <li class="highlight-item"><i class="fa-solid fa-book-open-reader"></i> Life Application Series</li>
+                    <li class="highlight-item"><i class="fa-solid fa-bible"></i> Discovery Bible Studies</li>
+                    <li class="highlight-item"><i class="fa-solid fa-star"></i> Excelling in Studies & Career</li>
+                    <li class="highlight-item"><i class="fa-solid fa-masks-theater"></i> Drama, Poem, Song & Prayer</li>
+                </ul>
+            </div>
+
+            <div class="contact-box">
+                <div class="data-icon" style="color:var(--red-accent); background:rgba(185, 28, 28, 0.1); width:60px; height:60px; font-size:1.5rem;"><i class="fa-solid fa-phone-flip"></i></div>
+                <div style="flex:1">
+                    <p class="data-title">RSVP / Inquiries</p>
+                    <ul class="rsvp-list">
+                        <li class="rsvp-item">076577057</li>
+                        <li class="rsvp-item">031033770</li>
+                        <li class="rsvp-item">080392938</li>
+                        <li class="rsvp-item">076547992</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bottom-actions">
+                <div style="font-weight: 700; color: var(--text-dark); font-size: 0.95rem;">Facilitated By: Sola Jegede & Team</div>
+                <a href="index.html" class="reg-link">Proceed to Registration Form →</a>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const timestampTarget = new Date("August 3, 2026 08:00:00").getTime();
+
+        function runTimerCalculations() {
+            const systemTimeNow = new Date().getTime();
+            const timeDelta = timestampTarget - systemTimeNow;
+
+            if (timeDelta <= 0) {
+                clearInterval(clockLoop);
+                document.querySelector(".countdown-widget").innerHTML = "<div style='color:var(--blue-accent); font-weight:800; font-size:1.4rem; padding: 20px 0;'>CONFERENCE HAS STARTED!</div>";
+                return;
+            }
+
+            const days = Math.floor(timeDelta / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeDelta % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeDelta % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeDelta % (1000 * 60)) / 1000);
+
+            const appendZeroes = (digit) => String(digit).padStart(2, '0');
+
+            document.getElementById("t-days").innerText = appendZeroes(days);
+            document.getElementById("t-hours").innerText = appendZeroes(hours);
+            document.getElementById("t-minutes").innerText = appendZeroes(minutes);
+            document.getElementById("t-seconds").innerText = appendZeroes(seconds);
+        }
+
+        runTimerCalculations();
+        const clockLoop = setInterval(runTimerCalculations, 1000);
+    </script>
+</body>
+</html>
