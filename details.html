@@ -169,6 +169,7 @@
             background: #ffffff;
             box-shadow: 0 12px 30px rgba(15, 23, 42, 0.03);
             text-align: center;
+            box-sizing: border-box;
         }
 
         .live-banner {
@@ -317,7 +318,6 @@
         .data-value { font-size: 1.25rem; font-weight: 800; color: var(--text-dark); margin: 0; line-height: 1.4; }
         .data-sub { font-size: 0.95rem; color: var(--text-muted); margin-top: 6px; }
 
-        /* NEW: Map / Location Section Styling */
         .map-section {
             background-color: #ffffff;
             border: 1px solid #e2e8f0;
@@ -415,6 +415,7 @@
 
         .bottom-actions { display: flex; margin-top: 50px; justify-content: space-between; align-items: center; border-top: 1px solid #f1f5f9; padding-top: 30px; }
 
+        /* Global Tablet Responsive Tweaks */
         @media (max-width: 900px) {
             .wrapper { margin-top: 0; border-radius: 0; }
             .zem-nav { padding: 20px; }
@@ -427,6 +428,35 @@
             .contact-box { flex-direction: column; text-align: center; }
             .rsvp-list { justify-content: center; }
             .bottom-actions { flex-direction: column; gap: 24px; }
+        }
+
+        /* NEW: Added countdown targeted responsive sizing for mobile viewports */
+        @media (max-width: 500px) {
+            .countdown-widget {
+                padding: 20px 12px;
+            }
+            .widget-title {
+                margin-bottom: 16px;
+                font-size: 0.85rem;
+            }
+            .timer-container {
+                gap: 4px;
+            }
+            .timer-block {
+                padding: 10px 2px;
+                border-radius: 10px;
+            }
+            .timer-digits {
+                font-size: 1.65rem;
+            }
+            .timer-label {
+                font-size: 0.65rem;
+                margin-top: 4px;
+            }
+            .timer-separator {
+                font-size: 1.3rem;
+                padding-bottom: 16px;
+            }
         }
     </style>
 </head>
@@ -529,7 +559,6 @@
                 </div>
             </div>
 
-            <!-- NEW: Interactive Map & Live Navigation Feature -->
             <div class="map-section">
                 <div class="map-header">
                     <div>
@@ -541,7 +570,6 @@
                     </a>
                 </div>
                 <div class="map-frame-container">
-                    <!-- Clean, interactive map embed focused on Congo Cross, Freetown -->
                     <iframe src="https://maps.google.com/maps?q=Congo%20Cross,%20Freetown,%20Sierra%20Leone&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
