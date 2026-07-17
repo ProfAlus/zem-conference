@@ -71,7 +71,7 @@
             border-radius: 50%;
             border: 4px solid #ffffff;
             background-color: var(--teal-accent);
-            background: url('./images/August Youths Conference - 2026.png') center center / cover no-repeat;
+            background: url('./images/ZION EVANGELICAL MINISTRIES.png') center center / cover no-repeat;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
@@ -461,7 +461,7 @@
     <script>
         const formObj = document.getElementById('conferenceForm');
         // REPLACE THE LINE BELOW WITH YOUR DEPLOYED GOOGLE APPS SCRIPT WEB APP URL
-        const sheetEndpoint = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE'; 
+        const sheetEndpoint = 'https://script.google.com/macros/s/AKfycbzJLDXgR8A9wmxIEMcyFilFUb4AEPRHFvFkeBmTTUjXWfX1b4BfCCIAKqJxCjk0g9kJ/exec'; 
 
         formObj.addEventListener('submit', event => {
             event.preventDefault();
@@ -474,7 +474,7 @@
 
             fetch(`${sheetEndpoint}?${urlEncoded}`, { method: 'POST' })
                 .then(res => {
-                    alert('Registration Confirmed! Data securely saved to Google Sheets.');
+                    alert('Congratulations! You have registered successfully!');
                     formObj.reset();
                     actionBtn.innerText = "Confirm";
                     actionBtn.disabled = false;
