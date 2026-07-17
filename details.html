@@ -10,7 +10,7 @@
             --blue-accent: #1e60a0; 
             --blue-dark: #044079;
             --blue-light: #eef6fc;
-            --orange-accent: #ff6b35; /* NEW: Inspired by reference image */
+            --orange-accent: #ff6b35; 
             --red-accent: #b91c1c;  
             --text-dark: #0f172a;
             --text-muted: #64748b;
@@ -24,6 +24,18 @@
             padding: 0;
             color: var(--text-dark);
             line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* NEW: Confetti Canvas */
+        #confetti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 999;
         }
 
         .wrapper {
@@ -31,9 +43,11 @@
             max-width: 1100px;
             margin: 40px auto 80px auto;
             background: #ffffff;
-            border-radius: 24px; /* Smoother cornering from inspiration */
+            border-radius: 24px; 
             overflow: hidden;
             box-shadow: 0 20px 50px rgba(15, 23, 42, 0.04);
+            position: relative;
+            z-index: 10;
         }
 
         .zem-nav {
@@ -69,12 +83,12 @@
         }
 
         .reg-link {
-            background: var(--orange-accent); /* Updated to energetic orange */
+            background: var(--orange-accent); 
             color: #ffffff;
             font-weight: 700;
             text-decoration: none;
             padding: 12px 28px;
-            border-radius: 50px; /* Pill style button from image */
+            border-radius: 50px; 
             font-size: 0.9rem;
             transition: all 0.2s ease;
             box-shadow: 0 4px 14px rgba(255, 107, 53, 0.25);
@@ -89,7 +103,6 @@
             padding: 60px 80px;
         }
 
-        /* NEW: Community Facepile Stack style from reference */
         .avatar-stack {
             display: flex;
             justify-content: center;
@@ -98,24 +111,18 @@
             padding-left: 12px;
         }
 
-        .avatar-stack img, .avatar-stack .avatar-placeholder {
+        .avatar-stack .avatar-placeholder {
             width: 36px;
             height: 36px;
             border-radius: 50%;
             border: 3px solid #ffffff;
             margin-left: -12px;
-            object-fit: cover;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        }
-        
-        .avatar-placeholder {
-            background: var(--blue-accent);
-            color: #ffffff;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 0.75rem;
             font-weight: 700;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
 
         .headline-group {
@@ -163,6 +170,37 @@
             background: #ffffff;
             box-shadow: 0 12px 30px rgba(15, 23, 42, 0.03);
             text-align: center;
+        }
+
+        /* NEW: Live Status Text Layout */
+        .live-banner {
+            display: none;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.2);
+            animation: pulseBanner 2s infinite ease-in-out;
+        }
+
+        .live-banner h2 {
+            margin: 0 0 6px 0;
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .live-banner p {
+            margin: 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            opacity: 0.95;
+        }
+
+        @keyframes pulseBanner {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.015); box-shadow: 0 14px 30px rgba(16, 185, 129, 0.3); }
         }
 
         .widget-title {
@@ -231,7 +269,6 @@
             text-align: center;
         }
 
-        /* ADOPTED STYLE: Multi-color card layout from landing page template */
         .details-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -248,11 +285,8 @@
             transition: transform 0.2s ease;
         }
         
-        .data-card:hover {
-            transform: translateY(-2px);
-        }
+        .data-card:hover { transform: translateY(-2px); }
 
-        /* Color variations matched to reference grid features */
         .data-card.theme-card { background-color: #f0fdf4; }
         .data-card.theme-card .data-icon { color: #16a34a; background: #dcfce7; }
         .data-card.theme-card .data-title { color: #16a34a; }
@@ -281,28 +315,9 @@
         }
 
         .data-content { flex: 1; }
-
-        .data-title {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            font-weight: 800;
-            letter-spacing: 0.1em;
-            margin: 0 0 8px 0;
-        }
-
-        .data-value {
-            font-size: 1.25rem;
-            font-weight: 800;
-            color: var(--text-dark);
-            margin: 0;
-            line-height: 1.4;
-        }
-
-        .data-sub {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            margin-top: 6px;
-        }
+        .data-title { font-size: 0.8rem; text-transform: uppercase; font-weight: 800; letter-spacing: 0.1em; margin: 0 0 8px 0; }
+        .data-value { font-size: 1.25rem; font-weight: 800; color: var(--text-dark); margin: 0; line-height: 1.4; }
+        .data-sub { font-size: 0.95rem; color: var(--text-muted); margin-top: 6px; }
 
         .highlights-box {
             background-color: #fafafa;
@@ -312,45 +327,10 @@
             margin-bottom: 60px;
         }
 
-        .box-title {
-            color: var(--text-dark);
-            font-size: 1.4rem;
-            font-weight: 900;
-            margin-top: 0;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
-        .highlights-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px 32px;
-        }
-
-        .highlight-item {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            font-size: 1rem;
-            font-weight: 600;
-            color: #334155;
-        }
-
-        .highlight-item i {
-            color: var(--blue-accent);
-            background: #ffffff;
-            width: 32px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            font-size: 0.85rem;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.04);
-        }
+        .box-title { color: var(--text-dark); font-size: 1.4rem; font-weight: 900; margin-top: 0; margin-bottom: 30px; text-align: center; }
+        .highlights-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px 32px; }
+        .highlight-item { display: flex; align-items: center; gap: 14px; font-size: 1rem; font-weight: 600; color: #334155; }
+        .highlight-item i { color: var(--blue-accent); background: #ffffff; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 0.85rem; box-shadow: 0 2px 5px rgba(0,0,0,0.04); }
 
         .contact-box {
             background: #ffffff;
@@ -363,41 +343,12 @@
             margin-bottom: 60px;
         }
 
-        .contact-box .data-icon {
-            color: var(--blue-accent);
-            background: var(--blue-light);
-            width: 54px;
-            height: 54px;
-        }
+        .contact-box .data-icon { color: var(--blue-accent); background: var(--blue-light); width: 54px; height: 54px; }
+        .rsvp-list { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 12px 28px; }
+        .rsvp-item a { font-weight: 700; font-size: 1.15rem; color: var(--blue-accent); text-decoration: none; }
+        .rsvp-item a:hover { text-decoration: underline; }
 
-        .rsvp-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px 28px;
-        }
-
-        .rsvp-item a {
-            font-weight: 700;
-            font-size: 1.15rem;
-            color: var(--blue-accent);
-            text-decoration: none;
-        }
-
-        .rsvp-item a:hover {
-            text-decoration: underline;
-        }
-
-        .bottom-actions {
-            display: flex;
-            margin-top: 50px;
-            justify-content: space-between;
-            align-items: center;
-            border-top: 1px solid #f1f5f9;
-            padding-top: 30px;
-        }
+        .bottom-actions { display: flex; margin-top: 50px; justify-content: space-between; align-items: center; border-top: 1px solid #f1f5f9; padding-top: 30px; }
 
         @media (max-width: 900px) {
             .wrapper { margin-top: 0; border-radius: 0; }
@@ -414,6 +365,9 @@
 </head>
 <body>
 
+    <!-- HTML Canvas for Confetti -->
+    <canvas id="confetti-canvas"></canvas>
+
     <div class="wrapper">
         <nav class="zem-nav">
             <div class="zem-logo-lockup">
@@ -425,21 +379,21 @@
 
         <main class="main-content">
             
-            <!-- HEADLINE SECTION WITH INSPIRATION ATTENDEE STACK -->
             <div class="headline-group">
                 <div class="avatar-stack">
-                    <div class="avatar-placeholder" style="background:#ea580c">🔥</div>
-                    <div class="avatar-placeholder" style="background:#7c3aed">🙌</div>
-                    <div class="avatar-placeholder" style="background:#16a34a">⚡</div>
-                    <div class="avatar-placeholder">+500</div>
+                    <div class="avatar-placeholder" style="background:#ea580c; color: white;">🔥</div>
+                    <div class="avatar-placeholder" style="background:#7c3aed; color: white;">🙌</div>
+                    <div class="avatar-placeholder" style="background:#16a34a; color: white;">⚡</div>
+                    <div class="avatar-placeholder" style="background:var(--blue-accent); color: white;">+500</div>
                 </div>
                 <p class="main-sub">ZEM Presents</p>
                 <h1 class="main-headline">5 Days Youths &<br><span>Young Adults'</span> Conference</h1>
             </div>
 
             <div class="countdown-wrapper-centered">
-                <div class="countdown-widget">
-                    <h3 class="widget-title">Conference Starts In</h3>
+                <!-- Standard Live Countdown Widget -->
+                <div class="countdown-widget" id="main-timer-widget">
+                    <h3 class="widget-title">Event Starts In</h3>
                     <div class="timer-container">
                         <div class="timer-block days">
                             <div class="timer-digits" id="t-days">00</div>
@@ -462,13 +416,18 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- NEW: Active Status Writing banner -->
+                <div class="live-banner" id="live-status-banner">
+                    <h2><i class="fa-solid fa-circle-dot" style="font-size:1.1rem; vertical-align:middle; margin-right:8px; animation: blink 1s infinite;"></i> The Conference is Now On!</h2>
+                    <p>Join us live from Aug. 3rd – Aug. 7th</p>
+                </div>
             </div>
 
             <p class="page-intro">
                 Welcome to the official event information hub. This conference is curated to empower, build character, and map out career landmarks for modern young adults. Review the core breakdown below.
             </p>
 
-            <!-- ADOPTED: Grid layout with vibrant individual theme tints -->
             <div class="details-grid">
                 <div class="data-card theme-card">
                     <div class="data-icon"><i class="fa-solid fa-fire"></i></div>
@@ -541,23 +500,111 @@
         </main>
     </div>
 
+    <!-- SCRIPT LOGIC FOR BANNER AND LIGHTWEIGHT CONFETTI -->
     <script>
-        const timestampTarget = new Date("August 3, 2026 08:00:00").getTime();
+        const timestampTargetStart = new Date("August 3, 2026 08:00:00").getTime();
+        const timestampTargetEnd = new Date("August 7, 2026 23:59:59").getTime();
+
+        // Lightweight custom vanilla canvas confetti system
+        const canvas = document.getElementById("confetti-canvas");
+        const ctx = canvas.getContext("2d");
+        let confettiArray = [];
+        let runningConfetti = false;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class ConfettiParticle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * -canvas.height;
+                this.size = Math.random() * 6 + 6;
+                this.speedX = Math.random() * 2 - 1;
+                this.speedY = Math.random() * 2 + 2;
+                this.colors = ['#ff6b35', '#1e60a0', '#7c3aed', '#16a34a', '#ea580c', '#facc15'];
+                this.color = this.colors[Math.floor(Math.random() * this.colors.length)];
+                this.rotation = Math.random() * 360;
+                this.rotationSpeed = Math.random() * 4 - 2;
+            }
+            update() {
+                this.y += this.speedY;
+                this.x += this.speedX;
+                this.rotation += this.rotationSpeed;
+                if (this.y > canvas.height) {
+                    this.y = -20;
+                    this.x = Math.random() * canvas.width;
+                }
+            }
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate((this.rotation * Math.PI) / 180);
+                ctx.fillStyle = this.color;
+                ctx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size);
+                ctx.restore();
+            }
+        }
+
+        function initConfetti() {
+            for (let i = 0; i < 100; i++) {
+                confettiArray.push(new ConfettiParticle());
+            }
+        }
+
+        function animateConfetti() {
+            if (!runningConfetti) return;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            confettiArray.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateConfetti);
+        }
 
         function runTimerCalculations() {
             const systemTimeNow = new Date().getTime();
-            const timeDelta = timestampTarget - systemTimeNow;
+            const timeDeltaStart = timestampTargetStart - systemTimeNow;
+            const timeDeltaEnd = timestampTargetEnd - systemTimeNow;
 
-            if (timeDelta <= 0) {
+            // Trigger confetti if event starts in less than 7 days, or if it's actively running
+            if (timeDeltaStart < (7 * 24 * 60 * 60 * 1000) && timeDeltaEnd > 0) {
+                if (!runningConfetti) {
+                    runningConfetti = true;
+                    initConfetti();
+                    animateConfetti();
+                }
+            } else {
+                runningConfetti = false;
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            }
+
+            // If we are within Aug 3rd and Aug 7th
+            if (timeDeltaStart <= 0 && timeDeltaEnd >= 0) {
+                document.getElementById("main-timer-widget").style.display = "none";
+                document.getElementById("live-status-banner").style.display = "block";
+                return;
+            } 
+            
+            // If the whole event has finished completely
+            if (timeDeltaEnd < 0) {
                 clearInterval(clockLoop);
-                document.querySelector(".countdown-widget").innerHTML = "<div style='color:var(--blue-accent); font-weight:800; font-size:1.4rem; padding: 20px 0;'>CONFERENCE HAS STARTED!</div>";
+                runningConfetti = false;
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                document.getElementById("main-timer-widget").style.display = "block";
+                document.getElementById("live-status-banner").style.display = "none";
+                document.getElementById("main-timer-widget").innerHTML = "<div style='color:var(--text-muted); font-weight:800; font-size:1.3rem; padding: 10px 0;'>CONFERENCE HAS CONCLUDED</div>";
                 return;
             }
 
-            const days = Math.floor(timeDelta / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((timeDelta % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((timeDelta % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeDelta % (1000 * 60)) / 1000);
+            // Normal countdown behavior
+            const days = Math.floor(timeDeltaStart / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeDeltaStart % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeDeltaStart % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeDeltaStart % (1000 * 60)) / 1000);
 
             const appendZeroes = (digit) => String(digit).padStart(2, '0');
 
