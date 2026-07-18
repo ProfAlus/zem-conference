@@ -11,6 +11,11 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <!-- Font Awesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
     <style>
@@ -244,9 +249,11 @@
       .input-icon-right {
         margin-left: 12px;
         color: #a0aec0;
-        font-size: 1.1rem;
+        font-size: 1rem;
         display: flex;
         align-items: center;
+        width: 16px;
+        justify-content: center;
       }
 
       .options-grid {
@@ -291,6 +298,10 @@
         font-size: 0.85rem;
         margin-top: 8px;
         display: none;
+      }
+
+      .captcha-error-msg i {
+        margin-right: 4px;
       }
 
       .actions-row {
@@ -350,6 +361,7 @@
         text-decoration: none;
         display: inline-flex;
         align-items: center;
+        gap: 6px;
       }
 
       .btn-link-nav:hover {
@@ -465,7 +477,9 @@
                   placeholder="Enter your full name"
                   required
                 />
-                <span class="input-icon-right">👤</span>
+                <span class="input-icon-right"
+                  ><i class="fa-solid fa-user"></i
+                ></span>
               </div>
             </div>
 
@@ -479,7 +493,9 @@
                   placeholder="Enter your home address"
                   required
                 />
-                <span class="input-icon-right">📍</span>
+                <span class="input-icon-right"
+                  ><i class="fa-solid fa-location-dot"></i
+                ></span>
               </div>
             </div>
 
@@ -508,7 +524,9 @@
                   placeholder="+1 000 000 0000"
                   required
                 />
-                <span class="input-icon-right">📞</span>
+                <span class="input-icon-right"
+                  ><i class="fa-solid fa-phone"></i
+                ></span>
               </div>
             </div>
 
@@ -522,7 +540,9 @@
                   placeholder="Enter the name of your church"
                   required
                 />
-                <span class="input-icon-right">⛪</span>
+                <span class="input-icon-right"
+                  ><i class="fa-solid fa-church"></i
+                ></span>
               </div>
             </div>
 
@@ -618,7 +638,8 @@
                 data-callback="captchaSuccessCallback"
               ></div>
               <div class="captcha-error-msg" id="captcha-error">
-                ⚠️ Please complete the security check to verify your entry.
+                <i class="fa-solid fa-triangle-exclamation"></i> Please complete
+                the security check to verify your entry.
               </div>
             </div>
 
@@ -639,7 +660,8 @@
             <!-- NAVIGATION LINK AREA (BELOW FORM ACTIONS) -->
             <div class="nav-separation-row">
               <a href="details.html" class="btn-link-nav"
-                >← Back to Conference Details</a
+                ><i class="fa-solid fa-arrow-left"></i> Back to Conference
+                Details</a
               >
             </div>
           </form>
