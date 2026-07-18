@@ -4,63 +4,66 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Youths & Young Adults' Conference Registration</title>
-    <!-- GOOGLE reCAPTCHA API SCRIPT -->
+    <!-- Google Fonts & reCAPTCHA API -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
     <style>
       :root {
-        --teal-accent: #1662a0;
-        --teal-dark: #044079;
-        --teal-light: #eef6fc;
-        --input-bg: #f5f5f5;
+        --theme-blue: #7094eb;
+        --theme-blue-dark: #4f70dd;
         --text-dark: #333333;
-        --text-muted: #65676b;
-        --border-color: #ced0d4;
-        --fb-bg: #dbdee4;
-        --red-accent: #b91c1c;
+        --text-muted: #718096;
+        --input-bg: #f3f4f6;
+        --border-color: #e2e8f0;
+        --radius: 20px;
+        --teal-dark: #044079;
+      }
+
+      * {
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
       }
 
       body {
-        background-color: var(--fb-bg);
-        font-family:
-          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
-          Arial, sans-serif;
+        background-color: #e2e8f5;
         margin: 0;
-        padding: 40px 20px;
+        padding: 40px 16px;
         display: flex;
         justify-content: center;
         align-items: flex-start;
         min-height: 100vh;
         color: var(--text-dark);
         -webkit-font-smoothing: antialiased;
-        box-sizing: border-box;
       }
 
       .fb-container {
-        background-color: #ffffff;
+        background: #ffffff;
         width: 100%;
         max-width: 940px;
         margin: 0 auto;
-        box-shadow:
-          0 10px 25px rgba(0, 0, 0, 0.08),
-          0 4px 12px rgba(0, 0, 0, 0.05);
-        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        border-radius: var(--radius);
         overflow: hidden;
       }
 
       .fb-cover {
         width: 100%;
-        height: 348px;
+        height: 300px;
         background:
-          linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)),
+          linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3)),
           url("./images/ZION EVANGELICAL MINISTRIES.png") center center / cover
             no-repeat;
-        position: relative;
-        background-color: #cbd5e1;
+        background-color: var(--theme-blue-dark);
       }
 
       .fb-header-bar {
-        padding: 0 32px 16px 32px;
+        padding: 0 32px 24px 32px;
         display: flex;
         align-items: flex-end;
         position: relative;
@@ -69,40 +72,40 @@
       }
 
       .fb-profile-pic-container {
-        width: 168px;
-        height: 168px;
-        margin-top: -120px;
+        width: 150px;
+        height: 150px;
+        margin-top: -90px;
         position: relative;
         z-index: 5;
       }
 
       .fb-profile-pic {
-        width: 160px;
-        height: 160px;
+        width: 100%;
+        height: 100%;
         border-radius: 50%;
         border: 4px solid #ffffff;
-        background-color: var(--teal-accent);
         background: url("./images/ZEM Logo.png") center center / cover no-repeat;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        background-color: #ffffff;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       }
 
       .fb-title-area {
         flex: 1;
         margin-left: 24px;
-        margin-bottom: 8px;
+        margin-bottom: 4px;
       }
 
       .form-title {
-        font-size: 2rem;
+        font-size: 1.8rem;
         font-weight: 700;
-        color: #050505;
+        color: var(--text-dark);
         margin: 0 0 4px 0;
         letter-spacing: -0.01em;
       }
 
       .form-subtitle {
-        font-size: 0.9rem;
-        font-weight: 600;
+        font-size: 0.95rem;
+        font-weight: 500;
         color: var(--text-muted);
         margin: 0;
       }
@@ -151,10 +154,7 @@
         box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.1);
       }
 
-      .timer-block.days {
-        background: linear-gradient(135deg, #e0f2fe, #bae6fd);
-        border: 1px solid #7dd3fc;
-      }
+      .timer-block.days,
       .timer-block.hours {
         background: linear-gradient(135deg, #e0f2fe, #bae6fd);
         border: 1px solid #7dd3fc;
@@ -172,10 +172,6 @@
         color: var(--teal-dark);
         font-size: 1.4rem;
         font-weight: 800;
-        font-family:
-          system-ui,
-          -apple-system,
-          sans-serif;
         text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
       }
 
@@ -202,10 +198,6 @@
         }
       }
 
-      .fb-right-column {
-        background: #ffffff;
-      }
-
       .form-row {
         display: flex;
         flex-direction: column;
@@ -213,77 +205,89 @@
       }
 
       .label-cell {
-        font-size: 0.95rem;
+        font-size: 0.85rem;
         font-weight: 600;
-        color: #050505;
-        margin-bottom: 8px;
+        color: var(--text-muted);
+        margin-bottom: 6px;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
       }
 
-      .input-cell {
-        width: 100%;
+      .input-container-box {
+        display: flex;
+        align-items: center;
+        border-radius: 14px;
+        background-color: var(--input-bg);
+        box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+        transition: all 0.2s ease;
+        padding: 0 20px;
+        border: 1px solid transparent;
       }
 
-      input[type="text"],
-      input[type="tel"] {
-        width: 100%;
-        box-sizing: border-box;
+      .input-container-box:focus-within {
         background-color: #ffffff;
-        border: 1px solid var(--border-color);
-        border-radius: 6px;
-        padding: 12px 16px;
+        border-color: var(--theme-blue);
+        box-shadow: 0 4px 12px rgba(112, 148, 235, 0.15);
+      }
+
+      .input-container-box input[type="text"],
+      .input-container-box input[type="tel"] {
+        border: none;
+        background: transparent;
+        padding: 16px 0;
+        width: 100%;
+        outline: none;
         font-size: 0.95rem;
         color: var(--text-dark);
-        outline: none;
-        transition: border-color 0.2s ease;
       }
 
-      input[type="text"]:focus,
-      input[type="tel"]:focus {
-        border-color: var(--teal-accent);
-        box-shadow: 0 0 0 2px rgba(22, 98, 160, 0.2);
-      }
-
-      .form-row:focus-within .label-cell {
-        color: var(--teal-accent);
+      .input-icon-right {
+        margin-left: 12px;
+        color: #a0aec0;
+        font-size: 1.1rem;
+        display: flex;
+        align-items: center;
       }
 
       .options-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 16px 12px;
-        padding-top: 6px;
+        gap: 12px;
       }
 
       .radio-label {
-        display: inline-flex;
+        display: flex;
         align-items: center;
         font-size: 0.95rem;
         color: var(--text-dark);
         cursor: pointer;
-        user-select: none;
+        background: var(--input-bg);
+        padding: 14px 16px;
+        border-radius: 14px;
+        transition: all 0.2s ease;
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.02);
       }
 
       .radio-label input[type="radio"] {
-        margin: 0 10px 0 0;
-        accent-color: var(--teal-accent);
+        margin: 0 12px 0 0;
+        accent-color: var(--theme-blue-dark);
         transform: scale(1.15);
-        cursor: pointer;
       }
 
       .radio-label:hover {
-        color: #000000;
+        background: #edf2f7;
       }
 
-      /* RECAPTCHA ROW STYLING */
       .captcha-row {
         margin-top: 24px;
         display: flex;
         flex-direction: column;
+        align-items: flex-start;
       }
 
       .captcha-error-msg {
-        color: var(--red-accent);
-        font-weight: 600;
+        color: #e53e3e;
+        font-weight: 500;
         font-size: 0.85rem;
         margin-top: 8px;
         display: none;
@@ -293,65 +297,63 @@
         display: flex;
         justify-content: flex-end;
         align-items: center;
-        gap: 12px;
-        margin-top: 32px;
+        gap: 16px;
+        margin-top: 24px;
         border-top: 1px solid var(--border-color);
-        padding-top: 20px;
-      }
-
-      .btn-link-nav {
-        background-color: #ffffff;
-        color: var(--teal-accent);
-        border: 1px solid var(--teal-accent);
-        border-radius: 6px;
-        padding: 11px 20px;
-        font-size: 0.95rem;
-        font-weight: 600;
-        text-decoration: none;
-        text-align: center;
-        transition: background 0.2s;
-        margin-right: auto; /* Pushes the button to the far left of the row */
-      }
-
-      .btn-link-nav:hover {
-        background-color: var(--teal-light);
+        padding-top: 24px;
       }
 
       .btn-cancel {
-        background-color: var(--input-bg);
-        color: var(--text-dark);
+        background-color: transparent;
+        color: var(--text-muted);
         border: none;
-        border-radius: 6px;
-        padding: 12px 24px;
+        padding: 12px 20px;
         font-size: 0.95rem;
-        font-weight: 600;
+        font-weight: 500;
         cursor: pointer;
-        transition: background 0.2s;
-      }
-
-      .btn-cancel:hover {
-        background-color: #e4e6eb;
+        text-decoration: underline;
       }
 
       .btn-confirm {
-        background-color: var(--teal-accent);
+        background: var(--theme-blue-dark);
         color: #ffffff;
         border: none;
-        border-radius: 6px;
-        padding: 12px 36px;
-        font-size: 0.95rem;
+        border-radius: 14px;
+        padding: 16px 44px;
+        font-size: 1rem;
         font-weight: 600;
         cursor: pointer;
-        transition: background 0.2s;
+        box-shadow: 0 4px 12px rgba(79, 112, 221, 0.25);
+        transition: all 0.2s ease;
       }
 
       .btn-confirm:hover {
-        background-color: var(--teal-dark);
+        background: #3e5ec7;
+        box-shadow: 0 6px 16px rgba(79, 112, 221, 0.35);
       }
 
       .btn-confirm:disabled {
-        background-color: #bcc0c4;
+        background: #cbd5e1;
+        box-shadow: none;
         cursor: not-allowed;
+      }
+
+      .nav-separation-row {
+        margin-top: 20px;
+        text-align: right;
+      }
+
+      .btn-link-nav {
+        color: var(--theme-blue-dark);
+        font-size: 0.95rem;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .btn-link-nav:hover {
+        text-decoration: underline;
       }
 
       @media (max-width: 880px) {
@@ -359,7 +361,6 @@
           padding: 0;
         }
         .fb-container {
-          margin: 0;
           border-radius: 0;
           box-shadow: none;
         }
@@ -370,10 +371,10 @@
           flex-direction: column;
           align-items: center;
           text-align: center;
-          padding: 0 16px 16px 16px;
+          padding: 0 16px 20px 16px;
         }
         .fb-profile-pic-container {
-          margin-top: -80px;
+          margin-top: -75px;
         }
         .fb-title-area {
           margin-left: 0;
@@ -382,19 +383,21 @@
         .fb-body-grid {
           grid-template-columns: 1fr;
           gap: 24px;
-          padding: 0 16px 30px 16px;
+          padding: 0 16px 40px 16px;
         }
         .actions-row {
           flex-direction: column-reverse;
+          align-items: stretch;
           width: 100%;
-          gap: 10px;
+          gap: 12px;
         }
-        .btn-link-nav,
         .btn-cancel,
         .btn-confirm {
+          text-align: center;
           width: 100%;
-          box-sizing: border-box;
-          margin-right: 0;
+        }
+        .nav-separation-row {
+          text-align: center;
         }
         .captcha-row {
           align-items: center;
@@ -404,7 +407,6 @@
       @media (max-width: 480px) {
         .options-grid {
           grid-template-columns: 1fr;
-          gap: 12px;
         }
       }
     </style>
@@ -453,130 +455,162 @@
 
         <div class="fb-right-column">
           <form id="conferenceForm">
+            <!-- FULL NAME -->
             <div class="form-row">
               <div class="label-cell">Name</div>
-              <div class="input-cell">
+              <div class="input-container-box">
                 <input
                   type="text"
                   name="fullName"
                   placeholder="Enter your full name"
                   required
                 />
+                <span class="input-icon-right">👤</span>
               </div>
             </div>
 
+            <!-- HOME ADDRESS -->
+            <div class="form-row">
+              <div class="label-cell">Home Address</div>
+              <div class="input-container-box">
+                <input
+                  type="text"
+                  name="homeAddress"
+                  placeholder="Enter your home address"
+                  required
+                />
+                <span class="input-icon-right">📍</span>
+              </div>
+            </div>
+
+            <!-- GENDER FIELD -->
+            <div class="form-row">
+              <div class="label-cell">Gender</div>
+              <div class="options-grid">
+                <label class="radio-label">
+                  <input type="radio" name="gender" value="Male" required />
+                  <span>Male</span>
+                </label>
+                <label class="radio-label">
+                  <input type="radio" name="gender" value="Female" />
+                  <span>Female</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- PHONE NUMBER / WHATSAPP -->
             <div class="form-row">
               <div class="label-cell">Phone Number/WhatsApp Number</div>
-              <div class="input-cell">
+              <div class="input-container-box">
                 <input
                   type="tel"
                   name="phone"
                   placeholder="+1 000 000 0000"
                   required
                 />
+                <span class="input-icon-right">📞</span>
               </div>
             </div>
 
+            <!-- CHURCH NAME -->
             <div class="form-row">
               <div class="label-cell">Church Name</div>
-              <div class="input-cell">
+              <div class="input-container-box">
                 <input
                   type="text"
                   name="churchName"
                   placeholder="Enter the name of your church"
                   required
                 />
+                <span class="input-icon-right">⛪</span>
               </div>
             </div>
 
+            <!-- AGE GROUP -->
             <div class="form-row">
               <div class="label-cell">Select Your Age Group</div>
-              <div class="input-cell">
-                <div class="options-grid">
-                  <label class="radio-label">
-                    <input
-                      type="radio"
-                      name="ageGroup"
-                      value="Below 25"
-                      checked
-                    />
-                    <span>Below 25</span>
-                  </label>
-                  <label class="radio-label">
-                    <input type="radio" name="ageGroup" value="25 and above" />
-                    <span>25 and above</span>
-                  </label>
-                </div>
+              <div class="options-grid">
+                <label class="radio-label">
+                  <input
+                    type="radio"
+                    name="ageGroup"
+                    value="Below 25"
+                    required
+                  />
+                  <span>Below 25</span>
+                </label>
+                <label class="radio-label">
+                  <input type="radio" name="ageGroup" value="25 and above" />
+                  <span>25 and above</span>
+                </label>
               </div>
             </div>
 
+            <!-- CURRENT LEVEL -->
             <div class="form-row">
               <div class="label-cell">Your Current Level</div>
-              <div class="input-cell">
-                <div class="options-grid">
-                  <label class="radio-label">
-                    <input
-                      type="radio"
-                      name="currentLevel"
-                      value="Primary School"
-                      checked
-                    />
-                    <span>Primary School</span>
-                  </label>
-                  <label class="radio-label">
-                    <input
-                      type="radio"
-                      name="currentLevel"
-                      value="Secondary School"
-                    />
-                    <span>Secondary School</span>
-                  </label>
-                  <label class="radio-label">
-                    <input
-                      type="radio"
-                      name="currentLevel"
-                      value="Tertiary / University"
-                    />
-                    <span>Tertiary / University</span>
-                  </label>
-                  <label class="radio-label">
-                    <input
-                      type="radio"
-                      name="currentLevel"
-                      value="Working Professional"
-                    />
-                    <span>Working Professional</span>
-                  </label>
-                </div>
+              <div class="options-grid">
+                <label class="radio-label">
+                  <input
+                    type="radio"
+                    name="currentLevel"
+                    value="Primary School"
+                    required
+                  />
+                  <span>Primary School</span>
+                </label>
+                <label class="radio-label">
+                  <input
+                    type="radio"
+                    name="currentLevel"
+                    value="Secondary School"
+                  />
+                  <span>Secondary School</span>
+                </label>
+                <label class="radio-label">
+                  <input
+                    type="radio"
+                    name="currentLevel"
+                    value="Tertiary / University"
+                  />
+                  <span>Tertiary / University</span>
+                </label>
+                <label class="radio-label">
+                  <input
+                    type="radio"
+                    name="currentLevel"
+                    value="Working Professional"
+                  />
+                  <span>Working Professional</span>
+                </label>
               </div>
             </div>
 
+            <!-- ACCOMMODATION -->
             <div class="form-row">
               <div class="label-cell">Accommodation</div>
-              <div class="input-cell">
-                <div class="options-grid">
-                  <label class="radio-label">
-                    <input
-                      type="radio"
-                      name="accommodation"
-                      value="Residential"
-                      checked
-                    />
-                    <span>Residential</span>
-                  </label>
-                  <label class="radio-label">
-                    <input
-                      type="radio"
-                      name="accommodation"
-                      value="Non-Residential"
-                    />
-                    <span>Non-Residential</span>
-                  </label>
-                </div>
+              <div class="options-grid">
+                <label class="radio-label">
+                  <input
+                    type="radio"
+                    name="accommodation"
+                    value="Residential"
+                    required
+                  />
+                  <span>Residential</span>
+                </label>
+                <label class="radio-label">
+                  <input
+                    type="radio"
+                    name="accommodation"
+                    value="Non-Residential"
+                  />
+                  <span>Non-Residential</span>
+                </label>
               </div>
             </div>
 
-            <!-- GOOGLE reCAPTCHA WIDGET CONTAINER -->
+            <!-- GOOGLE reCAPTCHA -->
             <div class="captcha-row">
               <div
                 class="g-recaptcha"
@@ -584,25 +618,29 @@
                 data-callback="captchaSuccessCallback"
               ></div>
               <div class="captcha-error-msg" id="captcha-error">
-                ⚠️ Please complete the security check to confirm you are not a
-                robot.
+                ⚠️ Please complete the security check to verify your entry.
               </div>
             </div>
 
+            <!-- FOOTER ACTION BUTTONS -->
             <div class="actions-row">
-              <a href="details.html" class="btn-link-nav"
-                >← Back to Conference Details</a
-              >
               <button
                 type="button"
                 class="btn-cancel"
                 onclick="resetFormWithCaptcha()"
               >
-                Clear
+                Clear Form
               </button>
               <button type="submit" class="btn-confirm" id="submitBtn">
                 Submit Details
               </button>
+            </div>
+
+            <!-- NAVIGATION LINK AREA (BELOW FORM ACTIONS) -->
+            <div class="nav-separation-row">
+              <a href="details.html" class="btn-link-nav"
+                >← Back to Conference Details</a
+              >
             </div>
           </form>
         </div>
@@ -611,20 +649,18 @@
 
     <script>
       const formObj = document.getElementById("conferenceForm");
-      // REPLACE THE LINE BELOW WITH YOUR DEPLOYED GOOGLE APPS SCRIPT WEB APP URL
+      // PASTE YOUR NEW APP SCRIPT WEB APP URL HERE:
       const sheetEndpoint =
-        "https://script.google.com/macros/s/AKfycbzJLDXgR8A9wmxIEMcyFilFUb4AEPRHFvFkeBmTTUjXWfX1b4BfCCIAKqJxCjk0g9kJ/exec";
+        "https://script.google.com/macros/s/AKfycbzzaD67smGy2Jg6E9zKbCUVLYTlWf8-vd3VBlSofeHyBeRihxANLYz_ic9pFeWpN_tJ/exec";
 
       formObj.addEventListener("submit", (event) => {
         event.preventDefault();
-
-        // Verify reCAPTCHA token status before parsing form submission payload
         const captchaResponse = grecaptcha.getResponse();
         const errorElement = document.getElementById("captcha-error");
 
         if (captchaResponse.length === 0) {
           errorElement.style.display = "block";
-          return; // Stop form submission entirely
+          return;
         }
 
         errorElement.style.display = "none";
@@ -633,9 +669,7 @@
         actionBtn.disabled = true;
 
         const payload = new FormData(formObj);
-        // Append the recaptcha response token into your sheet parameters if needed
         payload.append("g-recaptcha-response", captchaResponse);
-
         const urlEncoded = new URLSearchParams(payload).toString();
 
         fetch(`${sheetEndpoint}?${urlEncoded}`, { method: "POST" })
@@ -654,12 +688,10 @@
           });
       });
 
-      // Hide warning messaging as soon as the user selects the checkbox
       function captchaSuccessCallback() {
         document.getElementById("captcha-error").style.display = "none";
       }
 
-      // Custom clean routine ensures that visual checked state cleans up on 'Clear'
       function resetFormWithCaptcha() {
         formObj.reset();
         grecaptcha.reset();
@@ -675,7 +707,7 @@
         if (timeDelta <= 0) {
           clearInterval(clockLoop);
           document.querySelector(".timer-container").innerHTML =
-            "<div style='color:var(--teal-accent); font-weight:700; font-size:0.9rem; width:100%; text-align:center;'>EVENT STARTED</div>";
+            "<div style='color:var(--theme-blue-dark); font-weight:700; font-size:0.9rem; width:100%; text-align:center;'>EVENT STARTED</div>";
           return;
         }
 
