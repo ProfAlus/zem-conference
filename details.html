@@ -1252,10 +1252,15 @@
           flex-direction: column;
           gap: 16px;
           text-align: center;
+          align-items: center;
         }
         .zem-logo-lockup {
           flex-direction: column;
           gap: 8px;
+          align-items: center;
+        }
+        .nav-org-name {
+          font-size: 1rem;
         }
         .hero-section {
           grid-template-columns: 1fr;
@@ -1295,6 +1300,10 @@
         }
         .data-card {
           padding: 16px;
+          grid-column: unset !important;
+        }
+        .map-frame-container {
+          height: 260px;
         }
         .map-header {
           flex-direction: column;
@@ -1326,8 +1335,18 @@
         }
         .bot-window {
           width: calc(100vw - 32px);
-          height: 420px;
+          height: min(420px, 65vh);
           right: 16px;
+        }
+        .bot-container {
+          bottom: 16px;
+          right: 16px;
+        }
+        .theme-toggle {
+          top: 12px;
+          left: 12px;
+          width: 40px;
+          height: 40px;
         }
       }
 
@@ -1342,6 +1361,54 @@
         }
         .timer-label {
           font-size: 0.6rem;
+        }
+        .main-headline {
+          font-size: 1.7rem;
+        }
+        .hero-tag {
+          font-size: 0.72rem;
+          padding: 5px 12px;
+        }
+        .hero-badge-card {
+          padding: 18px;
+        }
+        .voice-btn-text {
+          display: none;
+        }
+        .widget-header-row {
+          flex-direction: row;
+          justify-content: space-between;
+        }
+        .map-frame-container {
+          height: 220px;
+        }
+        .bot-badge-label {
+          font-size: 0.65rem;
+          padding: 3px 8px;
+          top: -32px;
+        }
+        .bot-launcher {
+          width: 52px;
+          height: 52px;
+          font-size: 1.4rem;
+        }
+      }
+
+      @media (max-width: 360px) {
+        .timer-container {
+          gap: 3px;
+        }
+        .timer-block {
+          padding: 8px 2px;
+        }
+        .timer-digits {
+          font-size: 1.1rem;
+        }
+        .nav-org-name {
+          font-size: 0.9rem;
+        }
+        .bot-badge-label {
+          display: none;
         }
       }
     </style>
@@ -1387,7 +1454,7 @@
         </div>
         <div class="bot-messages" id="chat-messages">
           <div class="msg-bubble bot">
-            Hello! I am your ZEM conference assistant, and I'm right here to
+            Hello! 👋 I am your ZEM conference assistant, and I'm right here to
             help you out! Ask me anything about directions, contacts,
             facilitators, safety protocols, or our core mission and vision!
           </div>
