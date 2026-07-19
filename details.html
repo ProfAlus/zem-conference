@@ -3,7 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About The Conference | ZEM Youths & Young Adults' Conference 2026</title>
+    <title>
+      About The Conference | ZEM Youths & Young Adults' Conference 2026
+    </title>
     <!-- Font Awesome Icons -->
     <link
       rel="stylesheet"
@@ -24,7 +26,7 @@
         --blue-accent: #1e60a0;
         --blue-dark: #044079;
         --blue-light: #eef6fc;
-        --orange-accent: #e11d48; 
+        --orange-accent: #e11d48;
         --red-accent: #b91c1c;
         --text-dark: #333333;
         --text-muted: #718096;
@@ -32,6 +34,80 @@
         --border-color: #e2e8f0;
         --radius: 20px;
         --teal-dark: #044079;
+      }
+
+      /* Theme Switcher Styles */
+      body.dark-theme {
+        --text-dark: #e2e8f0;
+        --text-muted: #a0aec0;
+        --bg-light: #1a202c;
+        --border-color: #2d3748;
+        background-color: #1a202c;
+        color: var(--text-dark);
+      }
+      /* Add this inside the body.dark-theme CSS block */
+      body.dark-theme .bot-window,
+      body.dark-theme .bot-messages,
+      body.dark-theme .bot-input-area,
+      body.dark-theme .bot-input-area input {
+        background: #2d3748;
+        color: #e2e8f0;
+      }
+
+      body.dark-theme .msg-bubble.bot {
+        background: #4a5568;
+        color: #e2e8f0;
+        border: 1px solid #718096;
+      }
+
+      body.dark-theme .suggested-chip {
+        background: #4a5568;
+        color: #a0aec0;
+        border-color: #718096;
+      }
+
+      body.dark-theme .bot-input-area input {
+        border-color: #4a5568;
+      }
+      
+      body.dark-theme .wrapper,
+      body.dark-theme .zem-nav,
+      body.dark-theme .hero-badge-card,
+      body.dark-theme .countdown-widget,
+      body.dark-theme .data-card,
+      body.dark-theme .map-section,
+      body.dark-theme .flyers-section,
+      body.dark-theme .gallery-section,
+      body.dark-theme .contact-box,
+      body.dark-theme .bot-window,
+      body.dark-theme .bot-input-area {
+        background: #2d3748;
+        border-color: #4a5568;
+      }
+      body.dark-theme .hero-section {
+        background:
+          linear-gradient(
+            135deg,
+            rgba(0, 0, 0, 0.8) 0%,
+            rgba(0, 0, 0, 0.6) 100%
+          ),
+          url("images/Bible-studies.jpeg");
+      }
+
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 10000;
+        padding: 10px;
+        border-radius: 50%;
+        background: var(--theme-blue-dark);
+        color: white;
+        border: none;
+        cursor: pointer;
+        width: 45px;
+        height: 45px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
       }
 
       * {
@@ -72,6 +148,7 @@
         overflow: hidden;
         position: relative;
         z-index: 10;
+        margin-bottom: 60px;
       }
 
       .zem-nav {
@@ -320,17 +397,94 @@
       }
 
       @keyframes pulseBanner {
-        0%, 100% { transform: scale(1); }
-        50% { transform: scale(1.015); box-shadow: 0 14px 30px rgba(16, 185, 129, 0.3); }
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.015);
+          box-shadow: 0 14px 30px rgba(16, 185, 129, 0.3);
+        }
+      }
+
+      .widget-header-row {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        margin-bottom: 16px;
       }
 
       .widget-title {
         font-size: 0.85rem;
         font-weight: 700;
         color: var(--text-muted);
-        margin: 0 0 16px 0;
+        margin: 0;
         text-transform: uppercase;
         letter-spacing: 0.1em;
+      }
+
+      .voice-assistant-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: var(--blue-light);
+        border: 1px solid rgba(79, 112, 221, 0.2);
+        padding: 4px 12px;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .voice-assistant-badge:hover {
+        background: var(--theme-blue-dark);
+        border-color: var(--theme-blue-dark);
+      }
+
+      .voice-assistant-badge:hover .voice-btn-text,
+      .voice-assistant-badge:hover .voice-btn i {
+        color: #ffffff;
+      }
+
+      .voice-btn {
+        background: transparent;
+        border: none;
+        color: var(--theme-blue-dark);
+        padding: 0;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.9rem;
+      }
+
+      .voice-btn-text {
+        font-size: 0.72rem;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: var(--theme-blue-dark);
+        letter-spacing: 0.05em;
+      }
+
+      .voice-pulse-dot {
+        width: 6px;
+        height: 6px;
+        background-color: #10b981;
+        border-radius: 50%;
+        animation: audioPulse 1.2s infinite ease-in-out;
+      }
+
+      @keyframes audioPulse {
+        0%,
+        100% {
+          transform: scale(0.8);
+          opacity: 0.5;
+        }
+        50% {
+          transform: scale(1.4);
+          opacity: 1;
+        }
       }
 
       .timer-container {
@@ -350,7 +504,8 @@
         box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.1);
       }
 
-      .timer-block.days, .timer-block.hours {
+      .timer-block.days,
+      .timer-block.hours {
         background: linear-gradient(135deg, #e0f2fe, #bae6fd);
         border: 1px solid #7dd3fc;
       }
@@ -389,7 +544,9 @@
       }
 
       @keyframes blink {
-        50% { opacity: 0.4; }
+        50% {
+          opacity: 0.4;
+        }
       }
 
       .section-separator-title {
@@ -420,28 +577,75 @@
         border-radius: 14px;
         border: 1px solid var(--border-color);
         background: #ffffff;
-        transition: transform 0.2s ease;
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
       }
 
       .data-card:hover {
         transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
       }
 
-      .data-card.theme-card { background-color: #f0fdf4; border-color: #bbf7d0; }
-      .data-card.theme-card .data-icon { color: #16a34a; background: #dcfce7; }
-      .data-card.theme-card .data-title { color: #16a34a; }
+      .data-card.theme-card {
+        background-color: #f0fdf4;
+        border-color: #bbf7d0;
+      }
+      .data-card.theme-card .data-icon {
+        color: #16a34a;
+        background: #dcfce7;
+      }
+      .data-card.theme-card .data-title {
+        color: #16a34a;
+      }
 
-      .data-card.date-card { background-color: #fff1f2; border-color: #fecdd3; }
-      .data-card.date-card .data-icon { color: var(--orange-accent); background: #ffe4e6; }
-      .data-card.date-card .data-title { color: var(--orange-accent); }
+      .data-card.date-card {
+        background-color: #fff1f2;
+        border-color: #fecdd3;
+      }
+      .data-card.date-card .data-icon {
+        color: var(--orange-accent);
+        background: #ffe4e6;
+      }
+      .data-card.date-card .data-title {
+        color: var(--orange-accent);
+      }
 
-      .data-card.venue-card { background-color: #f5f3ff; border-color: #ddd6fe; }
-      .data-card.venue-card .data-icon { color: #7c3aed; background: #ede9fe; }
-      .data-card.venue-card .data-title { color: #7c3aed; }
+      .data-card.venue-card {
+        background-color: #f5f3ff;
+        border-color: #ddd6fe;
+      }
+      .data-card.venue-card .data-icon {
+        color: #7c3aed;
+        background: #ede9fe;
+      }
+      .data-card.venue-card .data-title {
+        color: #7c3aed;
+      }
 
-      .data-card.provisions-card { background-color: #f0f9ff; border-color: #bae6fd; }
-      .data-card.provisions-card .data-icon { color: #0284c7; background: #e0f2fe; }
-      .data-card.provisions-card .data-title { color: #0284c7; }
+      .data-card.provisions-card {
+        background-color: #f0f9ff;
+        border-color: #bae6fd;
+      }
+      .data-card.provisions-card .data-icon {
+        color: #0284c7;
+        background: #e0f2fe;
+      }
+      .data-card.provisions-card .data-title {
+        color: #0284c7;
+      }
+
+      .data-card.security-card {
+        background-color: #fffbeb;
+        border-color: #fef3c7;
+      }
+      .data-card.security-card .data-icon {
+        color: #d97706;
+        background: #fef3c7;
+      }
+      .data-card.security-card .data-title {
+        color: #b45309;
+      }
 
       .data-icon {
         font-size: 1.25rem;
@@ -483,7 +687,7 @@
         border-radius: 16px;
         padding: 24px;
         margin-bottom: 48px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
       }
 
       .map-header {
@@ -543,13 +747,14 @@
         border: 0;
       }
 
-      .flyers-section {
+      .flyers-section,
+      .gallery-section {
         background-color: #ffffff;
         border: 1px solid var(--border-color);
         border-radius: 16px;
         padding: 24px;
         margin-bottom: 48px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
       }
 
       .flyers-grid {
@@ -574,7 +779,8 @@
         color: var(--text-dark);
       }
 
-      .flyer-img-container {
+      .flyer-img-container,
+      .gallery-img-container {
         width: 100%;
         border-radius: 8px;
         overflow: hidden;
@@ -585,7 +791,12 @@
         position: relative;
       }
 
-      .flyer-img-container::after {
+      .gallery-img-container {
+        aspect-ratio: 4/3;
+      }
+
+      .flyer-img-container::after,
+      .gallery-img-container::after {
         content: "\f00e";
         font-family: "Font Awesome 6 Free";
         font-weight: 900;
@@ -604,15 +815,24 @@
         transition: opacity 0.25s ease;
       }
 
-      .flyer-img-container:hover::after {
+      .flyer-img-container:hover::after,
+      .gallery-img-container:hover::after {
         opacity: 1;
       }
 
-      .flyer-img-container img {
+      .flyer-img-container img,
+      .gallery-img-container img {
         width: 100%;
         height: 100%;
         object-fit: cover;
         display: block;
+      }
+
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        margin-top: 20px;
       }
 
       .zem-lightbox {
@@ -767,6 +987,258 @@
         vertical-align: middle;
       }
 
+      /* ================= FLOATING CHATBOT CONTAINER ================= */
+      .bot-container {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+      }
+
+      .bot-launcher {
+        width: 60px;
+        height: 60px;
+        margin-top: 30px;
+        background: linear-gradient(
+          135deg,
+          var(--theme-blue-dark) 0%,
+          var(--blue-dark) 100%
+        );
+        color: #ffffff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.6rem;
+        cursor: pointer;
+        box-shadow: 0 8px 24px rgba(4, 64, 121, 0.3);
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        position: relative;
+      }
+
+      .bot-launcher:hover {
+        transform: scale(1.08) rotate(5deg);
+      }
+
+      /* Animated Chatbot Label */
+      .bot-badge-label {
+        position: absolute;
+        top: -36px;
+        right: 4px;
+        background: var(--orange-accent);
+        color: #ffffff;
+        font-size: 0.72rem;
+        font-weight: 700;
+        padding: 4px 10px;
+        border-radius: 20px;
+        white-space: nowrap;
+        box-shadow: 0 4px 12px rgba(225, 29, 72, 0.35);
+        animation: floatBadge 2s infinite ease-in-out;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+      }
+
+      /* Little decorative arrow beneath speech badge */
+      .bot-badge-label::after {
+        content: "";
+        position: absolute;
+        bottom: -4px;
+        right: 22px;
+        border-width: 4px 4px 0;
+        border-style: solid;
+        border-color: var(--orange-accent) transparent;
+        display: block;
+        width: 0;
+      }
+
+      @keyframes floatBadge {
+        0%,
+        100% {
+          transform: translateY(0) scale(1);
+        }
+        50% {
+          transform: translateY(-5px) scale(1.03);
+          box-shadow: 0 6px 16px rgba(225, 29, 72, 0.5);
+        }
+      }
+
+      .bot-window {
+        width: 380px;
+        height: 520px;
+        background: #ffffff;
+        border-radius: 16px;
+        box-shadow: 0 12px 32px rgba(15, 23, 42, 0.15);
+        border: 1px solid var(--border-color);
+        display: none;
+        flex-direction: column;
+        overflow: hidden;
+        margin-bottom: 16px;
+        animation: slideUp 0.3s ease;
+      }
+
+      @keyframes slideUp {
+        from {
+          transform: translateY(20px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      .bot-header {
+        background: var(--blue-dark);
+        color: #ffffff;
+        padding: 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .bot-profile {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .bot-avatar {
+        width: 32px;
+        height: 32px;
+        background: var(--theme-blue);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.9rem;
+      }
+
+      .bot-title-text h4 {
+        margin: 0;
+        font-size: 0.9rem;
+        font-weight: 700;
+      }
+
+      .bot-title-text span {
+        font-size: 0.7rem;
+        opacity: 0.8;
+        display: block;
+      }
+
+      .bot-close {
+        background: none;
+        border: none;
+        color: #ffffff;
+        font-size: 1.1rem;
+        cursor: pointer;
+        opacity: 0.8;
+      }
+
+      .bot-close:hover {
+        opacity: 1;
+      }
+
+      .bot-messages {
+        flex: 1;
+        padding: 16px;
+        overflow-y: auto;
+        background: #f8fafc;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .msg-bubble {
+        max-width: 85%;
+        padding: 10px 14px;
+        border-radius: 14px;
+        font-size: 0.85rem;
+        line-height: 1.45;
+        white-space: pre-line;
+      }
+
+      .msg-bubble.bot {
+        background: #ffffff;
+        color: var(--text-dark);
+        align-self: flex-start;
+        border-bottom-left-radius: 4px;
+        border: 1px solid var(--border-color);
+      }
+
+      .msg-bubble.user {
+        background: var(--theme-blue-dark);
+        color: #ffffff;
+        align-self: flex-end;
+        border-bottom-right-radius: 4px;
+      }
+
+      .bot-suggested-chips {
+        padding: 8px 12px;
+        background: #f8fafc;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        border-top: 1px solid #edf2f7;
+      }
+
+      .suggested-chip {
+        background: #ffffff;
+        border: 1px solid var(--theme-blue);
+        color: var(--blue-dark);
+        font-size: 0.72rem;
+        padding: 4px 10px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.2s ease;
+      }
+
+      .suggested-chip:hover {
+        background: var(--blue-light);
+      }
+
+      .bot-input-area {
+        padding: 12px 16px;
+        border-top: 1px solid var(--border-color);
+        display: flex;
+        gap: 8px;
+        background: #ffffff;
+      }
+
+      .bot-input-area input {
+        flex: 1;
+        border: 1px solid var(--border-color);
+        border-radius: 20px;
+        padding: 8px 16px;
+        font-size: 0.85rem;
+        outline: none;
+      }
+
+      .bot-input-area input:focus {
+        border-color: var(--theme-blue);
+      }
+
+      .bot-send-btn {
+        background: var(--theme-blue-dark);
+        color: #ffffff;
+        border: none;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s;
+      }
+
+      .bot-send-btn:hover {
+        background: #3e5ec7;
+      }
+
       @media (max-width: 880px) {
         body {
           padding: 0;
@@ -776,7 +1248,7 @@
           box-shadow: none;
         }
         .zem-nav {
-          padding: 24px 16px;
+          padding: 20px 16px;
           flex-direction: column;
           gap: 16px;
           text-align: center;
@@ -809,7 +1281,7 @@
           box-sizing: border-box;
         }
         .main-content {
-          padding: 16px;
+          padding: 20px 16px;
         }
         .countdown-wrapper-centered {
           margin: -60px auto 32px auto;
@@ -821,6 +1293,9 @@
           grid-template-columns: 1fr;
           gap: 16px;
         }
+        .data-card {
+          padding: 16px;
+        }
         .map-header {
           flex-direction: column;
           align-items: flex-start;
@@ -831,6 +1306,9 @@
         }
         .flyers-grid {
           grid-template-columns: 1fr;
+        }
+        .gallery-grid {
+          grid-template-columns: repeat(2, 1fr);
         }
         .highlights-list {
           grid-template-columns: 1fr;
@@ -846,8 +1324,18 @@
           flex-direction: column;
           gap: 20px;
         }
+        .bot-window {
+          width: calc(100vw - 32px);
+          height: 420px;
+          right: 16px;
+        }
       }
 
+      @media (max-width: 580px) {
+        .gallery-grid {
+          grid-template-columns: 1fr;
+        }
+      }
       @media (max-width: 480px) {
         .timer-digits {
           font-size: 1.3rem;
@@ -859,6 +1347,14 @@
     </style>
   </head>
   <body>
+    <button
+      class="theme-toggle"
+      onclick="toggleTheme()"
+      aria-label="Toggle dark mode"
+    >
+      <i class="fa-solid fa-moon"></i>
+    </button>
+
     <canvas id="confetti-canvas"></canvas>
 
     <div
@@ -874,16 +1370,97 @@
       </div>
     </div>
 
+    <!-- ================= FLOATING CHATBOT ================= -->
+    <div class="bot-container">
+      <div class="bot-window" id="chat-window">
+        <div class="bot-header">
+          <div class="bot-profile">
+            <div class="bot-avatar"><i class="fa-solid fa-robot"></i></div>
+            <div class="bot-title-text">
+              <h4>ZEM Assistant</h4>
+              <span>Online • Ask me anything</span>
+            </div>
+          </div>
+          <button class="bot-close" onclick="toggleChat()">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <div class="bot-messages" id="chat-messages">
+          <div class="msg-bubble bot">
+            Hello! 👋 I am your ZEM conference assistant, and I'm right here to
+            help you out! Ask me anything about directions, contacts,
+            facilitators, safety protocols, or our core mission and vision!
+          </div>
+        </div>
+        <div class="bot-suggested-chips">
+          <div
+            class="suggested-chip"
+            onclick="sendPreset('What is the vision and mission?')"
+          >
+            🎯 Vision & Mission
+          </div>
+          <div
+            class="suggested-chip"
+            onclick="sendPreset('Give me directions to the venues')"
+          >
+            📍 Directions
+          </div>
+          <div
+            class="suggested-chip"
+            onclick="sendPreset('What security features are at the venues?')"
+          >
+            🛡️ Security & Care
+          </div>
+          <div
+            class="suggested-chip"
+            onclick="sendPreset('Who are the facilitators?')"
+          >
+            🎤 Facilitators
+          </div>
+          <div
+            class="suggested-chip"
+            onclick="sendPreset('Is there any feeding provided?')"
+          >
+            🎤 Feeding
+          </div>
+          <div
+            class="suggested-chip"
+            onclick="sendPreset('What are the contact numbers?')"
+          >
+            📞 Venue Contacts
+          </div>
+        </div>
+        <div class="bot-input-area">
+          <input
+            type="text"
+            id="chat-input"
+            placeholder="Type your inquiry here..."
+            onkeypress="handleChatKey(event)"
+          />
+          <button class="bot-send-btn" onclick="sendMessage()">
+            <i class="fa-solid fa-paper-plane"></i>
+          </button>
+        </div>
+      </div>
+      <div class="bot-launcher" id="chat-launcher" onclick="toggleChat()">
+        <!-- Floating Animated Label -->
+        <span class="bot-badge-label">Need Help? Let's Chat</span>
+        <i class="fa-solid fa-comments"></i>
+      </div>
+    </div>
+
     <div class="wrapper">
       <nav class="zem-nav">
         <div class="zem-logo-lockup">
           <img src="./images/ZEM Logo.png" alt="ZEM Logo" class="nav-logo" />
           <h2 class="nav-org-name">Zion Evangelical Ministries (ZEM)</h2>
         </div>
-        <a href="index.html" class="reg-link">Register Now <i class="fa-solid fa-arrow-right"></i></a>
+        <a href="index.html" class="reg-link"
+          >Register Now <i class="fa-solid fa-arrow-right"></i
+        ></a>
       </nav>
 
-      <!-- ================= HERO SECTION WITH DARK IMAGE BACKGROUND ================= -->
+      <!-- ================= HERO SECTION ================= -->
       <section class="hero-section">
         <div class="hero-left">
           <div class="hero-tag">
@@ -898,8 +1475,12 @@
             today's generation.
           </p>
           <div class="hero-btn-group">
-            <a href="index.html" class="hero-btn-primary">Secure Your Seat Now</a>
-            <a href="#freetown-details" class="hero-btn-secondary">Explore Schedule</a>
+            <a href="index.html" class="hero-btn-primary"
+              >Secure Your Seat Now</a
+            >
+            <a href="#freetown-details" class="hero-btn-secondary"
+              >Explore Schedule</a
+            >
           </div>
         </div>
         <div class="hero-right">
@@ -907,20 +1488,53 @@
             <h4>Conference Theme</h4>
             <p>Becoming A Channel Of Indescribable POWER</p>
             <div class="avatar-stack">
-              <div class="avatar-placeholder" style="background: var(--orange-accent); color: white">🔥</div>
-              <div class="avatar-placeholder" style="background: #7c3aed; color: white">🙌</div>
-              <div class="avatar-placeholder" style="background: #16a34a; color: white">⚡</div>
-              <div class="avatar-placeholder" style="background: var(--theme-blue-dark); color: white">⏰</div>
+              <div
+                class="avatar-placeholder"
+                style="background: var(--orange-accent); color: white"
+              >
+                🔥
+              </div>
+              <div
+                class="avatar-placeholder"
+                style="background: #7c3aed; color: white"
+              >
+                🙌
+              </div>
+              <div
+                class="avatar-placeholder"
+                style="background: #16a34a; color: white"
+              >
+                ⚡
+              </div>
+              <div
+                class="avatar-placeholder"
+                style="background: var(--theme-blue-dark); color: white"
+              >
+                ⏰
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       <main class="main-content">
-        <!-- ================= FREETOWN COUNTDOWN TIMER (OVERLAYS HERO SECTION) ================= -->
+        <!-- ================= FREETOWN COUNTDOWN TIMER ================= -->
         <div class="countdown-wrapper-centered">
           <div class="countdown-widget" id="freetown-timer-widget">
-            <h3 class="widget-title">Event Starts In</h3>
+            <div class="widget-header-row">
+              <h3 class="widget-title">Event Starts In</h3>
+              <div
+                class="voice-assistant-badge"
+                onclick="speakTimeRemaining('freetown')"
+                title="Listen to Voice Assistant"
+              >
+                <div class="voice-pulse-dot"></div>
+                <button class="voice-btn">
+                  <i class="fa-solid fa-volume-high"></i>
+                </button>
+                <span class="voice-btn-text">Voice Assistant</span>
+              </div>
+            </div>
             <div class="timer-container">
               <div class="timer-block days">
                 <div class="timer-digits" id="ft-days">00</div>
@@ -963,7 +1577,10 @@
 
         <!-- ================= FREETOWN DETAILS ================= -->
         <h3 class="section-separator-title" id="freetown-details">
-          <i class="fa-solid fa-location-crosshairs" style="color: var(--theme-blue-dark)"></i>
+          <i
+            class="fa-solid fa-location-crosshairs"
+            style="color: var(--theme-blue-dark)"
+          ></i>
           Freetown Youths Conference (5 Days)
         </h3>
         <div class="details-grid">
@@ -971,12 +1588,16 @@
             <div class="data-icon"><i class="fa-solid fa-fire"></i></div>
             <div class="data-content">
               <p class="data-title">Theme</p>
-              <p class="data-value">Becoming A Channel Of Indescribable POWER</p>
+              <p class="data-value">
+                Becoming A Channel Of Indescribable POWER
+              </p>
             </div>
           </div>
 
           <div class="data-card date-card">
-            <div class="data-icon"><i class="fa-solid fa-calendar-days"></i></div>
+            <div class="data-icon">
+              <i class="fa-solid fa-calendar-days"></i>
+            </div>
             <div class="data-content">
               <p class="data-title">Date & Time</p>
               <p class="data-value">3rd - 7th August, 2026</p>
@@ -985,7 +1606,7 @@
           </div>
 
           <div class="data-card venue-card">
-            <div class="data-icon"><i class="fa-solid fa-location-dot"></i></div>
+            <div class="data-icon"><i class="fa-solid fa-map-pin"></i></div>
             <div class="data-content">
               <p class="data-title">Venue</p>
               <p class="data-value">Methodist Girls' High School Compound</p>
@@ -1004,19 +1625,44 @@
               </p>
             </div>
           </div>
+
+          <div class="data-card security-card" style="grid-column: span 2">
+            <div class="data-icon">
+              <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <div class="data-content">
+              <p class="data-title">Safety, Security & Welfare Care</p>
+              <p class="data-value">
+                Protected Environment & Dedicated Medical Support
+              </p>
+              <p class="data-sub">
+                The high school compound is a fully gated, walled environment
+                monitored 24/7 by a professional security enforcement team. All
+                resident young individuals will be under full structural
+                supervision by certified adult welfare guardians, alongside an
+                active on-site medical first-aid station to care for all
+                well-being needs.
+              </p>
+            </div>
+          </div>
         </div>
 
         <div class="map-section">
           <div class="map-header">
             <div>
               <h4 class="map-info-title">
-                <i class="fa-solid fa-map-location-dot" style="color: var(--theme-blue-dark); margin-right: 6px"></i>
+                <i
+                  class="fa-solid fa-map-location-dot"
+                  style="color: var(--theme-blue-dark); margin-right: 6px"
+                ></i>
                 Interactive Venue Map (Freetown)
               </h4>
-              <p class="map-info-subtitle">Methodist Girls' High School, Congo Cross, Freetown</p>
+              <p class="map-info-subtitle">
+                Methodist Girls' High School, Congo Cross, Freetown
+              </p>
             </div>
             <a
-              href="https://www.google.com/maps/search/?api=1&query=Methodist+Girls+High+School+Congo+Cross+Freetown"
+              href="https://www.google.com/maps/place/8%C2%B028'42.8%22N+13%C2%B015'23.8%22W/@8.47856,-13.25662,17z/"
               target="_blank"
               class="map-btn"
             >
@@ -1025,7 +1671,7 @@
           </div>
           <div class="map-frame-container">
             <iframe
-              src="https://maps.google.com/maps?q=Congo%20Cross,%20Freetown,%20Sierra%20Leone&t=&z=15&ie=UTF8&iwloc=&output=embed"
+              src="https://maps.google.com/maps?q=8.47856,-13.25662&t=&z=16&ie=UTF8&iwloc=&output=embed"
               allowfullscreen=""
               loading="lazy"
               title="Freetown Map Location"
@@ -1035,14 +1681,49 @@
 
         <!-- ================= KENEMA DETAILS ================= -->
         <h3 class="section-separator-title">
-          <i class="fa-solid fa-location-crosshairs" style="color: var(--orange-accent)"></i>
+          <i
+            class="fa-solid fa-location-crosshairs"
+            style="color: var(--orange-accent)"
+          ></i>
           Kenema Youths Conference (3 Days)
         </h3>
 
         <!-- ================= KENEMA COUNTDOWN TIMER ================= -->
-        <div class="countdown-wrapper-centered" style="margin-bottom: 40px; margin-top: 0">
-          <div class="countdown-widget" id="kenema-timer-widget" style="border-color: #fecdd3">
-            <h3 class="widget-title" style="color: var(--orange-accent)">Event Starts In</h3>
+        <div
+          class="countdown-wrapper-centered"
+          style="margin-bottom: 40px; margin-top: 0"
+        >
+          <div
+            class="countdown-widget"
+            id="kenema-timer-widget"
+            style="border-color: #fecdd3"
+          >
+            <div class="widget-header-row">
+              <h3 class="widget-title" style="color: var(--orange-accent)">
+                Event Starts In
+              </h3>
+              <div
+                class="voice-assistant-badge"
+                onclick="speakTimeRemaining('kenema')"
+                title="Listen to Voice Assistant"
+                style="
+                  color: var(--orange-accent);
+                  background: #fff1f2;
+                  border-color: rgba(225, 29, 72, 0.2);
+                "
+              >
+                <div
+                  class="voice-pulse-dot"
+                  style="background-color: var(--orange-accent)"
+                ></div>
+                <button class="voice-btn" style="color: var(--orange-accent)">
+                  <i class="fa-solid fa-volume-high"></i>
+                </button>
+                <span class="voice-btn-text" style="color: var(--orange-accent)"
+                  >Voice Assistant</span
+                >
+              </div>
+            </div>
             <div class="timer-container">
               <div class="timer-block days" style="background: #fff1f2">
                 <div class="timer-digits" id="kn-days">00</div>
@@ -1097,12 +1778,16 @@
             </div>
             <div class="data-content">
               <p class="data-title" style="color: #db2777">Theme</p>
-              <p class="data-value">Becoming A Channel Of Indescribable POWER</p>
+              <p class="data-value">
+                Becoming A Channel Of Indescribable POWER
+              </p>
             </div>
           </div>
 
           <div class="data-card date-card">
-            <div class="data-icon"><i class="fa-solid fa-calendar-days"></i></div>
+            <div class="data-icon">
+              <i class="fa-solid fa-calendar-days"></i>
+            </div>
             <div class="data-content">
               <p class="data-title">Date & Time</p>
               <p class="data-value">27th - 29th July, 2026</p>
@@ -1121,7 +1806,10 @@
             </div>
           </div>
 
-          <div class="data-card provisions-card" style="background-color: #fff1f2">
+          <div
+            class="data-card provisions-card"
+            style="background-color: #fff1f2"
+          >
             <div class="data-icon" style="color: #e11d48; background: #ffe4e6">
               <i class="fa-solid fa-ban"></i>
             </div>
@@ -1129,7 +1817,37 @@
               <p class="data-title" style="color: #e11d48">Feeding</p>
               <p class="data-value">FREE Feeding & Resource Packs</p>
               <p class="data-sub" style="font-weight: 700; color: #be123c">
-                Note: There is NO provision for Residential options at this Venue
+                Note: There is NO provision for Residential options at this
+                Venue
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="data-card security-card"
+            style="
+              grid-column: span 2;
+              background-color: #fffaf0;
+              border-color: #fee2e2;
+            "
+          >
+            <div class="data-icon" style="color: #dc2626; background: #fee2e2">
+              <i class="fa-solid fa-user-shield"></i>
+            </div>
+            <div class="data-content">
+              <p class="data-title" style="color: #dc2626">
+                Security & Care (Day Attendees)
+              </p>
+              <p class="data-value">
+                Strict Entry Controls & Supervised Sessions
+              </p>
+              <p class="data-sub">
+                Our church venue operates with strict perimeter management
+                protocols. Dedicated protocols are implemented to make sure
+                children and young people remain entirely within safe perimeters
+                during session intervals, backed by an accessible wellness
+                station to offer clinical attention and guidance throughout the
+                day.
               </p>
             </div>
           </div>
@@ -1139,10 +1857,15 @@
           <div class="map-header">
             <div>
               <h4 class="map-info-title">
-                <i class="fa-solid fa-map-location-dot" style="color: var(--orange-accent); margin-right: 6px"></i>
+                <i
+                  class="fa-solid fa-map-location-dot"
+                  style="color: var(--orange-accent); margin-right: 6px"
+                ></i>
                 Interactive Venue Map (Kenema)
               </h4>
-              <p class="map-info-subtitle">Saint James Anglican Church, 1 Mission Road, Kenema</p>
+              <p class="map-info-subtitle">
+                Saint James Anglican Church, 1 Mission Road, Kenema
+              </p>
             </div>
             <a
               href="https://www.google.com/maps/search/?api=1&query=Saint+James+Anglican+Church+1+Mission+Road+Kenema"
@@ -1162,28 +1885,137 @@
           </div>
         </div>
 
-        <!-- ================= CONFERENCE FLYERS GALLERY WITH LIGHTBOX ================= -->
+        <!-- ================= FLYERS GALLERY ================= -->
         <div class="flyers-section">
           <h4 class="box-title" style="margin-bottom: 10px">
-            <i class="fa-solid fa-images" style="color: var(--theme-blue-dark); margin-right: 8px"></i>
+            <i
+              class="fa-solid fa-images"
+              style="color: var(--theme-blue-dark); margin-right: 8px"
+            ></i>
             Official Conference Flyers
           </h4>
-          <p style="text-align: center; color: var(--text-muted); margin: 0 0 24px 0; font-size: 0.95rem;">
+          <p
+            style="
+              text-align: center;
+              color: var(--text-muted);
+              margin: 0 0 24px 0;
+              font-size: 0.95rem;
+            "
+          >
             Click any flyer to view it in full screen
           </p>
 
           <div class="flyers-grid">
             <div class="flyer-card">
               <h5>Freetown Conference Flyer</h5>
-              <div class="flyer-img-container" onclick="openLightbox('./images/August Youths Conference - 2026.png')">
-                <img src="./images/August Youths Conference - 2026.png" alt="ZEM Conference 2026 Flyer Freetown Zone" />
+              <div
+                class="flyer-img-container"
+                onclick="
+                  openLightbox('./images/August Youths Conference - 2026.png')
+                "
+              >
+                <img
+                  src="./images/August Youths Conference - 2026.png"
+                  alt="ZEM Conference 2026 Flyer Freetown Zone"
+                />
               </div>
             </div>
             <div class="flyer-card">
               <h5>Kenema Conference Flyer</h5>
-              <div class="flyer-img-container" onclick="openLightbox('./images/Kenema.png')">
-                <img src="./images/Kenema.png" alt="ZEM Conference 2026 Flyer Kenema Zone" />
+              <div
+                class="flyer-img-container"
+                onclick="openLightbox('./images/Kenema.png')"
+              >
+                <img
+                  src="./images/Kenema.png"
+                  alt="ZEM Conference 2026 Flyer Kenema Zone"
+                />
               </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= PREVIOUS CONFERENCES GALLERY ================= -->
+        <div class="gallery-section">
+          <h4 class="box-title" style="margin-bottom: 10px">
+            <i
+              class="fa-solid fa-camera-retro"
+              style="color: var(--theme-blue-dark); margin-right: 8px"
+            ></i>
+            Previous Conference Highlights
+          </h4>
+          <p
+            style="
+              text-align: center;
+              color: var(--text-muted);
+              margin: 0 0 24px 0;
+              font-size: 0.95rem;
+            "
+          >
+            Glance through powerful moments, worship sessions, and memories from
+            our past conferences.
+          </p>
+
+          <div class="gallery-grid">
+            <div
+              class="gallery-img-container"
+              onclick="openLightbox('./images/gallery1.jpeg')"
+            >
+              <img
+                src="./images/gallery1.jpeg"
+                alt="Past Conference Worship Session"
+                onerror="this.src = 'images/Bible-studies.jpeg'"
+              />
+            </div>
+            <div
+              class="gallery-img-container"
+              onclick="openLightbox('./images/gallery2.jpeg')"
+            >
+              <img
+                src="./images/gallery2.jpeg"
+                alt="Youth Gathering & Prayer"
+                onerror="this.src = 'images/Bible-studies.jpeg'"
+              />
+            </div>
+            <div
+              class="gallery-img-container"
+              onclick="openLightbox('./images/gallery3.jpeg')"
+            >
+              <img
+                src="./images/gallery3.jpeg"
+                alt="Career Seminars & Workshops"
+                onerror="this.src = 'images/Bible-studies.jpeg'"
+              />
+            </div>
+            <div
+              class="gallery-img-container"
+              onclick="openLightbox('./images/gallery4.jpeg')"
+            >
+              <img
+                src="./images/gallery4.jpeg"
+                alt="Group Discussion Panels"
+                onerror="this.src = 'images/Bible-studies.jpeg'"
+              />
+            </div>
+            <div
+              class="gallery-img-container"
+              onclick="openLightbox('./images/gallery5.jpeg')"
+            >
+              <img
+                src="./images/gallery5.jpeg"
+                alt="Entrepreneurship Projects Presentation"
+                onerror="this.src = 'images/Bible-studies.jpeg'"
+              />
+            </div>
+            <div
+              class="gallery-img-container"
+              onclick="openLightbox('./images/gallery6.jpeg')"
+            >
+              <img
+                src="./images/gallery6.jpeg"
+                alt="Celebration & Closing Network"
+                onerror="this.src = 'images/Bible-studies.jpeg'"
+              />
             </div>
           </div>
         </div>
@@ -1191,29 +2023,68 @@
         <div class="highlights-box">
           <h4 class="box-title">Event Highlights</h4>
           <ul class="highlights-list">
-            <li class="highlight-item"><i class="fa-solid fa-briefcase"></i> 4 Hours for Career Talk</li>
-            <li class="highlight-item"><i class="fa-solid fa-lightbulb"></i> 4 Hours of Entrepreneurship</li>
-            <li class="highlight-item"><i class="fa-solid fa-heart-pulse"></i> Health Talk, Debate & Discussions</li>
-            <li class="highlight-item"><i class="fa-solid fa-id-card-clip"></i> Character Building Focus</li>
-            <li class="highlight-item"><i class="fa-solid fa-money-bill-trend-up"></i> Financial literacy</li>
-            <li class="highlight-item"><i class="fa-solid fa-book-open-reader"></i> Life Application Series</li>
-            <li class="highlight-item"><i class="fa-solid fa-bible"></i> Discovery Bible Studies</li>
-            <li class="highlight-item"><i class="fa-solid fa-star"></i> Excelling in Studies & Career</li>
-            <li class="highlight-item"><i class="fa-solid fa-masks-theater"></i> Drama, Poem, Song & Prayer</li>
+            <li class="highlight-item">
+              <i class="fa-solid fa-briefcase"></i> 4 Hours for Career Talk
+            </li>
+            <li class="highlight-item">
+              <i class="fa-solid fa-lightbulb"></i> 4 Hours of Entrepreneurship
+            </li>
+            <li class="highlight-item">
+              <i class="fa-solid fa-heart-pulse"></i> Health Talk, Debate &
+              Discussions
+            </li>
+            <li class="highlight-item">
+              <i class="fa-solid fa-id-card-clip"></i> Character Building Focus
+            </li>
+            <li class="highlight-item">
+              <i class="fa-solid fa-money-bill-trend-up"></i> Financial literacy
+            </li>
+            <li class="highlight-item">
+              <i class="fa-solid fa-book-open-reader"></i> Life Application
+              Series
+            </li>
+            <li class="highlight-item">
+              <i class="fa-solid fa-bible"></i> Discovery Bible Studies
+            </li>
+            <li class="highlight-item">
+              <i class="fa-solid fa-star"></i> Excelling in Studies & Career
+            </li>
+            <li class="highlight-item">
+              <i class="fa-solid fa-masks-theater"></i> Drama, Poem, Song &
+              Prayer
+            </li>
           </ul>
         </div>
 
         <div class="contact-box">
           <div class="data-icon"><i class="fa-solid fa-phone-flip"></i></div>
           <div style="flex: 1">
-            <p class="data-title" style="color: var(--text-muted)">RSVP / Inquiries</p>
+            <p class="data-title" style="color: var(--text-muted)">
+              RSVP / Inquiries
+            </p>
             <ul class="rsvp-list">
-              <li class="rsvp-item"><a href="tel:076577057">076577057</a></li>
-              <li class="rsvp-item"><a href="tel:031033770">031033770</a></li>
-              <li class="rsvp-item"><a href="tel:080392938">080392938</a></li>
-              <li class="rsvp-item"><a href="tel:076547992">076547992</a></li>
-              <li class="rsvp-item"><a href="tel:034228736" style="color: var(--orange-accent)">034228736 (Kenema)</a></li>
-              <li class="rsvp-item"><a href="tel:079451833" style="color: var(--orange-accent)">079451833 (Kenema)</a></li>
+              <li class="rsvp-item">
+                <a href="tel:076577057">076577057</a>
+              </li>
+              <li class="rsvp-item">
+                <a href="tel:031033770">031033770</a>
+              </li>
+              <li class="rsvp-item">
+                <a href="tel:080392938">080392938</a>
+              </li>
+              <li class="rsvp-item">
+                <a href="tel:076547992">076547992</a>
+              </li>
+              <li class="rsvp-item">
+                <a href="tel:034228736" style="color: var(--orange-accent)"
+                  >034228736 (Kenema)</a
+                >
+              </li>
+              <li class="rsvp-item">
+                <a href="tel:079451833" style="color: var(--orange-accent)"
+                  >079451833 (Kenema)</a
+                >
+              </li>
             </ul>
           </div>
         </div>
@@ -1223,12 +2094,18 @@
             <span class="facilitator-prefix">Facilitated By:</span>
             <span class="facilitator-team-name">Sola Jegede & Team</span>
           </div>
-          <a href="index.html" class="reg-link">Proceed to Registration Form <i class="fa-solid fa-arrow-right"></i></a>
+          <a href="index.html" class="reg-link"
+            >Proceed to Registration Form <i class="fa-solid fa-arrow-right"></i
+          ></a>
         </div>
       </main>
     </div>
 
     <script>
+      function toggleTheme() {
+        document.body.classList.toggle("dark-theme");
+      }
+
       function openLightbox(imageSrc) {
         const lightbox = document.getElementById("global-lightbox");
         const lightboxImg = document.getElementById("lightbox-img");
@@ -1268,8 +2145,16 @@
           this.size = Math.random() * 6 + 6;
           this.speedX = Math.random() * 2 - 1;
           this.speedY = Math.random() * 2 + 2;
-          this.colors = ["#e11d48", "#7094eb", "#7c3aed", "#16a34a", "#b91c1c", "#facc15"];
-          this.color = this.colors[Math.floor(Math.random() * this.colors.length)];
+          this.colors = [
+            "#e11d48",
+            "#7094eb",
+            "#7c3aed",
+            "#16a34a",
+            "#b91c1c",
+            "#facc15",
+          ];
+          this.color =
+            this.colors[Math.floor(Math.random() * this.colors.length)];
           this.rotation = Math.random() * 360;
           this.rotationSpeed = Math.random() * 4 - 2;
         }
@@ -1328,16 +2213,22 @@
         }
 
         if (ftDeltaStart <= 0 && ftDeltaEnd >= 0) {
-          document.getElementById("freetown-timer-widget").style.display = "none";
-          document.getElementById("freetown-live-banner").style.display = "block";
+          document.getElementById("freetown-timer-widget").style.display =
+            "none";
+          document.getElementById("freetown-live-banner").style.display =
+            "block";
         } else if (ftDeltaEnd < 0) {
-          document.getElementById("freetown-timer-widget").style.display = "block";
-          document.getElementById("freetown-live-banner").style.display = "none";
+          document.getElementById("freetown-timer-widget").style.display =
+            "block";
+          document.getElementById("freetown-live-banner").style.display =
+            "none";
           document.getElementById("freetown-timer-widget").innerHTML =
             "<div style='color:var(--text-muted); font-weight:800; font-size:1.1rem; padding: 10px 0;'>FREETOWN CONFERENCE HAS CONCLUDED</div>";
         } else {
           const d = Math.floor(ftDeltaStart / (1000 * 60 * 60 * 24));
-          const h = Math.floor((ftDeltaStart % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const h = Math.floor(
+            (ftDeltaStart % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+          );
           const m = Math.floor((ftDeltaStart % (1000 * 60 * 60)) / (1000 * 60));
           const s = Math.floor((ftDeltaStart % (1000 * 60)) / 1000);
 
@@ -1358,13 +2249,16 @@
           document.getElementById("kenema-timer-widget").style.display = "none";
           document.getElementById("kenema-live-banner").style.display = "block";
         } else if (knDeltaEnd < 0) {
-          document.getElementById("kenema-timer-widget").style.display = "block";
+          document.getElementById("kenema-timer-widget").style.display =
+            "block";
           document.getElementById("kenema-live-banner").style.display = "none";
           document.getElementById("kenema-timer-widget").innerHTML =
             "<div style='color:var(--orange-accent); font-weight:800; font-size:1.1rem; padding: 10px 0;'>KENEMA CONFERENCE HAS CONCLUDED</div>";
         } else {
           const d = Math.floor(knDeltaStart / (1000 * 60 * 60 * 24));
-          const h = Math.floor((knDeltaStart % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const h = Math.floor(
+            (knDeltaStart % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+          );
           const m = Math.floor((knDeltaStart % (1000 * 60 * 60)) / (1000 * 60));
           const s = Math.floor((knDeltaStart % (1000 * 60)) / 1000);
 
@@ -1384,6 +2278,263 @@
           runningConfetti = false;
           ctx.clearRect(0, 0, canvas.width, canvas.height);
         }
+      }
+
+      function triggerSystemMaleVoice(textToSpeak) {
+        if ("speechSynthesis" in window) {
+          window.speechSynthesis.cancel();
+          const utterance = new SpeechSynthesisUtterance(textToSpeak);
+          const voices = window.speechSynthesis.getVoices();
+
+          const robustMaleVoice = voices.find(
+            (voice) =>
+              voice.name.toLowerCase().includes("male") ||
+              voice.name.toLowerCase().includes("google us english") ||
+              voice.name.toLowerCase().includes("david") ||
+              (voice.name.toLowerCase().includes("natural") &&
+                voice.name.toLowerCase().includes("guy")),
+          );
+
+          if (robustMaleVoice) utterance.voice = robustMaleVoice;
+
+          utterance.rate = 0.9;
+          utterance.pitch = 0.95;
+          window.speechSynthesis.speak(utterance);
+        }
+      }
+
+      function speakTimeRemaining(location) {
+        let messageText = "";
+        const now = new Date().getTime();
+
+        if (location === "freetown") {
+          const diff = targetFreetownStart - now;
+          if (diff <= 0 && targetFreetownEnd >= now) {
+            messageText =
+              "The Freetown Conference is officially live right now!";
+          } else if (targetFreetownEnd < now) {
+            messageText = "The Freetown Conference has concluded.";
+          } else {
+            const days = document.getElementById("ft-days").innerText;
+            const hours = document.getElementById("ft-hours").innerText;
+            const minutes = document.getElementById("ft-minutes").innerText;
+            messageText = `Greetings. There are exactly ${parseInt(days)} days, ${parseInt(hours)} hours, and ${parseInt(minutes)} minutes remaining until the Freetown Conference begins at the Methodist Girls' High School. For parents and youth members, please rest assured that our residential features a full twenty-four-seven perimeter supervision with dedicated personnel. Registered residential attendees will receive free accommodation, premium feeding, and structured supervision throughout the entire five days. Secure your spot now, invite your friends, and get ready for transformation.`;
+          }
+        } else if (location === "kenema") {
+          const diff = targetKenemaStart - now;
+          if (diff <= 0 && targetKenemaEnd >= now) {
+            messageText = "The Kenema Conference is officially live right now!";
+          } else if (targetKenemaEnd < now) {
+            messageText = "The Kenema Conference has concluded.";
+          } else {
+            const days = document.getElementById("kn-days").innerText;
+            const hours = document.getElementById("kn-hours").innerText;
+            const minutes = document.getElementById("kn-minutes").innerText;
+            messageText = `Hello beloved of the Lord. We are only ${parseInt(days)} days, ${parseInt(hours)} hours, and ${parseInt(minutes)} minutes away from the launch at Saint James Anglican Church on Mission Road. Note that our Kenema venue is purely day-attendance based with no accommodation options. However, all young people will receive fully free learning materials and daily feeding resources. To ensure safety, our church perimeters will have strict monitoring teams checking entrance access. Young members will stay completely within supervised compound structures during interactive group intervals. Register today and bring your friends along.`;
+          }
+        }
+        triggerSystemMaleVoice(messageText);
+      }
+
+      if (
+        typeof speechSynthesis !== "undefined" &&
+        speechSynthesis.onvoiceschanged !== undefined
+      ) {
+        speechSynthesis.onvoiceschanged = () => {
+          window.speechSynthesis.getVoices();
+        };
+      }
+
+      function toggleChat() {
+        const chatWin = document.getElementById("chat-window");
+        const isOpen = chatWin.style.display === "flex";
+        chatWin.style.display = isOpen ? "none" : "flex";
+      }
+
+      function handleChatKey(e) {
+        if (e.key === "Enter") sendMessage();
+      }
+
+      function sendPreset(text) {
+        document.getElementById("chat-input").value = text;
+        sendMessage();
+      }
+
+      function sendMessage() {
+        const input = document.getElementById("chat-input");
+        const query = input.value.trim();
+        if (!query) return;
+
+        appendMessage(query, "user");
+        input.value = "";
+
+        setTimeout(() => {
+          const response = getBotResponse(query);
+          appendMessage(response, "bot");
+        }, 300);
+      }
+
+      function appendMessage(text, sender) {
+        const msgContainer = document.getElementById("chat-messages");
+        const bubble = document.createElement("div");
+        bubble.className = `msg-bubble ${sender}`;
+        bubble.innerText = text;
+        msgContainer.appendChild(bubble);
+        msgContainer.scrollTop = msgContainer.scrollHeight;
+      }
+
+      function getBotResponse(input) {
+        const lowerInput = input.toLowerCase();
+
+        if (
+          lowerInput.includes("hello") ||
+          lowerInput.includes("hi") ||
+          lowerInput.includes("hey") ||
+          lowerInput.includes("greetings") ||
+          lowerInput.includes("good morning") ||
+          lowerInput.includes("what's up") ||
+          lowerInput.includes("good afternoon")
+        ) {
+          return "Hello! 👋 Welcome to the Zion Evangelical Ministries (ZEM) Conference Assistant. I am fully trained on all information regarding our 2026 Conferences in Freetown and Kenema. Ask me anything!";
+        }
+
+        if (
+          lowerInput.includes("feeding") ||
+          lowerInput.includes("provision") ||
+          lowerInput.includes("food") ||
+          lowerInput.includes("eat") ||
+          lowerInput.includes("meal") ||
+          lowerInput.includes("breakfast") ||
+          lowerInput.includes("dinner") ||
+          lowerInput.includes("lunch")
+        ) {
+          return "🍲 FEEDING PROVISIONS:\n\n• Freetown Venue: Registered residential attendees receive premium, completely FREE feeding/meals alongside free accommodations for all 5 days.\n\n• Kenema Venue: Even though it is a Day-Attendance only setup, all young attendees will be provided with completely FREE daily feeding and refreshment packages alongside learning materials.";
+        }
+
+        if (
+          lowerInput.includes("register") ||
+          lowerInput.includes("registration") ||
+          lowerInput.includes("sign up") ||
+          lowerInput.includes("join") ||
+          lowerInput.includes("cost") ||
+          lowerInput.includes("free") ||
+          lowerInput.includes("price") ||
+          lowerInput.includes("ticket") ||
+          lowerInput.includes("pay")
+        ) {
+          return "📝 REGISTRATION & COST:\nAdmission to both the Freetown and Kenema conferences is 100% FREE! There are zero hidden costs. To secure your space and materials package, simply use the 'Register Now' or 'Proceed to Registration Form' options accessible on this portal page.";
+        }
+
+        if (
+          lowerInput.includes("vision") ||
+          lowerInput.includes("mission") ||
+          lowerInput.includes("purpose") ||
+          lowerInput.includes("theme") ||
+          lowerInput.includes("zem") ||
+          lowerInput.includes("ministry") ||
+          lowerInput.includes("zion")
+        ) {
+          return "🌟 MINISTERIAL BLUEPRINT:\n\n• THEME: Becoming A Channel Of Indescribable POWER\n\n• VISION: To raise an EXCELLENT GENERATION that will experience an excellent Christian life, an excellent career, and an excellent family life.\n\n• MISSION: Committed to reaching the whole youths with the whole truth who will have an excellent Christian life—a genuine and personal intimate walk with Jesus, have an excellent family life, and an excellent career (capacity building).";
+        }
+
+        if (
+          lowerInput.includes("date") ||
+          lowerInput.includes("when") ||
+          lowerInput.includes("time") ||
+          lowerInput.includes("schedule") ||
+          lowerInput.includes("days") ||
+          lowerInput.includes("duration") ||
+          lowerInput.includes("hour")
+        ) {
+          return "📅 CHRONOLOGICAL DETAILS (2026):\n\n• Kenema Conference: Runs for 3 intensive days, from July 27th to July 29th, 2026.\n• Freetown Conference: Runs for 5 transformative days, from August 3th to August 7th, 2026.\n\n⏰ DAILY SESSIONS START TIME: 8:00 AM Prompt Everyday across both regions!";
+        }
+
+        if (
+          lowerInput.includes("accommodation") ||
+          lowerInput.includes("stay") ||
+          lowerInput.includes("residential") ||
+          lowerInput.includes("hostel") ||
+          lowerInput.includes("sleep") ||
+          lowerInput.includes("boarding")
+        ) {
+          return "🏡 HOUSING ACCOMMODATIONS:\n\n• Freetown (Methodist Girls' High School): Full safe residential lodging options are provided! Registered campus attendees receive completely free board and secure accommodations.\n\n• Kenema (Saint James Anglican Church): This location operates strictly as a Day-Attendance layout. No residential hostel spaces are available; participants arrive daily for morning rollouts.";
+        }
+
+        if (
+          lowerInput.includes("venue") ||
+          lowerInput.includes("location") ||
+          lowerInput.includes("where") ||
+          lowerInput.includes("direction") ||
+          lowerInput.includes("map") ||
+          lowerInput.includes("address") ||
+          lowerInput.includes("place") ||
+          lowerInput.includes("school") ||
+          lowerInput.includes("church")
+        ) {
+          return "📍 CORE FIELD VENUES:\n\n• Freetown Location: Methodist Girls' High School Compound, Congo Cross, Freetown.\n• Kenema Location: Saint James Anglican Church, 1 Mission Road, Kenema.\n\n🗺️ Directions: You can quickly initiate step-by-step driving directions using the embedded 'Open in Google Maps' links attached near the venue widgets on our page.";
+        }
+
+        if (
+          lowerInput.includes("security") ||
+          lowerInput.includes("safe") ||
+          lowerInput.includes("protect") ||
+          lowerInput.includes("guard") ||
+          lowerInput.includes("welfare") ||
+          lowerInput.includes("medical") ||
+          lowerInput.includes("first aid") ||
+          lowerInput.includes("care")
+        ) {
+          return "🛡️ SECURITY & WELFARE ARCHITECTURE:\n\n• Freetown Venue: Entirely structural, gated, and walled. Monitored 24/7 by dedicated security guards. Registered youth members are continuously guided by adult mentors, with active on-site medical first aid practitioners stationed round-the-clock.\n• Kenema Venue: Strict outer courtyard perimeter surveillance teams check traffic flow. Young people remain fully inside supervised, structural environments during breakout schedules, supported by standard emergency healthcare options.";
+        }
+
+        if (
+          lowerInput.includes("highlight") ||
+          lowerInput.includes("activity") ||
+          lowerInput.includes("activities") ||
+          lowerInput.includes("session") ||
+          lowerInput.includes("workshop") ||
+          lowerInput.includes("topic") ||
+          lowerInput.includes("learn") ||
+          lowerInput.includes("talk")
+        ) {
+          return "✨ PROGRAM HIGHLIGHTS:\nOur programmatic modules encompass:\n• 4 Immersive Hours dedicated to Career Development mapping\n• 4 Immersive Hours mapping out Strategic Entrepreneurship frameworks\n• Dynamic Financial Literacy & micro-budgeting workflows\n• Practical Character Formation & Morality metrics\n• Interactive Health Talks, Panel Discussions, and Peer Debates\n• Actionable Discovery Bible Studies (DBS), Inspiring Dramas, Spoken Word/Poems, and Group Prayer meetings.";
+        }
+
+        if (
+          lowerInput.includes("age") ||
+          lowerInput.includes("who can") ||
+          lowerInput.includes("old") ||
+          lowerInput.includes("student") ||
+          lowerInput.includes("youth") ||
+          lowerInput.includes("children") ||
+          lowerInput.includes("adult")
+        ) {
+          return "👥 DEMOGRAPHIC FOCUS:\nThe conferences are meticulously tailored for Youths, Students (Secondary & Tertiary), Young Professionals, Emerging Entrepreneurs, and Young Adults who are eager to build an intentional, values-driven life blueprint.";
+        }
+
+        if (
+          lowerInput.includes("speaker") ||
+          lowerInput.includes("facilitator") ||
+          lowerInput.includes("sola") ||
+          lowerInput.includes("jegede") ||
+          lowerInput.includes("mentor") ||
+          lowerInput.includes("teacher")
+        ) {
+          return "🎤 LEADERSHIP MATRIX:\nAll key training assemblies are structurally orchestrated and facilitated by Sola Jegede & Team, supported by an accomplished lineup of professional life-coaches, ministry ministers, and technical career advisors.";
+        }
+
+        if (
+          lowerInput.includes("phone") ||
+          lowerInput.includes("contact") ||
+          lowerInput.includes("call") ||
+          lowerInput.includes("number") ||
+          lowerInput.includes("rsvp") ||
+          lowerInput.includes("helpdesk")
+        ) {
+          return "📞 COMPLETE INQUIRY ROSTER:\n\n• Freetown Main Helpdesks:\n  - 076577057\n  - 031033770\n  - 080392938\n  - 076547992\n\n• Kenema Regional Helpdesks:\n  - 034228736\n  - 079451833";
+        }
+
+        return "⚠️ EXTRA INFO ESCALATION:\nI have scanned my operational knowledge bank but could not match that exact question. Let's make sure you get the right answers! Kindly dial our administrative central desk lines at 076577057 or 031033770 (or 034228736 for Kenema inquiries) to reach a live organizer directly.";
       }
 
       updateAllClocks();
