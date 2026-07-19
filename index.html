@@ -2,6 +2,19 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <script>
+      // Apply saved theme immediately, before first paint, to avoid a flash
+      (function () {
+        const savedTheme = localStorage.getItem("zem-theme");
+        const prefersDark =
+          window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const theme = savedTheme || (prefersDark ? "dark" : "light");
+        if (theme === "dark") {
+          document.documentElement.setAttribute("data-theme", "dark");
+        }
+      })();
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Youths & Young Adults' Conference Registration</title>
     <!-- Google Fonts & reCAPTCHA API -->
@@ -28,6 +41,28 @@
         --border-color: #e2e8f0;
         --radius: 20px;
         --teal-dark: #044079;
+
+        --body-bg: #e2e8f5;
+        --card-bg: #ffffff;
+        --card-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        --widget-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.02);
+        --radio-hover-bg: #edf2f7;
+      }
+
+      :root[data-theme="dark"] {
+        --theme-blue: #8fabf2;
+        --theme-blue-dark: #6d8ff0;
+        --text-dark: #eef1f8;
+        --text-muted: #9aa4b8;
+        --input-bg: #232838;
+        --border-color: #333c52;
+        --teal-dark: #7fc4ff;
+
+        --body-bg: #12141f;
+        --card-bg: #191d2b;
+        --card-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        --widget-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+        --radio-hover-bg: #2a3145;
       }
 
       * {
@@ -36,7 +71,7 @@
       }
 
       body {
-        background-color: #e2e8f5;
+        background-color: var(--body-bg);
         margin: 0;
         padding: 40px 16px;
         display: flex;
@@ -45,16 +80,23 @@
         min-height: 100vh;
         color: var(--text-dark);
         -webkit-font-smoothing: antialiased;
+        transition:
+          background-color 0.25s ease,
+          color 0.25s ease;
       }
 
       .fb-container {
-        background: #ffffff;
+        background: var(--card-bg);
         width: 100%;
         max-width: 940px;
         margin: 0 auto;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        box-shadow: var(--card-shadow);
         border-radius: var(--radius);
         overflow: hidden;
+        position: relative;
+        transition:
+          background-color 0.25s ease,
+          box-shadow 0.25s ease;
       }
 
       .fb-cover {
@@ -129,16 +171,17 @@
       }
 
       .widget-card {
-        background: #ffffff;
+        background: var(--card-bg);
         border: 1px solid var(--border-color);
         border-radius: 8px;
         padding: 16px;
+        transition: background-color 0.25s ease;
       }
 
       .widget-title {
         font-size: 1.1rem;
         font-weight: 700;
-        color: #050505;
+        color: var(--text-dark);
         margin: 0 0 16px 0;
       }
 
@@ -282,7 +325,59 @@
       }
 
       .radio-label:hover {
-        background: #edf2f7;
+        background: var(--radio-hover-bg);
+      }
+
+      /* THEME SWITCHER */
+      .theme-toggle {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        z-index: 10;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        border: none;
+        background: rgba(255, 255, 255, 0.9);
+        color: var(--teal-dark);
+        font-size: 1.1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        transition: all 0.2s ease;
+      }
+
+      .theme-toggle:hover {
+        transform: scale(1.08);
+      }
+
+      :root[data-theme="dark"] .theme-toggle {
+        background: rgba(35, 40, 56, 0.9);
+        color: #ffd166;
+      }
+
+      .theme-toggle .fa-sun {
+        display: none;
+      }
+      .theme-toggle .fa-moon {
+        display: inline-block;
+      }
+      :root[data-theme="dark"] .theme-toggle .fa-sun {
+        display: inline-block;
+      }
+      :root[data-theme="dark"] .theme-toggle .fa-moon {
+        display: none;
+      }
+
+      @media (max-width: 880px) {
+        .theme-toggle {
+          top: 12px;
+          right: 12px;
+          width: 40px;
+          height: 40px;
+        }
       }
 
       .captcha-row {
@@ -425,6 +520,16 @@
   </head>
   <body>
     <div class="fb-container">
+      <button
+        type="button"
+        class="theme-toggle"
+        id="themeToggle"
+        aria-label="Toggle dark mode"
+        title="Toggle dark mode"
+      >
+        <i class="fa-solid fa-moon"></i>
+        <i class="fa-solid fa-sun"></i>
+      </button>
       <div class="fb-cover"></div>
 
       <div class="fb-header-bar">
@@ -752,6 +857,21 @@
 
       runTimerCalculations();
       const clockLoop = setInterval(runTimerCalculations, 1000);
+
+      // THEME SWITCHER
+      const themeToggleBtn = document.getElementById("themeToggle");
+      const rootEl = document.documentElement;
+
+      themeToggleBtn.addEventListener("click", () => {
+        const isDark = rootEl.getAttribute("data-theme") === "dark";
+        if (isDark) {
+          rootEl.removeAttribute("data-theme");
+          localStorage.setItem("zem-theme", "light");
+        } else {
+          rootEl.setAttribute("data-theme", "dark");
+          localStorage.setItem("zem-theme", "dark");
+        }
+      });
     </script>
   </body>
 </html>
