@@ -135,7 +135,7 @@
         width: 100vw;
         height: 100vh;
         pointer-events: none;
-        z-index: 999;
+        z-index: 1;
       }
 
       .wrapper {
@@ -1460,7 +1460,7 @@
             <div class="bot-avatar"><i class="fa-solid fa-robot"></i></div>
             <div class="bot-title-text">
               <h4>ZEM Assistant</h4>
-              <span>Online • Ask me anything about the conference</span>
+              <span>Online • Ask me anything</span>
             </div>
           </div>
           <button class="bot-close" onclick="toggleChat()">
@@ -1486,6 +1486,12 @@
             onclick="sendPreset('Give me directions to the venues')"
           >
             📍 Directions
+          </div>
+          <div
+            class="suggested-chip"
+            onclick="sendPreset('What security features are at the venues?')"
+          >
+            🛡️ Security & Care
           </div>
           <div
             class="suggested-chip"
@@ -1520,7 +1526,7 @@
       </div>
       <div class="bot-launcher" id="chat-launcher" onclick="toggleChat()">
         <!-- Floating Animated Label -->
-        <span class="bot-badge-label">Need Help?</span>
+        <span class="bot-badge-label">Need Help? Let's Chat</span>
         <i class="fa-solid fa-comments"></i>
       </div>
     </div>
@@ -1712,10 +1718,12 @@
                 Protected Environment & Dedicated Medical Support
               </p>
               <p class="data-sub">
-            The high school compound is a fully gated, walled environment
+                The high school compound is a fully gated, walled environment
                 monitored 24/7 by a professional security enforcement team. All
                 resident young individuals will be under full structural
-                supervision by responsible adult welfare guardians.
+                supervision by certified adult welfare guardians, alongside an
+                active on-site medical first-aid station to care for all
+                well-being needs.
               </p>
             </div>
           </div>
@@ -1919,7 +1927,9 @@
                 Our church venue operates with strict perimeter management
                 protocols. Dedicated protocols are implemented to make sure
                 children and young people remain entirely within safe perimeters
-                during session intervals.
+                during session intervals, backed by an accessible wellness
+                station to offer clinical attention and guidance throughout the
+                day.
               </p>
             </div>
           </div>
@@ -2556,7 +2566,7 @@
           lowerInput.includes("first aid") ||
           lowerInput.includes("care")
         ) {
-          return "🛡️ SECURITY & WELFARE ARCHITECTURE:\n\n• Freetown Venue: Entirely structural, gated, and walled. Monitored 24/7 by dedicated personnels. Registered youth members are continuously guided by adult mentors, stationed round-the-clock.\n• Kenema Venue: Young people remain fully inside supervised, structural environments during breakout schedules.";
+          return "🛡️ SECURITY & WELFARE ARCHITECTURE:\n\n• Freetown Venue: Entirely structural, gated, and walled. Monitored 24/7 by dedicated security guards. Registered youth members are continuously guided by adult mentors, with active on-site medical first aid practitioners stationed round-the-clock.\n• Kenema Venue: Strict outer courtyard perimeter surveillance teams check traffic flow. Young people remain fully inside supervised, structural environments during breakout schedules, supported by standard emergency healthcare options.";
         }
 
         if (
