@@ -864,6 +864,18 @@
         max-height: 85vh;
         border-radius: 8px;
         box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        animation: lightboxZoomIn 0.25s ease;
+      }
+
+      @keyframes lightboxZoomIn {
+        from {
+          opacity: 0;
+          transform: scale(0.94);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
       }
 
       .lightbox-close {
@@ -879,6 +891,64 @@
 
       .lightbox-close:hover {
         color: var(--orange-accent);
+      }
+
+      .lightbox-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(15, 23, 42, 0.55);
+        color: #ffffff;
+        border: none;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        font-size: 1.1rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s ease;
+      }
+
+      .lightbox-nav:hover {
+        background: var(--theme-blue-dark);
+      }
+
+      .lightbox-prev {
+        left: -60px;
+      }
+
+      .lightbox-next {
+        right: -60px;
+      }
+
+      .lightbox-caption {
+        position: absolute;
+        bottom: -40px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        color: #e2e8f0;
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 880px) {
+        .lightbox-prev {
+          left: 4px;
+        }
+        .lightbox-next {
+          right: 4px;
+        }
+        .lightbox-nav {
+          width: 38px;
+          height: 38px;
+          font-size: 0.95rem;
+        }
+        .lightbox-caption {
+          bottom: -32px;
+          font-size: 0.8rem;
+        }
       }
 
       .highlights-box {
@@ -1448,7 +1518,32 @@
         <button class="lightbox-close" onclick="closeLightbox(event)">
           <i class="fa-solid fa-xmark"></i>
         </button>
-        <img id="lightbox-img" src="" alt="Expanded View" />
+        <button
+          class="lightbox-nav lightbox-prev"
+          id="lightbox-prev"
+          onclick="navigateLightbox(-1)"
+          aria-label="Previous image"
+        >
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <img
+          id="lightbox-img"
+          src=""
+          alt="Expanded View"
+          onerror="
+            this.onerror = null;
+            this.src = 'images/Bible-studies.jpeg';
+          "
+        />
+        <button
+          class="lightbox-nav lightbox-next"
+          id="lightbox-next"
+          onclick="navigateLightbox(1)"
+          aria-label="Next image"
+        >
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+        <div class="lightbox-caption" id="lightbox-caption"></div>
       </div>
     </div>
 
@@ -2029,60 +2124,42 @@
           </p>
 
           <div class="gallery-grid">
-            <div
-              class="gallery-img-container"
-              onclick="openLightbox('./images/gallery1.jpeg')"
-            >
+            <div class="gallery-img-container" onclick="openGalleryImage(0)">
               <img
-                src="./images/gallery1.jpeg"
+                src="./images/Moyamba.jpeg"
                 alt="Past Conference Worship Session"
                 onerror="this.src = 'images/Bible-studies.jpeg'"
               />
             </div>
-            <div
-              class="gallery-img-container"
-              onclick="openLightbox('./images/gallery2.jpeg')"
-            >
+            <div class="gallery-img-container" onclick="openGalleryImage(1)">
               <img
-                src="./images/gallery2.jpeg"
+                src="./images/Moyamba 2.jpeg"
                 alt="Youth Gathering & Prayer"
                 onerror="this.src = 'images/Bible-studies.jpeg'"
               />
             </div>
-            <div
-              class="gallery-img-container"
-              onclick="openLightbox('./images/gallery3.jpeg')"
-            >
+            <div class="gallery-img-container" onclick="openGalleryImage(2)">
               <img
-                src="./images/gallery3.jpeg"
+                src="./images/Moyamba 3.jpeg"
                 alt="Career Seminars & Workshops"
                 onerror="this.src = 'images/Bible-studies.jpeg'"
               />
             </div>
-            <div
-              class="gallery-img-container"
-              onclick="openLightbox('./images/gallery4.jpeg')"
-            >
+            <div class="gallery-img-container" onclick="openGalleryImage(3)">
               <img
-                src="./images/gallery4.jpeg"
+                src="./images/Moyamba 4.jpeg"
                 alt="Group Discussion Panels"
                 onerror="this.src = 'images/Bible-studies.jpeg'"
               />
             </div>
-            <div
-              class="gallery-img-container"
-              onclick="openLightbox('./images/gallery5.jpeg')"
-            >
+            <div class="gallery-img-container" onclick="openGalleryImage(4)">
               <img
                 src="./images/gallery5.jpeg"
                 alt="Entrepreneurship Projects Presentation"
                 onerror="this.src = 'images/Bible-studies.jpeg'"
               />
             </div>
-            <div
-              class="gallery-img-container"
-              onclick="openLightbox('./images/gallery6.jpeg')"
-            >
+            <div class="gallery-img-container" onclick="openGalleryImage(5)">
               <img
                 src="./images/gallery6.jpeg"
                 alt="Celebration & Closing Network"
@@ -2178,12 +2255,53 @@
         document.body.classList.toggle("dark-theme");
       }
 
+      function getGalleryImages() {
+        return Array.from(
+          document.querySelectorAll(".gallery-grid .gallery-img-container img")
+        ).map((img) => ({ src: img.src, caption: img.alt }));
+      }
+      let currentGalleryIndex = null;
+
       function openLightbox(imageSrc) {
+        currentGalleryIndex = null;
         const lightbox = document.getElementById("global-lightbox");
         const lightboxImg = document.getElementById("lightbox-img");
+        const captionEl = document.getElementById("lightbox-caption");
         lightboxImg.src = imageSrc;
+        captionEl.textContent = "";
+        document.getElementById("lightbox-prev").style.display = "none";
+        document.getElementById("lightbox-next").style.display = "none";
         lightbox.style.display = "flex";
         document.body.style.overflow = "hidden";
+      }
+
+      function openGalleryImage(index) {
+        currentGalleryIndex = index;
+        renderGalleryImage();
+        document.getElementById("lightbox-prev").style.display = "flex";
+        document.getElementById("lightbox-next").style.display = "flex";
+        document.getElementById("global-lightbox").style.display = "flex";
+        document.body.style.overflow = "hidden";
+      }
+
+      function renderGalleryImage() {
+        const images = getGalleryImages();
+        const item = images[currentGalleryIndex];
+        const lightboxImg = document.getElementById("lightbox-img");
+        const captionEl = document.getElementById("lightbox-caption");
+        lightboxImg.src = item.src;
+        lightboxImg.alt = item.caption;
+        captionEl.textContent = `${item.caption} — ${
+          currentGalleryIndex + 1
+        } / ${images.length}`;
+      }
+
+      function navigateLightbox(direction) {
+        if (currentGalleryIndex === null) return;
+        const images = getGalleryImages();
+        currentGalleryIndex =
+          (currentGalleryIndex + direction + images.length) % images.length;
+        renderGalleryImage();
       }
 
       function closeLightbox(event) {
@@ -2195,8 +2313,23 @@
           const lightbox = document.getElementById("global-lightbox");
           lightbox.style.display = "none";
           document.body.style.overflow = "auto";
+          currentGalleryIndex = null;
         }
       }
+
+      document.addEventListener("keydown", (e) => {
+        const lightbox = document.getElementById("global-lightbox");
+        if (lightbox.style.display !== "flex") return;
+        if (e.key === "Escape") {
+          lightbox.style.display = "none";
+          document.body.style.overflow = "auto";
+          currentGalleryIndex = null;
+        } else if (e.key === "ArrowLeft") {
+          navigateLightbox(-1);
+        } else if (e.key === "ArrowRight") {
+          navigateLightbox(1);
+        }
+      });
 
       const canvas = document.getElementById("confetti-canvas");
       const ctx = canvas.getContext("2d");
